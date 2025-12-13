@@ -6,10 +6,13 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
 import { Wrench, WashingMachine, SprayCan, CheckCircle } from 'lucide-react';
 import Image from 'next/image';
-import { useState } from 'react';
 
 const ourProducts = [
   {
@@ -57,7 +60,6 @@ const ourProducts = [
 ];
 
 const OurProductsSection = () => {
-  const [openPopover, setOpenPopover] = useState<string | null>(null);
 
   return (
     <section id="our-products" className="bg-background pt-0 md:pt-0">
@@ -70,45 +72,34 @@ const OurProductsSection = () => {
         </p>
         <div className="mt-12 grid md:grid-cols-3 gap-8">
           {ourProducts.map((item, index) => (
-            <Popover
-              key={index}
-              open={openPopover === item.name}
-              onOpenChange={(isOpen) => setOpenPopover(isOpen ? item.name : null)}
-            >
+            <Popover key={index}>
               <PopoverTrigger asChild>
-                <div
-                  onMouseEnter={() => setOpenPopover(item.name)}
-                  onMouseLeave={() => setOpenPopover(null)}
-                >
-                  <Card className="text-left shadow-lg hover:shadow-primary/20 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 overflow-hidden cursor-pointer h-full flex flex-col">
-                    <Image
-                      src={item.imageUrl}
-                      alt={item.name}
-                      width={600}
-                      height={400}
-                      className="w-full h-48 object-cover"
-                      data-ai-hint={item.imageHint}
-                    />
-                    <CardHeader>
-                      <div className="flex items-center gap-4">
-                        <div className="bg-primary/10 text-primary w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
-                          <item.icon className="w-6 h-6" />
-                        </div>
-                        <CardTitle className="font-headline">{item.name}</CardTitle>
+                <Card className="text-left shadow-lg hover:shadow-primary/20 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 overflow-hidden cursor-pointer h-full flex flex-col">
+                  <Image
+                    src={item.imageUrl}
+                    alt={item.name}
+                    width={600}
+                    height={400}
+                    className="w-full h-48 object-cover"
+                    data-ai-hint={item.imageHint}
+                  />
+                  <CardHeader>
+                    <div className="flex items-center gap-4">
+                      <div className="bg-primary/10 text-primary w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <item.icon className="w-6 h-6" />
                       </div>
-                    </CardHeader>
-                    <CardContent className="flex-grow">
-                      <p className="text-muted-foreground">{item.description}</p>
-                    </CardContent>
-                  </Card>
-                </div>
+                      <CardTitle className="font-headline">{item.name}</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="flex-grow">
+                    <p className="text-muted-foreground">{item.description}</p>
+                  </CardContent>
+                </Card>
               </PopoverTrigger>
               <PopoverContent
                 side="top"
                 align="center"
                 className="w-80 bg-background border-primary"
-                onMouseEnter={() => setOpenPopover(item.name)}
-                onMouseLeave={() => setOpenPopover(null)}
               >
                 <div className="grid gap-4">
                   <div className="space-y-2">
