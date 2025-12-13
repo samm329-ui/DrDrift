@@ -5,7 +5,7 @@ import { useApp } from '@/hooks/use-app';
 import { Button } from '@/components/ui/button';
 import { siteConfig } from '@/lib/config';
 import { cn } from '@/lib/utils';
-import { CheckCircle, Loader2 } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 import TwitterIcon from '@/components/icons/twitter';
 import InstagramIcon from '@/components/icons/instagram';
 import FacebookIcon from '@/components/icons/facebook';
@@ -47,6 +47,17 @@ const HeroSection = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleScrollTo = (e: React.MouseEvent<HTMLButtonElement>, selector: string) => {
+    e.preventDefault();
+    const element = document.querySelector(selector);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }
+  };
+
 
   const features = [
     "Kills 99.9% of Bacteria",
@@ -90,10 +101,10 @@ const HeroSection = () => {
             <p className="mt-4 text-lg md:text-xl text-white/80">{currentProduct.subtitle}</p>
             <p className="mt-6 max-w-prose text-base text-white/70">{currentProduct.description}</p>
             <div className="mt-8 flex space-x-4">
-                <Button size="lg" variant="outline" className="border-2 border-white bg-transparent text-white hover:bg-white hover:text-black">
+                <Button size="lg" variant="outline" className="border-2 border-white bg-transparent text-white hover:bg-white hover:text-black" onClick={(e) => handleScrollTo(e, '#product')}>
                     Learn More
                 </Button>
-                <Button size="lg" className="bg-blue-500 hover:bg-blue-600">
+                <Button size="lg" className="bg-blue-500 hover:bg-blue-600" onClick={(e) => handleScrollTo(e, '#our-products')}>
                     Buy Now
                 </Button>
             </div>
