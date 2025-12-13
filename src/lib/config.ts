@@ -50,6 +50,7 @@ export const siteConfig = {
   brandName: 'Dr. Drift',
   navLinks: [
     { name: 'Product', href: '#product' },
+    { name: 'Our Products', href: '#our-products' },
     { name: 'Ingredients', href: '#ingredients' },
     { name: 'Safety', href: '#safety' },
     { name: 'Reviews', href: '#reviews' },
