@@ -5,40 +5,11 @@ import { useApp } from '@/hooks/use-app';
 import { Button } from '@/components/ui/button';
 import { siteConfig } from '@/lib/config';
 import { cn } from '@/lib/utils';
-import { ArrowLeft, ArrowRight, Loader2 } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import TwitterIcon from '@/components/icons/twitter';
 import InstagramIcon from '@/components/icons/instagram';
 import FacebookIcon from '@/components/icons/facebook';
 import Link from 'next/link';
-
-const ProductSwitcher = () => {
-  const { currentProductIndex, products, switchProduct, isSwitching } = useApp();
-  
-  return (
-    <div className="absolute right-4 top-1/2 z-20 -translate-y-1/2 transform text-foreground sm:right-8 md:right-16">
-      <div className="relative flex items-center space-x-4">
-        <div className="text-right">
-          <p className="font-headline text-5xl md:text-7xl font-bold tabular-nums">
-            0{currentProductIndex + 1}
-          </p>
-        </div>
-        <div className="relative flex h-48 flex-col items-center justify-between">
-          <button onClick={() => switchProduct('prev')} aria-label="Previous Product" className="group">
-            <span className="text-xs uppercase tracking-widest transition-colors group-hover:text-primary">Prev</span>
-            <ArrowLeft className="mx-auto mt-1 h-5 w-5 transition-transform group-hover:-translate-x-1" />
-          </button>
-          <div className="h-full w-px bg-foreground/30">
-             {isSwitching && <Loader2 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-4 w-4 animate-spin text-primary" />}
-          </div>
-          <button onClick={() => switchProduct('next')} aria-label="Next Product" className="group">
-            <ArrowRight className="mx-auto mb-1 h-5 w-5 transition-transform group-hover:translate-x-1" />
-            <span className="text-xs uppercase tracking-widest transition-colors group-hover:text-primary">Next</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-};
 
 const SocialLinks = () => (
     <div className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 transform">
@@ -121,7 +92,6 @@ const HeroSection = () => {
         </div>
       </div>
       
-      <ProductSwitcher />
       <SocialLinks />
 
     </section>

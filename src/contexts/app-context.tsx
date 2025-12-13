@@ -37,6 +37,10 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   useEffect(() => {
     // Initial load: preload the first product's animation
     const firstProduct = products[0];
+    if (!firstProduct) {
+        setIsLoading(false);
+        return;
+    }
     const mediaUrl = firstProduct.animatedWebpUrl;
     
     // Set initial theme from config
@@ -73,6 +77,7 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   }, [currentProduct, setTheme]);
 
   const switchProduct = (direction: 'next' | 'prev') => {
+    if (products.length <= 1) return;
     setIsSwitching(true);
     
     setTimeout(() => {
