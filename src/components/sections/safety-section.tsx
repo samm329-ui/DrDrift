@@ -24,7 +24,7 @@ const SafetySection = () => {
         <section id="safety" className="bg-background">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-12">
-                    <h2 className="font-headline text-3xl md:text-4xl font-bold text-primary">Safety Without Compromise</h2>
+                    <h2 className="font-headline text-3xl md:text-4xl font-bold text-white">Safety Without Compromise</h2>
                     <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
                         Powerful cleaning shouldn't come at the cost of your family's well-being or the planet.
                     </p>

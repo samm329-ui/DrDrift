@@ -5,11 +5,12 @@ import { useApp } from '@/hooks/use-app';
 import { Button } from '@/components/ui/button';
 import { siteConfig } from '@/lib/config';
 import { cn } from '@/lib/utils';
-import { Loader2 } from 'lucide-react';
+import { CheckCircle, Loader2 } from 'lucide-react';
 import TwitterIcon from '@/components/icons/twitter';
 import InstagramIcon from '@/components/icons/instagram';
 import FacebookIcon from '@/components/icons/facebook';
 import Link from 'next/link';
+import { Card, CardContent } from '@/components/ui/card';
 
 const SocialLinks = () => (
     <div className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 transform">
@@ -46,6 +47,13 @@ const HeroSection = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const features = [
+    "Kills 99.9% of Bacteria",
+    "Streak-Free Shine",
+    "Eco-Friendly Formula",
+    "Fresh, Lasting Scent"
+];
 
   return (
     <section id="hero" className="relative h-screen w-full overflow-hidden p-0">
@@ -89,6 +97,21 @@ const HeroSection = () => {
                     Buy Now
                 </Button>
             </div>
+        </div>
+        <div className={cn("hidden md:flex justify-center transition-opacity duration-300", isSwitching ? 'opacity-0' : 'opacity-100')}>
+            <Card className="bg-black/20 text-white backdrop-blur-lg border-white/20 max-w-sm">
+                <CardContent className="p-8">
+                    <h3 className="font-headline text-2xl font-bold mb-6 text-center">Key Features</h3>
+                    <ul className="space-y-4">
+                        {features.map((feature, index) => (
+                            <li key={index} className="flex items-center text-lg">
+                                <CheckCircle className="h-6 w-6 text-primary mr-4 flex-shrink-0" />
+                                <span>{feature}</span>
+                            </li>
+                        ))}
+                    </ul>
+                </CardContent>
+            </Card>
         </div>
       </div>
       

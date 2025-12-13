@@ -19,7 +19,7 @@ const ProductSection = () => {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                     <div className="order-2 md:order-1">
-                        <h2 className="font-headline text-3xl md:text-4xl font-bold text-primary">Pure Power, Clean Conscience</h2>
+                        <h2 className="font-headline text-3xl md:text-4xl font-bold text-white">Pure Power, Clean Conscience</h2>
                         <p className="mt-4 text-lg text-muted-foreground">
                             Dr. Drift represents the new standard in home cleaning. We merge potent, lab-tested formulas with eco-conscious practices to deliver a superior clean that you can feel good about. Experience the difference of a professionally maintained home, every day.
                         </p>
