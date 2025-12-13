@@ -76,7 +76,7 @@ const HeroSection = () => {
 
       <div className="container relative z-20 mx-auto grid h-full items-center px-4 sm:px-6 lg:px-8 md:grid-cols-2">
         <div className={cn("max-w-md text-white transition-opacity duration-300", isSwitching ? 'opacity-0' : 'opacity-100')}>
-            <h1 className="font-headline text-5xl font-bold uppercase tracking-widest md:text-7xl">
+            <h1 className="font-headline text-5xl font-bold uppercase tracking-widest md:text-7xl text-primary">
               {currentProduct.name}
             </h1>
             <p className="mt-4 text-lg md:text-xl text-white/80">{currentProduct.subtitle}</p>
@@ -85,7 +85,7 @@ const HeroSection = () => {
                 <Button size="lg" variant="outline" className="border-2 border-white bg-transparent text-white hover:bg-white hover:text-black">
                     Learn More
                 </Button>
-                <Button size="lg" className="bg-primary hover:bg-primary/90">
+                <Button size="lg" className="bg-blue-500 hover:bg-blue-600">
                     Buy Now
                 </Button>
             </div>
