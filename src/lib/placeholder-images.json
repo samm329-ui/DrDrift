@@ -1,3 +1,58 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "animated-hero-1",
+      "description": "Abstract blue liquid swirling",
+      "imageUrl": "https://lrcqwbnytcceesofhdot.supabase.co/storage/v1/object/public/asset/hero/Sequence01-ezgif.com-video-to-webp-converter%20(1).webp",
+      "imageHint": "abstract liquid"
+    },
+    {
+      "id": "animated-hero-2",
+      "description": "Green bubbles rising",
+      "imageUrl": "https://cdn.dribbble.com/users/325121/screenshots/2358899/media/7550d9c4912953264b38d7211603588e.mp4",
+      "imageHint": "bubbles green"
+    },
+    {
+      "id": "animated-hero-3",
+      "description": "Purple particles floating",
+      "imageUrl": "https://cdn.dribbble.com/users/108534/screenshots/2330449/media/3119ac6f50531557d9760a0f968417c4.mp4",
+      "imageHint": "particles purple"
+    },
+    {
+      "id": "product-image-1",
+      "description": "Modern kitchen with clean floor",
+      "imageUrl": "https://images.unsplash.com/photo-1597962261938-8714a29fa42c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjbGVhbiUyMGtpdGNoZW58ZW58MHx8fHwxNzY1NjE1NjQ0fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "clean kitchen"
+    },
+    {
+      "id": "product-image-2",
+      "description": "Sparkling bathroom tiles",
+      "imageUrl": "https://images.unsplash.com/photo-1587527893189-8ed2d3edd54b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxjbGVhbiUyMGJhdGhyb29tfGVufDB8fHx8MTc2NTU1NDQyM3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "clean bathroom"
+    },
+    {
+      "id": "product-image-3",
+      "description": "Clean windows with a clear view",
+      "imageUrl": "https://images.unsplash.com/photo-1743614675019-6878e5ce76df?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjbGVhbiUyMHdpbmRvd3xlbnwwfHx8fDE3NjU1ODAwMjh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "clean window"
+    },
+    {
+      "id": "review-avatar-1",
+      "description": "Reviewer avatar 1",
+      "imageUrl": "https://images.unsplash.com/photo-1599566147214-ce487862ea4f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwZXJzb24lMjBmYWNlfGVufDB8fHx8MTc2NTUwMDY2Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person face"
+    },
+    {
+      "id": "review-avatar-2",
+      "description": "Reviewer avatar 2",
+      "imageUrl": "https://images.unsplash.com/photo-1530268729831-4b0b9e170218?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxwZXJzb24lMjBmYWNlfGVufDB8fHx8MTc2NTUwMDY2Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person face"
+    },
+    {
+      "id": "review-avatar-3",
+      "description": "Reviewer avatar 3",
+      "imageUrl": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxwZXJzb24lMjBmYWNlfGVufDB8fHx8MTc2NTUwMDY2Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "person face"
+    }
+  ]
 }
