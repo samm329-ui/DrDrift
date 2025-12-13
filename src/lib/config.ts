@@ -19,7 +19,7 @@ export const products: Product[] = [
     name: 'Dynamic Clean',
     subtitle: 'Advanced Hygiene Formula',
     description: 'A cutting-edge solution that eradicates 99.9% of bacteria, leaving your floors with a pristine, streak-free shine that lasts.',
-    themeColor: '#2AA8FF',
+    themeColor: '#a6d500',
     mode: 'dark',
     animatedWebpUrl: "https://lrcqwbnytcceesofhdot.supabase.co/storage/v1/object/public/asset/hero/Sequence01-ezgif.com-video-to-webp-converter%20(1).webp",
     productImageUrl: getImageUrl('product-image-1', 'kitchen'),
