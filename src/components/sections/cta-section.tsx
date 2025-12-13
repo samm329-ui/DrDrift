@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 
 const CtaSection = () => {
     return (
-        <section id="contact" className="bg-blue-600">
+        <section id="contact" className="bg-gradient-to-r from-blue-500 to-blue-600">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="max-w-4xl mx-auto text-center py-16">
                     <h2 className="font-headline text-4xl md:text-5xl font-bold text-white">
