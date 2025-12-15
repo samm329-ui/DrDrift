@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { useApp } from '@/hooks/use-app';
 import { Input } from '@/components/ui/input';
 import { Search } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import Image from 'next/image';
 
 const SearchBar = () => {
@@ -33,7 +32,9 @@ const SearchBar = () => {
 
   return (
     <form onSubmit={handleSearchSubmit} className="relative w-full">
-      <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground z-10" />
+      <div className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground z-10">
+        <Search />
+      </div>
       <Input
         type="search"
         placeholder="Search products..."
