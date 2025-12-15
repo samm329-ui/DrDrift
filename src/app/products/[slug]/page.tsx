@@ -115,22 +115,6 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
 
             <Separator />
 
-            <div>
-              <h3 className="text-lg font-semibold mb-3 font-headline">
-                Features:
-              </h3>
-              <ul className="space-y-2">
-                {product.features.map((feature, index) => (
-                  <li key={index} className="flex items-center gap-2">
-                    <CheckCircle className="h-5 w-5 text-primary" />
-                    <span className="text-muted-foreground">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <Separator />
-
             <div className="flex flex-col sm:flex-row items-center gap-4">
               <div className="flex items-center gap-2 border rounded-md p-2">
                 <Button
@@ -167,6 +151,22 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                   Buy Now
                 </Button>
               </div>
+            </div>
+
+            <Separator />
+
+            <div>
+              <h3 className="text-lg font-semibold mb-3 font-headline">
+                Features:
+              </h3>
+              <ul className="space-y-2">
+                {product.features.map((feature, index) => (
+                  <li key={index} className="flex items-center gap-2">
+                    <CheckCircle className="h-5 w-5 text-primary" />
+                    <span className="text-muted-foreground">{feature}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
