@@ -36,8 +36,8 @@ const CtaSection = () => {
                 <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
                     {contactOptions.map(option => (
                         <div key={option.title} className="flex flex-col items-center text-center">
-                            <a href={option.href} target="_blank" rel="noopener noreferrer" className="flex-shrink-0">
-                                <div className="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-primary-foreground">
+                            <a href={option.href} target="_blank" rel="noopener noreferrer" className="flex-shrink-0 group">
+                                <div className="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-primary-foreground transition-transform duration-200 ease-in-out group-hover:scale-110 group-active:scale-95">
                                     <option.icon className="h-6 w-6" />
                                 </div>
                             </a>
