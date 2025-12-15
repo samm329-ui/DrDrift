@@ -1,21 +1,19 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { siteConfig } from '@/lib/config';
 import { cn } from '@/lib/utils';
 import { useScrollSpy } from '@/hooks/use-scroll-spy';
 import ThemeToggle from '@/components/theme-toggle';
 import { Button } from '@/components/ui/button';
-import { ShoppingCart, Badge } from 'lucide-react';
+import { ShoppingCart } from 'lucide-react';
 import { useApp } from '@/hooks/use-app';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const { cart, setIsCartOpen } = useApp();
-
-  const sectionIds = siteConfig.navLinks.map(link => link.href);
-  const activeId = useScrollSpy(sectionIds, { rootMargin: '-50% 0px -50% 0px' });
+  const { cart, setIsCartOpen, isCartAnimating, isCartOpen } = useApp();
+  const cartIconRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,6 +22,14 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (cartIconRef.current) {
+      const rect = cartIconRef.current.getBoundingClientRect();
+      document.documentElement.style.setProperty('--cart-icon-left', `${rect.left + rect.width / 2}px`);
+      document.documentElement.style.setProperty('--cart-icon-top', `${rect.top + rect.height / 2}px`);
+    }
+  }, [cartIconRef, isScrolled, isCartOpen]);
 
   const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -56,9 +62,9 @@ const Navbar = () => {
               onClick={(e) => handleScrollTo(e, link.href)}
               className={cn(
                 'relative text-sm font-medium transition-colors hover:text-primary',
-                activeId === link.href.substring(1) ? 'text-primary' : 'text-foreground/80',
+                'text-foreground/80',
                 'after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:w-full after:bg-primary after:transition-transform after:duration-300',
-                activeId === link.href.substring(1) ? 'after:scale-x-100' : 'after:scale-x-0 hover:after:scale-x-100'
+                'after:scale-x-0 hover:after:scale-x-100'
               )}
             >
               {link.name}
@@ -67,7 +73,13 @@ const Navbar = () => {
         </nav>
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          <Button variant="ghost" size="icon" onClick={() => setIsCartOpen(true)} className="relative">
+          <Button
+            ref={cartIconRef}
+            variant="ghost"
+            size="icon"
+            onClick={() => setIsCartOpen(true)}
+            className={cn('relative', isCartAnimating && 'animate-shake')}
+          >
             <ShoppingCart className="h-5 w-5" />
             {cartItemCount > 0 && (
               <span className="absolute top-0 right-0 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">

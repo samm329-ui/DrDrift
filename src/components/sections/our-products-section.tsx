@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import {
   Card,
   CardContent,
@@ -66,16 +66,24 @@ const ourProducts = [
 const ProductCard = ({ product }: { product: (typeof ourProducts)[0] }) => {
   const [quantity, setQuantity] = useState(1);
   const [isOpen, setIsOpen] = useState(false);
-  const { addToCart } = useApp();
+  const { addToCart, setAnimatingItemId } = useApp();
   const isMobile = useIsMobile();
+  const imageRef = useRef<HTMLDivElement>(null);
+
 
   const handleAddToCart = () => {
-    addToCart({
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      imageUrl: product.imageUrl,
-    }, quantity);
+    if (imageRef.current) {
+      const rect = imageRef.current.getBoundingClientRect();
+      const item = {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        imageUrl: product.imageUrl,
+        rect
+      };
+      addToCart(item, quantity);
+      setAnimatingItemId(product.id);
+    }
   };
   
   const trigger = (
@@ -90,7 +98,7 @@ const ProductCard = ({ product }: { product: (typeof ourProducts)[0] }) => {
     <Popover open={isOpen} onOpenChange={setIsOpen}>
       <Card className="text-left shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden h-full flex flex-col group">
         <PopoverTrigger asChild onClick={(e) => { if (isMobile) e.preventDefault(); setIsOpen(!isOpen)}}>
-            <div className="relative">
+            <div ref={imageRef} className="relative">
                 <Image
                     src={product.imageUrl}
                     alt={product.name}
