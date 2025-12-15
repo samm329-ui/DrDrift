@@ -10,13 +10,6 @@ import {
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import {
   Popover,
   PopoverContent,
   PopoverTrigger,
@@ -29,7 +22,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay"
-import { SprayCan, Sparkles, CircleSlashed, Info, Zap, ShoppingCart } from 'lucide-react';
+import { SprayCan, Sparkles, CircleSlashed, Info, Zap, ShoppingCart, Plus, Minus } from 'lucide-react';
 import Image from 'next/image';
 import { useApp } from '@/hooks/use-app';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -195,28 +188,30 @@ const ProductCard = ({ product }: { product: (typeof ourProducts)[0] }) => {
             <p className="text-sm text-muted-foreground">{product.description}</p>
           </CardContent>
           <CardFooter className="flex flex-col items-stretch gap-2 bg-secondary/50 p-3 mt-auto">
-            <div className="flex items-stretch gap-2">
-              <div className="flex-shrink-0">
-                <Select
-                  value={String(quantity)}
-                  onValueChange={(val) => setQuantity(Number(val))}
-                >
-                  <SelectTrigger id={`quantity-${product.id}`} className="w-[75px] h-9">
-                    <SelectValue placeholder="Qty" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {[...Array(8).keys()].map((i) => (
-                      <SelectItem key={i + 1} value={String(i + 1)}>
-                        {i + 1}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              <Button onClick={handleAddToCart} size="sm" variant="outline" className="w-full">
-                <ShoppingCart className="mr-2 h-4 w-4" />
-                Add to Cart
-              </Button>
+            <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-1">
+                    <Button
+                    variant="outline"
+                    size="icon"
+                    className="h-8 w-8"
+                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                    >
+                    <Minus className="h-3.5 w-3.5" />
+                    </Button>
+                    <span className="w-10 text-center font-medium">{quantity}</span>
+                    <Button
+                    variant="outline"
+                    size="icon"
+                    className="h-8 w-8"
+                    onClick={() => setQuantity(quantity + 1)}
+                    >
+                    <Plus className="h-3.5 w-3.5" />
+                    </Button>
+                </div>
+                <Button onClick={handleAddToCart} size="sm" variant="outline" className="flex-1">
+                    <ShoppingCart className="mr-2 h-4 w-4" />
+                    Add to Cart
+                </Button>
             </div>
             <Button onClick={handleBuyNow} size="sm" className="w-full">
               <Zap className="mr-2 h-4 w-4" />
