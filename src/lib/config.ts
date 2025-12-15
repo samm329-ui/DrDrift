@@ -39,8 +39,7 @@ export const siteConfig = {
   ],
   socials: {
     twitter: 'https://twitter.com',
-    instagram: 'https://instagram.com',
-    facebook: 'https://facebook.com',
+    instagram: 'https://www.instagram.com/drdrift.co/',
   },
   footerLinks: [
     { name: 'About', href: '#' },

@@ -5,8 +5,8 @@ const contactOptions = [
     {
         icon: Mail,
         title: "Email Us",
-        content: "contact@drdrift.com",
-        href: "mailto:contact@drdrift.com"
+        content: "drdriftpvtltd@gmail.com",
+        href: "mailto:drdriftpvtltd@gmail.com"
     },
     {
         icon: Phone,

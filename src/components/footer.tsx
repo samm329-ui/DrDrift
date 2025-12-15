@@ -2,7 +2,6 @@ import Link from "next/link";
 import { siteConfig } from "@/lib/config";
 import TwitterIcon from "@/components/icons/twitter";
 import InstagramIcon from "@/components/icons/instagram";
-import FacebookIcon from "@/components/icons/facebook";
 
 const Footer = () => {
     return (
@@ -18,9 +17,6 @@ const Footer = () => {
                             </Link>
                             <Link href={siteConfig.socials.instagram} target="_blank" aria-label="Instagram">
                                 <InstagramIcon className="h-6 w-6 transition-colors hover:text-white" />
-                            </Link>
-                             <Link href={siteConfig.socials.facebook} target="_blank" aria-label="Facebook">
-                                <FacebookIcon className="h-6 w-6 transition-colors hover:text-white" />
                             </Link>
                         </div>
                     </div>

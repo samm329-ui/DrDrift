@@ -7,7 +7,6 @@ import { siteConfig } from '@/lib/config';
 import { cn } from '@/lib/utils';
 import TwitterIcon from '@/components/icons/twitter';
 import InstagramIcon from '@/components/icons/instagram';
-import FacebookIcon from '@/components/icons/facebook';
 import Link from 'next/link';
 
 const SocialLinks = () => (
@@ -18,9 +17,6 @@ const SocialLinks = () => (
             </Link>
             <Link href={siteConfig.socials.instagram} target="_blank" aria-label="Instagram">
                 <InstagramIcon className="h-5 w-5 text-foreground/70 transition-colors hover:text-primary" />
-            </Link>
-            <Link href={siteConfig.socials.facebook} target="_blank" aria-label="Facebook">
-                <FacebookIcon className="h-5 w-5 text-foreground/70 transition-colors hover:text-primary" />
             </Link>
         </div>
     </div>
