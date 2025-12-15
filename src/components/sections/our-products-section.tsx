@@ -73,7 +73,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
                           alt={`${product.name} image ${index + 1}`}
                           width={600}
                           height={400}
-                          className="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-105"
+                          className="w-full h-72 object-cover transition-transform duration-300 group-hover:scale-105"
                           data-ai-hint={product.imageHint}
                       />
                   </CarouselItem>
