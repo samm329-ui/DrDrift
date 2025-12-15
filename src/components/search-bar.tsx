@@ -1,8 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 import { useApp } from '@/hooks/use-app';
 import { Input } from '@/components/ui/input';
 import { Search } from 'lucide-react';
@@ -10,24 +8,29 @@ import Image from 'next/image';
 
 const SearchBar = () => {
   const { filteredProducts, searchQuery, setSearchQuery } = useApp();
-  const router = useRouter();
   const [isFocused, setIsFocused] = useState(false);
 
   const showSuggestions = isFocused && searchQuery.length > 0;
+
+  const handleScrollToProduct = (slug: string) => {
+    const element = document.getElementById(`product-card-${slug}`);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    setSearchQuery('');
+    setIsFocused(false);
+  };
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (filteredProducts.length > 0) {
       const firstProduct = filteredProducts[0];
-      router.push(`/products/${firstProduct.slug}`);
-      setSearchQuery('');
-      setIsFocused(false);
+      handleScrollToProduct(firstProduct.slug);
     }
   };
 
-  const handleSuggestionClick = () => {
-    setSearchQuery('');
-    setIsFocused(false);
+  const handleSuggestionClick = (slug: string) => {
+    handleScrollToProduct(slug);
   }
 
   return (
@@ -50,10 +53,10 @@ const SearchBar = () => {
             <ul>
               {filteredProducts.map((product) => (
                 <li key={product.id}>
-                  <Link
-                    href={`/products/${product.slug}`}
-                    onClick={handleSuggestionClick}
-                    className="flex items-center gap-4 p-3 hover:bg-accent transition-colors"
+                  <button
+                    type="button"
+                    onClick={() => handleSuggestionClick(product.slug)}
+                    className="flex items-center gap-4 p-3 hover:bg-accent transition-colors w-full text-left"
                   >
                     <div className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-md">
                         <Image
@@ -67,7 +70,7 @@ const SearchBar = () => {
                         <p className="font-semibold text-sm text-foreground">{product.name}</p>
                         <p className="text-xs text-muted-foreground line-clamp-2">{product.description}</p>
                     </div>
-                  </Link>
+                  </button>
                 </li>
               ))}
             </ul>

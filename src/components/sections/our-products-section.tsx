@@ -54,7 +54,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
   };
 
   return (
-      <Card className="text-left transition-shadow duration-300 overflow-hidden h-full flex flex-col group min-w-[380px] sm:min-w-[420px] border-transparent shadow-none bg-transparent">
+      <Card id={`product-card-${product.slug}`} className="text-left transition-shadow duration-300 overflow-hidden h-full flex flex-col group min-w-[380px] sm:min-w-[420px] border-transparent shadow-none bg-transparent">
         <div className="relative overflow-hidden rounded-lg group-hover:shadow-2xl transition-shadow duration-300">
             <Link href={`/products/${product.slug}`} className="absolute inset-0 z-10">
                  <span className="sr-only">View Details</span>
