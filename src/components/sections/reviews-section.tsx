@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent } from '@/components/ui/card';
 import { Star } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 const reviews = [
     {
@@ -28,7 +29,7 @@ const getAvatarUrl = (id: string) => PlaceHolderImages.find(img => img.id === id
 
 const ReviewsSection = () => {
     return (
-        <section id="reviews" className="bg-background py-20 md:py-32">
+        <section id="reviews" className={cn("bg-background py-20 md:py-32", "bg-wavy-1")}>
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
                 <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl font-headline">Loved by Homes Everywhere</h2>
                 <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground">
