@@ -39,15 +39,8 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isCartAnimating, setIsCartAnimating] = useState(false);
   const { toast } = useToast();
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-
+  
   const currentProduct = useMemo(() => products[currentProductIndex], [currentProductIndex]);
-
-  useEffect(() => {
-    // This code runs only on the client
-    audioRef.current = new Audio('https://lrcqwbnytcceesofhdot.supabase.co/storage/v1/object/public/asset/cart.mp3');
-    audioRef.current.load();
-  }, []);
 
   const triggerCartAnimation = useCallback(() => {
     setIsCartAnimating(true);
@@ -61,17 +54,6 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   }, []);
 
   const addToCart = useCallback((item: Omit<CartItem, 'quantity'>, quantity: number) => {
-    // Play sound
-    if (audioRef.current) {
-        audioRef.current.currentTime = 0;
-        audioRef.current.play().catch(err => console.error("Audio play failed:", err));
-    }
-
-    // Vibrate
-    if (navigator.vibrate) {
-        navigator.vibrate(100);
-    }
-
     setCart(prevCart => {
       const existingItem = prevCart.find(cartItem => cartItem.id === item.id);
       if (existingItem) {
