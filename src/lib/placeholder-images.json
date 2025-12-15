@@ -39,20 +39,20 @@
     {
       "id": "review-avatar-1",
       "description": "Reviewer avatar 1",
-      "imageUrl": "https://images.unsplash.com/photo-1599566147214-ce487862ea4f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwZXJzb24lMjBmYWNlfGVufDB8fHx8MTc2NTUwMDY2Mnww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "person face"
+      "imageUrl": "https://images.unsplash.com/photo-1604514638521-2a4d51624c96?q=80&w=2584&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "indian person"
     },
     {
       "id": "review-avatar-2",
       "description": "Reviewer avatar 2",
-      "imageUrl": "https://images.unsplash.com/photo-1530268729831-4b0b9e170218?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxwZXJzb24lMjBmYWNlfGVufDB8fHx8MTc2NTUwMDY2Mnww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "person face"
+      "imageUrl": "https://images.unsplash.com/photo-1504199367641-aba8151af406?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "indian person"
     },
     {
       "id": "review-avatar-3",
       "description": "Reviewer avatar 3",
-      "imageUrl": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxwZXJzb24lMjBmYWNlfGVufDB8fHx8MTc2NTUwMDY2Mnww&ixlib=rb-4.1.0&q=80&w=1080",
-      "imageHint": "person face"
+      "imageUrl": "https://images.unsplash.com/photo-1620177209237-1ac205abf47d?q=80&w=2574&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "imageHint": "indian person"
     }
   ]
 }
