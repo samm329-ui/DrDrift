@@ -20,10 +20,11 @@ import { Separator } from '@/components/ui/separator';
 export default function ProductPage({ params }: { params: { slug: string } }) {
   const [quantity, setQuantity] = useState(1);
   const { addToCart, buyNow } = useApp();
+  const slug = React.use(params);
 
   const product = useMemo(
-    () => siteProducts.find((p) => p.slug === params.slug),
-    [params.slug]
+    () => siteProducts.find((p) => p.slug === slug),
+    [slug]
   );
 
   const autoplayPlugin = useRef(
