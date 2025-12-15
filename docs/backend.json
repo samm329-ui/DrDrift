@@ -1,0 +1,82 @@
+{
+  "entities": {
+    "User": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "User",
+      "type": "object",
+      "description": "Represents a user of the Dr. Drift website.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the user."
+        },
+        "email": {
+          "type": "string",
+          "description": "User's email address.",
+          "format": "email"
+        },
+        "firstName": {
+          "type": "string",
+          "description": "User's first name."
+        },
+        "lastName": {
+          "type": "string",
+          "description": "User's last name."
+        },
+        "signUpDate": {
+          "type": "string",
+          "description": "Date and time the user signed up.",
+          "format": "date-time"
+        },
+        "lastLogin": {
+          "type": "string",
+          "description": "Date and time of the user's last login.",
+          "format": "date-time"
+        },
+        "profilePictureURL": {
+          "type": "string",
+          "description": "URL of the user's profile picture, if available.",
+          "format": "uri"
+        },
+        "googleId": {
+          "type": "string",
+          "description": "User's Google ID, if signed up with Google. Null if not signed up with Google."
+        }
+      },
+      "required": [
+        "id",
+        "email",
+        "firstName",
+        "lastName",
+        "signUpDate"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/users/{userId}",
+        "definition": {
+          "entityName": "User",
+          "schema": {
+            "$ref": "#/backend/entities/User"
+          },
+          "description": "Stores user data, accessible only to the authenticated user. Follows path-based ownership. Includes fields like email, firstName, lastName, signUpDate, lastLogin, and profilePictureURL.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "Given the requirement of a frontend-only application with no backend, server code, database, or authentication, a Firestore data structure is not applicable. The data will be stored in frontend JavaScript objects as specified. However, if the application were to be extended to include backend functionality and user authentication in the future, a suitable Firestore structure would be as follows:\n\n*   `/users/{userId}`: This collection would store user data. Each document would represent a user, uniquely identified by their `userId`. This path follows the Access Modeling strategy, specifically the Path-Based ownership for private data. Each document would conform to the User schema defined in the input.\n\nThis structure facilitates Authorization Independence by eliminating the need for `get()` calls in security rules. The security rules can directly verify `request.auth.uid` against the `{userId}` parameter in the path. Since there are no subcollections or collaborative data requirements outlined in the current feature set, no denormalization is necessary at this stage.\n\nThis structure also supports the QAPs (Rules are not Filters) principle. Since the rules will validate against simple path-based ownership, `list` operations can be securely configured to allow only authenticated users to access their own data."
+  }
+}
