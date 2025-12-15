@@ -40,7 +40,7 @@ export const siteProducts: SiteProduct[] = [
     ],
     imageHint: 'toilet cleaner',
     price: 833,
-    features: ["Kills 99.9% of germs", "Removes tough stains", "Fresh scent", "5L value pack"],
+    features: ["Targets and dissolves grime buildup under the rim and in the bowl.", "Formulated to cling to surfaces for longer contact and better cleaning.", "Leaves a refreshing and clean fragrance that deodorizes the entire space.", "Generous 5-liter container offers excellent value for long-term use.", "Helps prevent future stains from forming with regular application."],
   },
   {
     id: 'prod_floor_cleaner',
@@ -55,7 +55,7 @@ export const siteProducts: SiteProduct[] = [
     ],
     imageHint: 'floor cleaner',
     price: 599,
-    features: ["Cuts through grease", "Brilliant shine", "Safe for all floors", "Concentrated formula"],
+    features: ["Effortlessly lifts dirt and tracked-in grime from various hard surfaces.", "Dries quickly without leaving streaks, watermarks, or sticky residue.", "Versatile composition is suitable for tile, laminate, vinyl, and sealed wood.", "A little goes a long way, making it an economical choice for daily cleaning.", "Infuses your home with a subtle, clean scent that enhances the ambiance."],
   },
   {
     id: 'prod_dishwasher',
@@ -70,7 +70,7 @@ export const siteProducts: SiteProduct[] = [
     ],
     imageHint: 'dishwasher tablets',
     price: 619,
-    features: ["Removes limescale", "Prevents buildup", "Sparkling clean dishes", "5L economy size"],
+    features: ["Actively works to break down mineral deposits and limescale from pipes.", "Helps maintain your dishwasher's performance and extend its lifespan.", "Ensures every dish, glass, and piece of silverware emerges spotless.", "Large container provides a convenient and lasting supply for your kitchen.", "Neutralizes odors within the machine, leaving it smelling fresh and clean."],
   },
 ];
 
