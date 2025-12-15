@@ -23,7 +23,7 @@ const contactOptions = [
 
 const CtaSection = () => {
     return (
-        <section id="contact" className="bg-background-alt dark:bg-background py-20 md:py-32">
+        <section id="contact" className="bg-background py-20 md:py-32">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="max-w-3xl mx-auto text-center">
                     <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl font-headline">
