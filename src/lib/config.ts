@@ -1,4 +1,4 @@
-import type { Product } from '@/types';
+import type { Product, SiteProduct } from '@/types';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 const getImageUrl = (id: string, hint?: string): string => {
@@ -25,6 +25,55 @@ export const products: Product[] = [
     productImageUrl: getImageUrl('product-image-1', 'kitchen'),
   },
 ];
+
+export const siteProducts: SiteProduct[] = [
+  {
+    id: 'prod_toilet_cleaner',
+    slug: 'toilet-cleaner-5l',
+    name: 'Toilet Cleaner (5L)',
+    description:
+      'Powerful formula that removes tough stains and kills 99.9% of germs, leaving your toilet sparkling clean and fresh.',
+    imageUrls: [
+        'https://picsum.photos/seed/toilet1/800/600',
+        'https://picsum.photos/seed/toilet2/800/600',
+        'https://picsum.photos/seed/toilet3/800/600',
+    ],
+    imageHint: 'toilet cleaner',
+    price: 833,
+    features: ["Kills 99.9% of germs", "Removes tough stains", "Fresh scent", "5L value pack"],
+  },
+  {
+    id: 'prod_floor_cleaner',
+    slug: 'floor-cleaner-5l',
+    name: 'Floor Cleaner (5L)',
+    description:
+      'Our floor cleaner cuts through grease and grime, leaving your floors spotless and with a brilliant shine. Safe for all floor types.',
+    imageUrls: [
+        'https://picsum.photos/seed/floor1/800/600',
+        'https://picsum.photos/seed/floor2/800/600',
+        'https://picsum.photos/seed/floor3/800/600',
+    ],
+    imageHint: 'floor cleaner',
+    price: 599,
+    features: ["Cuts through grease", "Brilliant shine", "Safe for all floors", "Concentrated formula"],
+  },
+  {
+    id: 'prod_dishwasher',
+    slug: 'dishwasher-liquid-5l',
+    name: 'Dishwasher Liquid (5L)',
+    description:
+      'Advanced cleaning for your dishwasher, removing limescale and buildup to ensure your dishes come out sparkling clean every time.',
+    imageUrls: [
+        'https://picsum.photos/seed/dish1/800/600',
+        'https://picsum.photos/seed/dish2/800/600',
+        'https://picsum.photos/seed/dish3/800/600',
+    ],
+    imageHint: 'dishwasher tablets',
+    price: 619,
+    features: ["Removes limescale", "Prevents buildup", "Sparkling clean dishes", "5L economy size"],
+  },
+];
+
 
 export const siteConfig = {
   brandName: 'Dr. Drift',

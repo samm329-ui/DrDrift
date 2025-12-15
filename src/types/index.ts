@@ -9,6 +9,17 @@ export type Product = {
   productImageUrl: string;
 };
 
+export type SiteProduct = {
+  id: string;
+  slug: string;
+  name: string;
+  description: string;
+  imageUrls: string[];
+  imageHint: string;
+  price: number;
+  features: string[];
+}
+
 export type CartItem = {
   id: string;
   name: string;
