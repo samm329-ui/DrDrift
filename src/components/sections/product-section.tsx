@@ -23,10 +23,10 @@ const ProductSection = () => {
                         <p className="mt-6 text-xl text-muted-foreground">
                             Dr. Drift represents the new standard in home cleaning. We merge potent, lab-tested formulas with eco-conscious practices to deliver a superior clean that you can feel good about.
                         </p>
-                        <p className="mt-4 text-lg text-orange-500 font-semibold">
+                        <p className="mt-6 text-xs text-muted-foreground/80">
                             Pack of 8 is now available with offers!
                         </p>
-                        <ul className="mt-8 space-y-3">
+                        <ul className="mt-2 space-y-3">
                             {features.map((feature, index) => (
                                 <li key={index} className="flex items-center text-lg text-foreground">
                                     <CheckCircle className="h-5 w-5 text-primary mr-3" />
