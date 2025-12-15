@@ -195,7 +195,7 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     switchProduct,
     setTheme,
     triggerCartAnimation,
-  }), [products, currentProduct, currentProductIndex, theme, isLoading, isSwitching, cart, isCartOpen, isCartAnimating, startCheckout, searchQuery, filteredProducts, addToCart, buyNow, updateQuantity, removeFromCart, clearCart, switchProduct, setTheme, triggerCartAnimation]);
+  }), [products, currentProduct, currentProductIndex, theme, isLoading, isSwitching, cart, isCartOpen, isCartAnimating, startCheckout, searchQuery, filteredProducts, addToCart, buyNow, updateQuantity, removeFromCart, clearCart, switchProduct, setTheme, triggerCartAnimation, setSearchQuery]);
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
