@@ -5,7 +5,7 @@ const contactOptions = [
         icon: Mail,
         title: "Email Us",
         content: "Click to send us an email",
-        href: "mailto:drdriftpvtltd@gmail.com"
+        href: "https://mail.google.com/mail/?view=cm&fs=1&to=drdriftpvtltd@gmail.com"
     },
     {
         icon: Phone,
