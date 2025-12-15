@@ -17,6 +17,7 @@ import { useApp } from '@/hooks/use-app';
 import { useToast } from '@/hooks/use-toast';
 import { ArrowLeft } from 'lucide-react';
 import { ScrollArea } from './ui/scroll-area';
+import { Textarea } from './ui/textarea';
 
 const checkoutSchema = z.object({
   firstName: z.string().min(1, { message: 'First name is required.' }),
@@ -25,6 +26,7 @@ const checkoutSchema = z.object({
   contactNumber: z.string().min(10, { message: 'Please enter a valid contact number.' }),
   street: z.string().min(3, { message: 'Street is required.' }),
   house: z.string().min(1, { message: 'House name/number is required.' }),
+  address: z.string().optional(),
   pincode: z.string().min(6, { message: 'Please enter a valid 6-digit pincode.' }).max(6, { message: 'Please enter a valid 6-digit pincode.'}),
   landmark: z.string().optional(),
 });
@@ -49,6 +51,7 @@ export function CheckoutForm({ subtotal, onBack }: CheckoutFormProps) {
       contactNumber: '',
       street: '',
       house: '',
+      address: '',
       pincode: '',
       landmark: '',
     },
@@ -155,6 +158,22 @@ export function CheckoutForm({ subtotal, onBack }: CheckoutFormProps) {
                           </FormItem>
                       )}
                     />
+                    <FormField
+                        control={form.control}
+                        name="address"
+                        render={({ field }) => (
+                            <FormItem>
+                            <FormLabel>Address (Optional)</FormLabel>
+                            <FormControl>
+                                <Textarea
+                                placeholder="E.g. near the post office, 2nd floor"
+                                {...field}
+                                />
+                            </FormControl>
+                            <FormMessage />
+                            </FormItem>
+                        )}
+                        />
                     <div className="grid grid-cols-2 gap-4">
                       <FormField
                         control={form.control}
