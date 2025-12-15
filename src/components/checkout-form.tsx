@@ -69,160 +69,162 @@ export function CheckoutForm({ subtotal, onBack }: CheckoutFormProps) {
   }
 
   return (
-    <div className="h-full flex flex-col">
-        <div className="flex items-center gap-2 mb-4 -ml-2 pr-6">
-            <Button variant="ghost" size="icon" className="h-8 w-8" onClick={onBack}>
-                <ArrowLeft className="h-5 w-5" />
-            </Button>
-            <h3 className="text-xl font-semibold font-headline">Shipping Details</h3>
-        </div>
-        <ScrollArea className="flex-grow -mr-6 pr-6">
-            <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                    <div className="space-y-2">
-                        <h4 className="font-medium">Contact Information</h4>
-                        <FormField
-                            control={form.control}
-                            name="email"
-                            render={({ field }) => (
-                                <FormItem>
-                                <FormLabel>Email</FormLabel>
-                                <FormControl>
-                                    <Input placeholder="you@example.com" {...field} />
-                                </FormControl>
-                                <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                         <FormField
-                            control={form.control}
-                            name="contactNumber"
-                            render={({ field }) => (
-                                <FormItem>
-                                <FormLabel>Contact Number</FormLabel>
-                                <FormControl>
-                                    <Input placeholder="+91 12345 67890" {...field} />
-                                </FormControl>
-                                <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                    </div>
-                     <div className="space-y-2">
-                        <h4 className="font-medium">Shipping Address</h4>
-                        <div className="grid grid-cols-2 gap-4">
-                            <FormField
-                                control={form.control}
-                                name="firstName"
-                                render={({ field }) => (
-                                    <FormItem>
-                                    <FormLabel>First Name</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="John" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                            <FormField
-                                control={form.control}
-                                name="lastName"
-                                render={({ field }) => (
-                                    <FormItem>
-                                    <FormLabel>Last Name</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="Doe" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                        </div>
-                        <FormField
-                            control={form.control}
-                            name="street"
-                            render={({ field }) => (
-                                <FormItem>
-                                <FormLabel>Street Name / Number</FormLabel>
-                                <FormControl>
-                                    <Input placeholder="123 Main St" {...field} />
-                                </FormControl>
-                                <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                         <FormField
-                            control={form.control}
-                            name="house"
-                            render={({ field }) => (
-                                <FormItem>
-                                <FormLabel>House Name / Number</FormLabel>
-                                <FormControl>
-                                    <Input placeholder="Apartment, suite, etc." {...field} />
-                                </FormControl>
-                                <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="address"
-                            render={({ field }) => (
-                                <FormItem>
-                                <FormLabel>Address (Optional)</FormLabel>
-                                <FormControl>
-                                    <Textarea
-                                    placeholder="E.g. near the post office, 2nd floor"
-                                    {...field}
-                                    />
-                                </FormControl>
-                                <FormMessage />
-                                </FormItem>
-                            )}
-                            />
-                        <div className="grid grid-cols-2 gap-4">
-                            <FormField
-                                control={form.control}
-                                name="pincode"
-                                render={({ field }) => (
-                                    <FormItem>
-                                    <FormLabel>Pincode</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="123456" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                            <FormField
-                                control={form.control}
-                                name="landmark"
-                                render={({ field }) => (
-                                    <FormItem>
-                                    <FormLabel>Landmark (Optional)</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="Near the park" {...field} />
-                                    </FormControl>
-                                    <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                        </div>
-                    </div>
-                </form>
-            </Form>
-        </ScrollArea>
-        <div className="mt-auto pt-4 space-y-4 pr-6">
-            <Separator />
-            <div className="flex justify-between items-center font-bold text-lg">
-                <span>Total</span>
-                <span>₹{subtotal.toFixed(2)}</span>
+    <div className="flex flex-col h-full">
+      <div className="flex items-center gap-2 mb-4 -ml-2 pr-6 flex-shrink-0">
+        <Button variant="ghost" size="icon" className="h-8 w-8" onClick={onBack}>
+            <ArrowLeft className="h-5 w-5" />
+        </Button>
+        <h3 className="text-xl font-semibold font-headline">Shipping Details</h3>
+      </div>
+
+      <ScrollArea className="flex-grow -mr-6 pr-6">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 pb-4">
+            <div className="space-y-2">
+                <h4 className="font-medium">Contact Information</h4>
+                <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                        <FormItem>
+                        <FormLabel>Email</FormLabel>
+                        <FormControl>
+                            <Input placeholder="you@example.com" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                  <FormField
+                    control={form.control}
+                    name="contactNumber"
+                    render={({ field }) => (
+                        <FormItem>
+                        <FormLabel>Contact Number</FormLabel>
+                        <FormControl>
+                            <Input placeholder="+91 12345 67890" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                        </FormItem>
+                    )}
+                />
             </div>
-             <p className="text-sm text-muted-foreground">Payment Method: Cash on Delivery</p>
-            <Button onClick={form.handleSubmit(onSubmit)} className="w-full" size="lg">
-                Place Order
-            </Button>
+              <div className="space-y-2">
+                <h4 className="font-medium">Shipping Address</h4>
+                <div className="grid grid-cols-2 gap-4">
+                    <FormField
+                        control={form.control}
+                        name="firstName"
+                        render={({ field }) => (
+                            <FormItem>
+                            <FormLabel>First Name</FormLabel>
+                            <FormControl>
+                                <Input placeholder="John" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="lastName"
+                        render={({ field }) => (
+                            <FormItem>
+                            <FormLabel>Last Name</FormLabel>
+                            <FormControl>
+                                <Input placeholder="Doe" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                </div>
+                <FormField
+                    control={form.control}
+                    name="street"
+                    render={({ field }) => (
+                        <FormItem>
+                        <FormLabel>Street Name / Number</FormLabel>
+                        <FormControl>
+                            <Input placeholder="123 Main St" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                  <FormField
+                    control={form.control}
+                    name="house"
+                    render={({ field }) => (
+                        <FormItem>
+                        <FormLabel>House Name / Number</FormLabel>
+                        <FormControl>
+                            <Input placeholder="Apartment, suite, etc." {...field} />
+                        </FormControl>
+                        <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="address"
+                    render={({ field }) => (
+                        <FormItem>
+                        <FormLabel>Address (Optional)</FormLabel>
+                        <FormControl>
+                            <Textarea
+                            placeholder="E.g. near the post office, 2nd floor"
+                            {...field}
+                            />
+                        </FormControl>
+                        <FormMessage />
+                        </FormItem>
+                    )}
+                    />
+                <div className="grid grid-cols-2 gap-4">
+                    <FormField
+                        control={form.control}
+                        name="pincode"
+                        render={({ field }) => (
+                            <FormItem>
+                            <FormLabel>Pincode</FormLabel>
+                            <FormControl>
+                                <Input placeholder="123456" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="landmark"
+                        render={({ field }) => (
+                            <FormItem>
+                            <FormLabel>Landmark (Optional)</FormLabel>
+                            <FormControl>
+                                <Input placeholder="Near the park" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                </div>
+            </div>
+          </form>
+        </Form>
+      </ScrollArea>
+
+      <div className="mt-auto pt-4 space-y-4 pr-6 flex-shrink-0">
+        <Separator />
+        <div className="flex justify-between items-center font-bold text-lg">
+            <span>Total</span>
+            <span>₹{subtotal.toFixed(2)}</span>
         </div>
+          <p className="text-sm text-muted-foreground">Payment Method: Cash on Delivery</p>
+        <Button onClick={form.handleSubmit(onSubmit)} className="w-full" size="lg">
+            Place Order
+        </Button>
+      </div>
     </div>
   );
 }
