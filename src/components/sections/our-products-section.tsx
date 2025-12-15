@@ -17,7 +17,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay"
-import { Info, Plus, Minus } from 'lucide-react';
+import { Plus, Minus, Sparkles } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useApp } from '@/hooks/use-app';
@@ -49,6 +49,17 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
       imageUrl: product.imageUrls[0],
     };
     buyNow(item, quantity);
+  };
+
+  const handleBuyPackOf8 = () => {
+    const discountedPrice = Math.round(product.price * 0.92);
+    const item = {
+      id: `${product.id}-pack8`,
+      name: `${product.name} (Pack of 8)`,
+      price: discountedPrice,
+      imageUrl: product.imageUrls[0],
+    };
+    buyNow(item, 8);
   };
 
   return (
@@ -123,6 +134,10 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
             </div>
             <Button onClick={handleAddToCart} size="sm" variant="outline" className="w-full">
                 Add to Cart
+            </Button>
+            <Button onClick={handleBuyPackOf8} size="sm" variant="destructive" className="w-full bg-red-500 hover:bg-red-600 text-white mt-2">
+                <Sparkles className="mr-2 h-4 w-4" />
+                Buy Pack of 8 (8% OFF)
             </Button>
           </CardFooter>
         </div>
