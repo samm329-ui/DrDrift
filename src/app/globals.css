@@ -67,7 +67,23 @@
     @apply bg-background text-foreground;
     min-height: 100vh;
   }
-  section {
+  .pattern-bg {
+    background-color: hsl(var(--background));
+    background-image:
+      radial-gradient(hsl(var(--primary) / 0.1) 1px, transparent 1px),
+      radial-gradient(hsl(var(--primary) / 0.1) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: 0 0, 20px 20px;
+  }
+  .dark .pattern-bg {
+    background-image:
+      radial-gradient(hsl(var(--primary) / 0.05) 1px, transparent 1px),
+      radial-gradient(hsl(var(--primary) / 0.05) 1px, transparent 1px);
+  }
+  section:not(#hero) {
     @apply py-16 md:py-24;
+  }
+  #hero {
+    @apply p-0;
   }
 }

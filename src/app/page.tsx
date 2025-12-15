@@ -18,7 +18,7 @@ export default function Home() {
     <>
       <Loader />
       {!isLoading && (
-        <>
+        <div className='bg-background'>
           <HeroSection />
           <ProductSection />
           <OurProductsSection />
@@ -27,7 +27,7 @@ export default function Home() {
           <ReviewsSection />
           <FaqSection />
           <CtaSection />
-        </>
+        </div>
       )}
     </>
   );
