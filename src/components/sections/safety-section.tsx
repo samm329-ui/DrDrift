@@ -23,23 +23,23 @@ const SafetySection = () => {
     return (
         <section id="safety" className="bg-background">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16">
-                    <h2 className="font-headline text-4xl md:text-5xl font-bold text-foreground tracking-tight">Safety Without Compromise</h2>
-                    <p className="mt-6 max-w-3xl mx-auto text-lg text-muted-foreground leading-relaxed">
-                        Powerful cleaning shouldn't come at the cost of your family's well-being or the planet. We're committed to safety and sustainability in every drop.
+                <div className="text-center mb-12">
+                    <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl font-headline">Safety Without Compromise</h2>
+                    <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground">
+                        Powerful cleaning shouldn't come at a cost.
                     </p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {safetyInfo.map((item, index) => (
-                        <Card key={index} className="flex flex-col items-center text-center p-8 bg-secondary rounded-2xl border-2 border-transparent hover:border-primary/50 hover:shadow-lg transition-all duration-300">
-                            <div className="bg-primary text-primary-foreground rounded-full p-5 mb-6">
-                                <item.icon className="w-10 h-10" />
+                        <Card key={index} className="flex flex-col items-center text-center p-6 bg-secondary/50">
+                             <div className="bg-primary text-primary-foreground rounded-full p-4 mb-4">
+                                <item.icon className="w-8 h-8" />
                             </div>
                             <CardHeader className="p-0">
-                                <CardTitle className="font-headline text-2xl">{item.title}</CardTitle>
+                                <CardTitle className="font-headline text-xl">{item.title}</CardTitle>
                             </CardHeader>
-                            <CardContent className="p-0 mt-3">
-                                <p className="text-muted-foreground text-base leading-relaxed">{item.description}</p>
+                            <CardContent className="p-0 mt-2">
+                                <p className="text-muted-foreground">{item.description}</p>
                             </CardContent>
                         </Card>
                     ))}

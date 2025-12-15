@@ -17,23 +17,23 @@ const ProductSection = () => {
     return (
         <section id="product" className="bg-background">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid md:grid-cols-2 gap-16 items-center">
+                <div className="grid md:grid-cols-2 gap-12 items-center">
                     <div className="order-2 md:order-1">
-                        <h2 className="font-headline text-4xl md:text-5xl font-bold text-foreground tracking-tight">Pure Power, Clean Conscience</h2>
-                        <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-                            Dr. Drift represents the new standard in home cleaning. We merge potent, lab-tested formulas with eco-conscious practices to deliver a superior clean that you can feel good about. Experience the difference of a professionally maintained home, every day.
+                        <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl font-headline">Pure Power, Clean Conscience</h2>
+                        <p className="mt-6 text-xl text-muted-foreground">
+                            Dr. Drift represents the new standard in home cleaning. We merge potent, lab-tested formulas with eco-conscious practices to deliver a superior clean that you can feel good about.
                         </p>
-                        <ul className="mt-8 space-y-4">
+                        <ul className="mt-8 space-y-3">
                             {features.map((feature, index) => (
                                 <li key={index} className="flex items-center text-lg text-foreground">
-                                    <CheckCircle className="h-6 w-6 text-primary mr-4 flex-shrink-0" />
+                                    <CheckCircle className="h-5 w-5 text-primary mr-3" />
                                     <span>{feature}</span>
                                 </li>
                             ))}
                         </ul>
                     </div>
                     <div className="order-1 md:order-2">
-                         <Card className="overflow-hidden shadow-2xl rounded-2xl group">
+                         <Card className="overflow-hidden shadow-lg">
                             <CardContent className="p-0">
                                 <Image
                                     key={currentProduct.id}
@@ -41,7 +41,7 @@ const ProductSection = () => {
                                     alt={currentProduct.name}
                                     width={800}
                                     height={600}
-                                    className="w-full h-auto object-cover transition-all duration-500 ease-in-out group-hover:scale-105"
+                                    className="w-full h-auto object-cover transition-opacity duration-500 ease-in-out"
                                     data-ai-hint="clean home"
                                 />
                             </CardContent>

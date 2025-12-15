@@ -80,10 +80,7 @@
       radial-gradient(hsl(var(--primary) / 0.03) 1px, transparent 1px),
       radial-gradient(hsl(var(--primary) / 0.03) 1px, transparent 1px);
   }
-  section:not(#hero) {
-    @apply py-24 md:py-32;
-  }
-  #hero {
-    @apply p-0;
+  section {
+    @apply py-12 md:py-24;
   }
 }

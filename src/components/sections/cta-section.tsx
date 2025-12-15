@@ -1,5 +1,4 @@
 import { Mail, Phone, MapPin } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const contactOptions = [
     {
@@ -24,39 +23,32 @@ const contactOptions = [
 
 const CtaSection = () => {
     return (
-        <section id="contact" className="bg-secondary">
+        <section id="contact">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="max-w-4xl mx-auto text-center py-16">
-                    <h2 className="font-headline text-4xl md:text-5xl font-bold text-foreground tracking-tight">
-                        Ready for a Deeper Clean?
+                <div className="max-w-3xl mx-auto text-center">
+                    <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl font-headline">
+                        Get In Touch
                     </h2>
-                    <p className="mt-6 text-xl text-muted-foreground leading-relaxed">
-                        Join thousands of homes and businesses that have upgraded to the Dr. Drift standard.
+                    <p className="mt-4 text-xl text-muted-foreground">
+                        Have a question or want to work together?
                     </p>
                 </div>
-
-                <div className="pb-16 pt-8">
-                     <h3 className="font-headline text-3xl font-bold text-foreground text-center mb-12">
-                        Get In Touch
-                    </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                        {contactOptions.map(option => (
-                             <a key={option.title} href={option.href} className="block group">
-                                <Card className="bg-background hover:border-primary transition-all duration-300 h-full text-center shadow-lg hover:shadow-2xl rounded-2xl hover:-translate-y-2">
-                                    <CardHeader className="items-center pt-8">
-                                        <div className="p-4 bg-primary/10 rounded-full group-hover:scale-110 transition-transform duration-300">
-                                            <option.icon className="w-8 h-8 text-primary" />
-                                        </div>
-
-                                    </CardHeader>
-                                    <CardContent className="p-8">
-                                        <CardTitle className="text-xl font-bold font-headline">{option.title}</CardTitle>
-                                        <p className="text-muted-foreground mt-2">{option.content}</p>
-                                    </CardContent>
-                                </Card>
-                            </a>
-                        ))}
-                    </div>
+                <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {contactOptions.map(option => (
+                        <div key={option.title} className="flex flex-col items-center text-center">
+                            <div className="flex-shrink-0">
+                                <div className="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-primary-foreground">
+                                    <option.icon className="h-6 w-6" />
+                                </div>
+                            </div>
+                            <div className="mt-4">
+                                <h3 className="text-lg font-medium leading-6 text-foreground font-headline">{option.title}</h3>
+                                <p className="mt-2 text-base text-muted-foreground">
+                                    <a href={option.href} className="hover:text-primary">{option.content}</a>
+                                </p>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </div>
         </section>

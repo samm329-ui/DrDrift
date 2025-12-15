@@ -26,22 +26,22 @@ const faqItems = [
 
 const FaqSection = () => {
     return (
-        <section id="faq" className="bg-background">
+        <section id="faq">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16">
-                    <h2 className="font-headline text-4xl md:text-5xl font-bold tracking-tight">Frequently Asked Questions</h2>
-                    <p className="mt-6 max-w-2xl mx-auto text-lg text-muted-foreground leading-relaxed">
-                        Have questions? We have answers. Find information about our products, ingredients, and policies right here.
+                <div className="text-center mb-12">
+                    <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl font-headline">Frequently Asked Questions</h2>
+                    <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground">
+                        Have questions? We have answers.
                     </p>
                 </div>
-                <div className="max-w-4xl mx-auto">
-                    <Accordion type="single" collapsible className="w-full space-y-4">
+                <div className="max-w-3xl mx-auto">
+                    <Accordion type="single" collapsible className="w-full">
                         {faqItems.map((item, index) => (
-                            <AccordionItem key={index} value={`item-${index}`} className="bg-secondary/50 rounded-xl border-b-0">
-                                <AccordionTrigger className="text-left font-bold text-lg px-6 py-4 hover:no-underline">
+                            <AccordionItem key={index} value={`item-${index}`}>
+                                <AccordionTrigger className="text-left font-semibold">
                                     {item.question}
                                 </AccordionTrigger>
-                                <AccordionContent className="text-muted-foreground text-base px-6">
+                                <AccordionContent className="text-muted-foreground">
                                     {item.answer}
                                 </AccordionContent>
                             </AccordionItem>
