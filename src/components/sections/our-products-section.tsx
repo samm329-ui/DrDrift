@@ -198,12 +198,10 @@ const ProductCard = ({ product }: { product: (typeof ourProducts)[0] }) => {
                     </Button>
                 </div>
                 <Button onClick={handleBuyNow} size="sm" className="flex-1">
-                  <Zap className="mr-2 h-4 w-4" />
                   Buy Now
                 </Button>
             </div>
             <Button onClick={handleAddToCart} size="sm" variant="outline" className="w-full">
-                <ShoppingCart className="mr-2 h-4 w-4" />
                 Add to Cart
             </Button>
           </CardFooter>
@@ -224,7 +222,7 @@ const OurProductsSection = () => {
         <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground">
           A range of products to keep your home shining.
         </p>
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-6 items-stretch">
             {ourProducts.map((item, index) => (
                 <ProductCard key={index} product={item} />
             ))}
