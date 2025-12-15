@@ -66,11 +66,9 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
     <div className="bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
         <div className="grid md:grid-cols-2 gap-12 items-start">
-          {/* Image Carousel */}
-          <div className="w-full">
-            <Carousel
-              className="w-full group"
-            >
+          {/* Image Column */}
+          <div className="w-full space-y-4">
+            <Carousel className="w-full group">
               <CarouselContent>
                 {product.imageUrls.map((url, index) => (
                   <CarouselItem key={index}>
@@ -87,6 +85,14 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 ))}
               </CarouselContent>
             </Carousel>
+            <Button
+              onClick={handleBuyPackOf8}
+              size="lg"
+              className="w-full bg-orange-500 hover:bg-orange-600 text-white text-lg"
+            >
+              <Sparkles className="mr-2 h-5 w-5 animate-pulse" />
+              Buy Pack of 8 (8% OFF)
+            </Button>
           </div>
 
           {/* Product Details */}
@@ -110,7 +116,9 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             <Separator />
 
             <div>
-              <h3 className="text-lg font-semibold mb-3 font-headline">Features:</h3>
+              <h3 className="text-lg font-semibold mb-3 font-headline">
+                Features:
+              </h3>
               <ul className="space-y-2">
                 {product.features.map((feature, index) => (
                   <li key={index} className="flex items-center gap-2">
@@ -120,9 +128,9 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 ))}
               </ul>
             </div>
-            
+
             <Separator />
-            
+
             <div className="flex flex-col sm:flex-row items-center gap-4">
               <div className="flex items-center gap-2 border rounded-md p-2">
                 <Button
@@ -147,7 +155,12 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               </div>
 
               <div className="flex-grow w-full flex flex-col sm:flex-row gap-2">
-                <Button onClick={handleAddToCart} size="lg" variant="outline" className="w-full">
+                <Button
+                  onClick={handleAddToCart}
+                  size="lg"
+                  variant="outline"
+                  className="w-full"
+                >
                   Add to Cart
                 </Button>
                 <Button onClick={handleBuyNow} size="lg" className="w-full">
@@ -155,10 +168,6 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 </Button>
               </div>
             </div>
-             <Button onClick={handleBuyPackOf8} size="lg" className="w-full bg-orange-500 hover:bg-orange-600 text-white">
-                <Sparkles className="mr-2 h-5 w-5 animate-pulse" />
-                Buy Pack of 8 (8% OFF)
-            </Button>
           </div>
         </div>
       </div>
