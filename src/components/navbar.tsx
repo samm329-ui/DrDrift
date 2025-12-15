@@ -16,6 +16,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
   DropdownMenuSeparator,
+  DropdownMenuLabel,
 } from '@/components/ui/dropdown-menu';
 import Image from 'next/image';
 import { useAuthDialog } from '@/hooks/use-auth-dialog';
@@ -88,7 +89,7 @@ const Navbar = () => {
       className={cn(
         'sticky top-0 z-50 w-full transition-all duration-300',
         isScrolled
-          ? 'bg-background/80 shadow-md backdrop-blur-sm'
+          ? 'bg-background/80 shadow-md backdrop-blur-sm bg-wavy-1'
           : 'bg-transparent'
       )}
     >
