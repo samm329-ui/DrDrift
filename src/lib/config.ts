@@ -1,3 +1,4 @@
+
 import type { Product, SiteProduct } from '@/types';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 
