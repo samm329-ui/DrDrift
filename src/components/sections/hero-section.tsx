@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils';
 import TwitterIcon from '@/components/icons/twitter';
 import InstagramIcon from '@/components/icons/instagram';
 import Link from 'next/link';
+import SearchBar from '../search-bar';
 
 const SocialLinks = () => (
     <div className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 transform">
@@ -54,6 +55,9 @@ const HeroSection = () => {
 
   return (
     <section id="hero" className="relative h-screen w-full overflow-hidden p-0">
+      <div className="absolute top-8 right-8 z-30">
+        <SearchBar />
+      </div>
       <div className="absolute inset-0 bg-black/30 z-10"></div>
       <div className="absolute inset-0">
         {isVideo ? (
