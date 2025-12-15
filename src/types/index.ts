@@ -16,3 +16,9 @@ export type CartItem = {
   quantity: number;
   imageUrl: string;
 };
+
+export type NavLink = {
+  name: string;
+  href: string;
+  preview: string;
+};
