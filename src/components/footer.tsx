@@ -32,16 +32,16 @@ const Footer = () => {
                          <div>
                             <h4 className="font-bold text-white tracking-wider uppercase text-sm">Company</h4>
                             <ul className="mt-4 space-y-2 text-sm">
-                                {siteConfig.footerLinks.slice(0, 2).map(link => (
-                                     <li key={link.name}><Link href={link.href} className="hover:text-white transition-colors">{link.name}</Link></li>
+                                {siteConfig.footerLinks.company.map(link => (
+                                     <li key={link.name}><Link href={link.href} target={link.href.startsWith('http') ? '_blank' : '_self'} className="hover:text-white transition-colors">{link.name}</Link></li>
                                 ))}
                             </ul>
                         </div>
                          <div>
                             <h4 className="font-bold text-white tracking-wider uppercase text-sm">Legal</h4>
                             <ul className="mt-4 space-y-2 text-sm">
-                                 {siteConfig.footerLinks.slice(2, 4).map(link => (
-                                     <li key={link.name}><Link href={link.href} className="hover:text-white transition-colors">{link.name}</Link></li>
+                                 {siteConfig.footerLinks.legal.map(link => (
+                                     <li key={link.name}><Link href={link.href} target={link.href.startsWith('http') ? '_blank' : '_self'} className="hover:text-white transition-colors">{link.name}</Link></li>
                                 ))}
                             </ul>
                         </div>

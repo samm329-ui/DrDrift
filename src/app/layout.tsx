@@ -4,6 +4,8 @@ import { Toaster } from '@/components/ui/toaster';
 import { AppContextProvider } from '@/contexts/app-context';
 import { cn } from '@/lib/utils';
 import CartDrawer from '@/components/cart-drawer';
+import Navbar from '@/components/navbar';
+import Footer from '@/components/footer';
 
 export const metadata: Metadata = {
   title: 'Drift Dynamic',
@@ -27,9 +29,13 @@ export default function RootLayout({
       </head>
       <body className={cn('font-body antialiased')}>
         <AppContextProvider>
-          {children}
-          <CartDrawer />
-          <Toaster />
+            <div className="flex flex-col min-h-screen">
+              <Navbar />
+              <main className="flex-grow">{children}</main>
+              <Footer />
+            </div>
+            <CartDrawer />
+            <Toaster />
         </AppContextProvider>
       </body>
     </html>

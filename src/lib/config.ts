@@ -41,10 +41,14 @@ export const siteConfig = {
     twitter: 'https://twitter.com',
     instagram: 'https://www.instagram.com/drdrift.co/',
   },
-  footerLinks: [
-    { name: 'About', href: '#' },
-    { name: 'Contact', href: '#' },
-    { name: 'Privacy Policy', href: '#' },
-    { name: 'Terms of Service', href: '#' },
-  ]
+  footerLinks: {
+    company: [
+        { name: 'About', href: '/about' },
+        { name: 'Contact', href: '#contact' },
+    ],
+    legal: [
+        { name: 'Privacy Policy', href: '/privacy' },
+        { name: 'Terms of Service', href: '/terms' },
+    ]
+  }
 };
