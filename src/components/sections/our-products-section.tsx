@@ -24,13 +24,13 @@ import type { SiteProduct } from '@/types';
 import { cn } from '@/lib/utils';
 
 const ProductCard = ({ product }: { product: SiteProduct }) => {
-  const { addToCart } = useApp();
+  const { addToCart, buyNow } = useApp();
   const autoplayPlugin = useRef(Autoplay({ delay: 2000 + Math.random() * 1000, stopOnInteraction: true }));
   
   const originalPrice = Math.round(product.price * 1.25);
 
   const handleAddToCart = (e: React.MouseEvent) => {
-    e.preventDefault(); // prevent navigation
+    e.preventDefault();
     e.stopPropagation();
     const item = {
       id: product.id,
@@ -39,6 +39,18 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
       imageUrl: product.imageUrls[0],
     };
     addToCart(item, 1);
+  };
+
+  const handleBuyNow = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const item = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      imageUrl: product.imageUrls[0],
+    };
+    buyNow(item, 1);
   };
 
   return (
@@ -81,20 +93,19 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
           <CardContent className="p-0 mt-2 flex-grow">
             <p className="text-sm text-muted-foreground line-clamp-2">{product.description}</p>
           </CardContent>
-          <CardFooter className="p-0 mt-4 flex items-center justify-between">
+          <CardFooter className="p-0 mt-4 flex flex-col items-stretch gap-2">
               <div className="flex items-baseline gap-2">
                 <span className="font-bold text-lg text-primary">Rs. {product.price}</span>
                 <span className="text-sm text-muted-foreground animate-strike-through">Rs. {originalPrice}</span>
-            </div>
-            <div className='flex items-center gap-1'>
-                 <Button variant="ghost" size="icon" className='h-8 w-8' onClick={handleAddToCart}>
-                    <ShoppingCart className='h-4 w-4'/>
+              </div>
+              <div className='flex items-center gap-2 w-full'>
+                 <Button variant="outline" size="sm" className='w-full' onClick={handleAddToCart}>
+                    <ShoppingCart className='mr-2 h-4 w-4'/>
+                    Add to Cart
                  </Button>
-                 <Link href={`/products/${product.slug}`}>
-                    <Button variant="ghost" size="icon" className='h-8 w-8'>
-                        <ArrowRight className='h-4 w-4'/>
-                    </Button>
-                 </Link>
+                 <Button size="sm" className='w-full' onClick={handleBuyNow}>
+                    Buy Now
+                 </Button>
             </div>
           </CardFooter>
         </div>
