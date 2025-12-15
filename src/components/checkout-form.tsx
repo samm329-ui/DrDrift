@@ -19,9 +19,14 @@ import { ArrowLeft } from 'lucide-react';
 import { ScrollArea } from './ui/scroll-area';
 
 const checkoutSchema = z.object({
+  firstName: z.string().min(1, { message: 'First name is required.' }),
+  lastName: z.string().min(1, { message: 'Last name is required.' }),
   email: z.string().email({ message: 'Please enter a valid email address.' }),
-  address: z.string().min(5, { message: 'Address must be at least 5 characters.' }),
   contactNumber: z.string().min(10, { message: 'Please enter a valid contact number.' }),
+  street: z.string().min(3, { message: 'Street is required.' }),
+  house: z.string().min(1, { message: 'House name/number is required.' }),
+  pincode: z.string().min(6, { message: 'Please enter a valid 6-digit pincode.' }).max(6, { message: 'Please enter a valid 6-digit pincode.'}),
+  landmark: z.string().optional(),
 });
 
 type CheckoutFormValues = z.infer<typeof checkoutSchema>;
@@ -38,9 +43,14 @@ export function CheckoutForm({ subtotal, onBack }: CheckoutFormProps) {
   const form = useForm<CheckoutFormValues>({
     resolver: zodResolver(checkoutSchema),
     defaultValues: {
+      firstName: '',
+      lastName: '',
       email: '',
-      address: '',
       contactNumber: '',
+      street: '',
+      house: '',
+      pincode: '',
+      landmark: '',
     },
   });
 
@@ -64,46 +74,115 @@ export function CheckoutForm({ subtotal, onBack }: CheckoutFormProps) {
         </div>
         <ScrollArea className="flex-grow pr-4">
             <Form {...form}>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                    <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                        <FormItem>
-                        <FormLabel>Email</FormLabel>
-                        <FormControl>
-                            <Input placeholder="you@example.com" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                        </FormItem>
-                    )}
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                    <div className="grid grid-cols-2 gap-4">
+                      <FormField
+                        control={form.control}
+                        name="firstName"
+                        render={({ field }) => (
+                            <FormItem>
+                            <FormLabel>First Name</FormLabel>
+                            <FormControl>
+                                <Input placeholder="John" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                            </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="lastName"
+                        render={({ field }) => (
+                            <FormItem>
+                            <FormLabel>Last Name</FormLabel>
+                            <FormControl>
+                                <Input placeholder="Doe" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                            </FormItem>
+                        )}
+                      />
+                    </div>
+                     <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                          <FormItem>
+                          <FormLabel>Email</FormLabel>
+                          <FormControl>
+                              <Input placeholder="you@example.com" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                          </FormItem>
+                      )}
+                    />
+                     <FormField
+                      control={form.control}
+                      name="contactNumber"
+                      render={({ field }) => (
+                          <FormItem>
+                          <FormLabel>Contact Number</FormLabel>
+                          <FormControl>
+                              <Input placeholder="(555) 123-4567" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                          </FormItem>
+                      )}
                     />
                     <FormField
-                    control={form.control}
-                    name="address"
-                    render={({ field }) => (
-                        <FormItem>
-                        <FormLabel>Shipping Address</FormLabel>
-                        <FormControl>
-                            <Input placeholder="123 Main St, Anytown, USA" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                        </FormItem>
-                    )}
+                      control={form.control}
+                      name="street"
+                      render={({ field }) => (
+                          <FormItem>
+                          <FormLabel>Street Name / Number</FormLabel>
+                          <FormControl>
+                              <Input placeholder="123 Main St" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                          </FormItem>
+                      )}
                     />
-                    <FormField
-                    control={form.control}
-                    name="contactNumber"
-                    render={({ field }) => (
-                        <FormItem>
-                        <FormLabel>Contact Number</FormLabel>
-                        <FormControl>
-                            <Input placeholder="(555) 123-4567" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                        </FormItem>
-                    )}
+                     <FormField
+                      control={form.control}
+                      name="house"
+                      render={({ field }) => (
+                          <FormItem>
+                          <FormLabel>House Name / Number</FormLabel>
+                          <FormControl>
+                              <Input placeholder="Apartment 4B" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                          </FormItem>
+                      )}
                     />
+                    <div className="grid grid-cols-2 gap-4">
+                      <FormField
+                        control={form.control}
+                        name="pincode"
+                        render={({ field }) => (
+                            <FormItem>
+                            <FormLabel>Pincode</FormLabel>
+                            <FormControl>
+                                <Input placeholder="123456" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                            </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="landmark"
+                        render={({ field }) => (
+                            <FormItem>
+                            <FormLabel>Landmark (Optional)</FormLabel>
+                            <FormControl>
+                                <Input placeholder="Near the park" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                            </FormItem>
+                        )}
+                      />
+                    </div>
                 </form>
             </Form>
         </ScrollArea>
