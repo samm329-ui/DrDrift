@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import {
   Card,
   CardContent,
@@ -15,20 +15,23 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay"
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ShoppingCart } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useApp } from '@/hooks/use-app';
 import { siteProducts } from '@/lib/config';
 import type { SiteProduct } from '@/types';
+import { cn } from '@/lib/utils';
 
 const ProductCard = ({ product }: { product: SiteProduct }) => {
-  const { addToCart, buyNow } = useApp();
+  const { addToCart } = useApp();
   const autoplayPlugin = useRef(Autoplay({ delay: 2000 + Math.random() * 1000, stopOnInteraction: true }));
   
   const originalPrice = Math.round(product.price * 1.25);
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault(); // prevent navigation
+    e.stopPropagation();
     const item = {
       id: product.id,
       name: product.name,
@@ -37,20 +40,13 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
     };
     addToCart(item, 1);
   };
-  
-  const handleBuyNow = () => {
-    const item = {
-      id: product.id,
-      name: product.name,
-      price: product.price,
-      imageUrl: product.imageUrls[0],
-    };
-    buyNow(item, 1);
-  };
 
   return (
       <Card className="text-left shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden h-full flex flex-col group bg-background dark:bg-background/80 backdrop-blur-sm border-white/20 min-w-[280px] sm:min-w-[300px]">
-        <div className="relative">
+        <div className="relative overflow-hidden">
+            <Link href={`/products/${product.slug}`} className="absolute inset-0 z-10">
+                 <span className="sr-only">View Details</span>
+            </Link>
             <Carousel
               plugins={[autoplayPlugin.current]}
               className="w-full"
@@ -60,51 +56,45 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
               <CarouselContent>
                 {product.imageUrls.map((url, index) => (
                   <CarouselItem key={index}>
-                    <Link href={`/products/${product.slug}`}>
                       <Image
                           src={url}
                           alt={`${product.name} image ${index + 1}`}
                           width={600}
                           height={400}
-                          className="w-full h-48 object-cover"
+                          className="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-105"
                           data-ai-hint={product.imageHint}
                       />
-                    </Link>
                   </CarouselItem>
                 ))}
               </CarouselContent>
             </Carousel>
+            <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 flex items-center justify-center gap-2">
+                <Button variant="outline" size="sm" className="bg-white/90 text-foreground hover:bg-white" onClick={handleAddToCart}>
+                    <ShoppingCart className="h-4 w-4 mr-2" />
+                    Add to Cart
+                </Button>
+                <Button variant="ghost" size="sm" className="text-white hover:bg-white/20 hover:text-white">
+                    View <ArrowRight className="ml-1 h-3 w-3" />
+                </Button>
+            </div>
         </div>
 
-        <div className="flex flex-col flex-grow">
-          <CardHeader>
+        <div className="flex flex-col flex-grow p-4">
+          <CardHeader className="p-0">
             <CardTitle className="font-headline text-lg">
-              <Link href={`/products/${product.slug}`} className="hover:text-primary transition-colors">
+              <Link href={`/products/${product.slug}`} className="hover:text-primary transition-colors z-30 relative">
                 {product.name}
               </Link>
             </CardTitle>
-              <div className="flex items-baseline gap-2 mt-1">
+          </CardHeader>
+          <CardContent className="p-0 mt-2 flex-grow">
+            <p className="text-sm text-muted-foreground line-clamp-2">{product.description}</p>
+          </CardContent>
+          <CardFooter className="p-0 mt-4">
+              <div className="flex items-baseline gap-2">
                 <span className="font-bold text-lg text-primary">Rs. {product.price}</span>
                 <span className="text-sm text-muted-foreground animate-strike-through">Rs. {originalPrice}</span>
             </div>
-          </CardHeader>
-          <CardContent className="flex-grow">
-            <p className="text-sm text-muted-foreground line-clamp-2">{product.description}</p>
-          </CardContent>
-          <CardFooter className="flex flex-col items-stretch gap-2 bg-secondary/50 p-3 mt-auto">
-             <div className="flex items-center justify-between gap-2">
-                <Button onClick={handleBuyNow} size="sm" className="flex-1">
-                  Buy Now
-                </Button>
-                <Button onClick={handleAddToCart} size="sm" variant="outline" className="flex-1">
-                    Add to Cart
-                </Button>
-            </div>
-             <Link href={`/products/${product.slug}`} className='w-full'>
-                <Button variant="ghost" size="sm" className="w-full text-sm">
-                    View Details <ArrowRight className="ml-1 h-3 w-3" />
-                </Button>
-            </Link>
           </CardFooter>
         </div>
       </Card>
