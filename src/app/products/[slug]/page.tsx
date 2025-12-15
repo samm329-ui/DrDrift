@@ -11,7 +11,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-import Autoplay from 'embla-carousel-autoplay';
 import Image from 'next/image';
 import { Minus, Plus, CheckCircle, Sparkles } from 'lucide-react';
 import { useApp } from '@/hooks/use-app';
@@ -26,10 +25,6 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
   const product = useMemo(
     () => siteProducts.find((p) => p.slug === slug),
     [slug]
-  );
-
-  const autoplayPlugin = useRef(
-    Autoplay({ delay: 3000, stopOnInteraction: true })
   );
 
   if (!product) {
@@ -76,10 +71,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
           {/* Image Carousel */}
           <div className="w-full">
             <Carousel
-              plugins={[autoplayPlugin.current]}
               className="w-full group"
-              onMouseEnter={autoplayPlugin.current.stop}
-              onMouseLeave={autoplayPlugin.current.play}
             >
               <CarouselContent>
                 {product.imageUrls.map((url, index) => (
