@@ -3,6 +3,7 @@ import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import { AppContextProvider } from '@/contexts/app-context';
 import { cn } from '@/lib/utils';
+import CartDrawer from '@/components/cart-drawer';
 
 export const metadata: Metadata = {
   title: 'Drift Dynamic',
@@ -27,6 +28,7 @@ export default function RootLayout({
       <body className={cn('font-body antialiased')}>
         <AppContextProvider>
           {children}
+          <CartDrawer />
           <Toaster />
         </AppContextProvider>
       </body>

@@ -1,9 +1,10 @@
 'use client';
 
 import React, { createContext, useState, useEffect, useMemo, useCallback } from 'react';
-import type { Product } from '@/types';
+import type { Product, CartItem } from '@/types';
 import { products } from '@/lib/config';
 import { hexToHsl } from '@/lib/utils';
+import { useToast } from '@/hooks/use-toast';
 
 type Theme = 'light' | 'dark';
 
@@ -14,6 +15,13 @@ interface AppContextType {
   theme: Theme;
   isLoading: boolean;
   isSwitching: boolean;
+  cart: CartItem[];
+  isCartOpen: boolean;
+  addToCart: (item: Omit<CartItem, 'quantity'>, quantity: number) => void;
+  updateQuantity: (itemId: string, quantity: number) => void;
+  removeFromCart: (itemId: string) => void;
+  clearCart: () => void;
+  setIsCartOpen: (isOpen: boolean) => void;
   switchProduct: (direction: 'next' | 'prev') => void;
   setTheme: (theme: Theme) => void;
 }
@@ -25,6 +33,9 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   const [theme, setThemeState] = useState<Theme>('dark');
   const [isLoading, setIsLoading] = useState(true);
   const [isSwitching, setIsSwitching] = useState(false);
+  const [cart, setCart] = useState<CartItem[]>([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const { toast } = useToast();
 
   const currentProduct = useMemo(() => products[currentProductIndex], [currentProductIndex]);
 
@@ -34,8 +45,45 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     document.documentElement.classList.add(newTheme);
   }, []);
 
+  const addToCart = useCallback((item: Omit<CartItem, 'quantity'>, quantity: number) => {
+    setCart(prevCart => {
+      const existingItem = prevCart.find(cartItem => cartItem.id === item.id);
+      if (existingItem) {
+        return prevCart.map(cartItem =>
+          cartItem.id === item.id
+            ? { ...cartItem, quantity: cartItem.quantity + quantity }
+            : cartItem
+        );
+      }
+      return [...prevCart, { ...item, quantity }];
+    });
+    toast({
+      title: 'Added to cart',
+      description: `${quantity} x ${item.name} added to your cart.`,
+    });
+    setIsCartOpen(true);
+  }, [toast]);
+
+  const updateQuantity = useCallback((itemId: string, quantity: number) => {
+    setCart(prevCart => {
+      if (quantity <= 0) {
+        return prevCart.filter(item => item.id !== itemId);
+      }
+      return prevCart.map(item =>
+        item.id === itemId ? { ...item, quantity } : item
+      );
+    });
+  }, []);
+
+  const removeFromCart = useCallback((itemId: string) => {
+    setCart(prevCart => prevCart.filter(item => item.id !== itemId));
+  }, []);
+
+  const clearCart = useCallback(() => {
+    setCart([]);
+  }, []);
+
   useEffect(() => {
-    // Initial load: preload the first product's animation
     const firstProduct = products[0];
     if (!firstProduct) {
         setIsLoading(false);
@@ -43,32 +91,27 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     }
     const mediaUrl = firstProduct.animatedWebpUrl;
     
-    // Set initial theme from config
     setTheme(firstProduct.mode === 'inherit' ? 'dark' : firstProduct.mode);
 
-    // This logic handles both video and image URLs for preloading
     if (mediaUrl.endsWith('.mp4') || mediaUrl.endsWith('.webm')) {
       const video = document.createElement('video');
       video.src = mediaUrl;
       video.oncanplaythrough = () => setIsLoading(false);
-      video.onerror = () => setIsLoading(false); // Handle potential errors
+      video.onerror = () => setIsLoading(false);
     } else {
       const img = new Image();
       img.src = mediaUrl;
       img.onload = () => setIsLoading(false);
-      img.onerror = () => setIsLoading(false); // Handle potential errors
+      img.onerror = () => setIsLoading(false);
     }
   }, [setTheme]);
 
   useEffect(() => {
-    // Update theme and accent color when product changes
     if (currentProduct) {
-      // Set theme mode
       if (currentProduct.mode !== 'inherit') {
         setTheme(currentProduct.mode);
       }
 
-      // Set accent color
       const [h, s, l] = hexToHsl(currentProduct.themeColor);
       document.documentElement.style.setProperty('--primary-h', `${h}`);
       document.documentElement.style.setProperty('--primary-s', `${s}%`);
@@ -91,9 +134,8 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         return nextIndex;
       });
 
-      // Let the content update before we fade it back in
       setTimeout(() => setIsSwitching(false), 50);
-    }, 400); // This duration should match the fade-out transition
+    }, 400);
   };
   
   const value = useMemo(() => ({
@@ -103,9 +145,16 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     theme,
     isLoading,
     isSwitching,
+    cart,
+    isCartOpen,
+    addToCart,
+    updateQuantity,
+    removeFromCart,
+    clearCart,
+    setIsCartOpen,
     switchProduct,
     setTheme,
-  }), [products, currentProduct, currentProductIndex, theme, isLoading, isSwitching, switchProduct, setTheme]);
+  }), [products, currentProduct, currentProductIndex, theme, isLoading, isSwitching, cart, isCartOpen, addToCart, updateQuantity, removeFromCart, clearCart, setIsCartOpen, switchProduct, setTheme]);
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };

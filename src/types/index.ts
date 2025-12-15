@@ -8,3 +8,11 @@ export type Product = {
   animatedWebpUrl: string;
   productImageUrl: string;
 };
+
+export type CartItem = {
+  id: string;
+  name: string;
+  price: number;
+  quantity: number;
+  imageUrl: string;
+};

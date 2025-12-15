@@ -1,66 +1,121 @@
 'use client';
 
+import { useState } from 'react';
 import {
   Card,
   CardContent,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover';
-import { Wrench, WashingMachine, SprayCan, CheckCircle } from 'lucide-react';
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+import { Wrench, WashingMachine, SprayCan } from 'lucide-react';
 import Image from 'next/image';
+import { useApp } from '@/hooks/use-app';
 
 const ourProducts = [
   {
+    id: 'prod_toilet_cleaner',
     icon: SprayCan,
     name: 'Toilet Cleaner',
     description:
       'Powerful formula that removes tough stains and kills 99.9% of germs, leaving your toilet sparkling clean and fresh.',
     imageUrl: 'https://picsum.photos/seed/toilet/600/400',
     imageHint: 'toilet cleaner',
-    details: [
-      'Kills 99.9% of bacteria and viruses',
-      'Removes tough limescale and rust stains',
-      'Thick gel formula coats the bowl',
-      'Leaves a fresh, long-lasting scent',
-    ],
+    price: 12.99,
   },
   {
+    id: 'prod_floor_cleaner',
     icon: Wrench,
     name: 'Floor Cleaners',
     description:
       'Our floor cleaner cuts through grease and grime, leaving your floors spotless and with a brilliant shine. Safe for all floor types.',
     imageUrl: 'https://picsum.photos/seed/floor/600/400',
     imageHint: 'floor cleaner',
-    details: [
-      'pH-neutral and safe for all sealed floors',
-      'Streak-free and residue-free formula',
-      'Concentrated, a little goes a long way',
-      'Biodegradable and eco-friendly',
-    ],
+    price: 15.99,
   },
   {
+    id: 'prod_dishwasher',
     icon: WashingMachine,
     name: 'Dishwasher',
     description:
       'Advanced cleaning for your dishwasher, removing limescale and buildup to ensure your dishes come out sparkling clean every time.',
     imageUrl: 'https://picsum.photos/seed/dishwasher/600/400',
     imageHint: 'dishwasher tablets',
-    details: [
-      'Powerful grease-cutting action',
-      'Prevents hard water spots and film',
-      'Cleans and freshens the dishwasher interior',
-      'Phosphate-free and septic-safe',
-    ],
+    price: 19.99,
   },
 ];
 
-const OurProductsSection = () => {
+const ProductCard = ({ product }: { product: (typeof ourProducts)[0] }) => {
+  const [quantity, setQuantity] = useState(1);
+  const { addToCart } = useApp();
 
+  const handleAddToCart = () => {
+    addToCart({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      imageUrl: product.imageUrl,
+    }, quantity);
+  };
+
+  return (
+    <Card className="text-left shadow-lg hover:shadow-primary/20 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 overflow-hidden h-full flex flex-col">
+      <Image
+        src={product.imageUrl}
+        alt={product.name}
+        width={600}
+        height={400}
+        className="w-full h-48 object-cover"
+        data-ai-hint={product.imageHint}
+      />
+      <CardHeader>
+        <div className="flex items-center gap-4">
+          <div className="bg-primary/10 text-primary w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
+            <product.icon className="w-6 h-6" />
+          </div>
+          <CardTitle className="font-headline">{product.name}</CardTitle>
+        </div>
+      </CardHeader>
+      <CardContent className="flex-grow">
+        <p className="text-muted-foreground">{product.description}</p>
+      </CardContent>
+      <CardFooter className="flex items-center justify-between gap-4 bg-secondary/50 p-4">
+        <div className="flex items-center gap-2">
+          <label htmlFor={`quantity-${product.id}`} className="text-sm font-medium">
+            Qty:
+          </label>
+          <Select
+            value={String(quantity)}
+            onValueChange={(val) => setQuantity(Number(val))}
+          >
+            <SelectTrigger id={`quantity-${product.id}`} className="w-20">
+              <SelectValue placeholder="Qty" />
+            </SelectTrigger>
+            <SelectContent>
+              {[...Array(8).keys()].map((i) => (
+                <SelectItem key={i + 1} value={String(i + 1)}>
+                  {i + 1}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+        <Button onClick={handleAddToCart}>Add to Cart</Button>
+      </CardFooter>
+    </Card>
+  );
+};
+
+
+const OurProductsSection = () => {
   return (
     <section id="our-products" className="bg-background pt-0 md:pt-0">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -71,56 +126,8 @@ const OurProductsSection = () => {
           A range of products to keep your home shining.
         </p>
         <div className="mt-12 grid md:grid-cols-3 gap-8">
-          {ourProducts.map((item, index) => (
-            <Popover key={index}>
-              <PopoverTrigger asChild>
-                <Card className="text-left shadow-lg hover:shadow-primary/20 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 overflow-hidden cursor-pointer h-full flex flex-col">
-                  <Image
-                    src={item.imageUrl}
-                    alt={item.name}
-                    width={600}
-                    height={400}
-                    className="w-full h-48 object-cover"
-                    data-ai-hint={item.imageHint}
-                  />
-                  <CardHeader>
-                    <div className="flex items-center gap-4">
-                      <div className="bg-primary/10 text-primary w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <item.icon className="w-6 h-6" />
-                      </div>
-                      <CardTitle className="font-headline">{item.name}</CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent className="flex-grow">
-                    <p className="text-muted-foreground">{item.description}</p>
-                  </CardContent>
-                </Card>
-              </PopoverTrigger>
-              <PopoverContent
-                side="top"
-                align="center"
-                className="w-80 bg-background border-primary"
-              >
-                <div className="grid gap-4">
-                  <div className="space-y-2">
-                    <h4 className="font-medium leading-none text-primary">
-                      {item.name} Features
-                    </h4>
-                    <p className="text-sm text-muted-foreground">
-                      Key benefits of using our product.
-                    </p>
-                  </div>
-                  <ul className="grid gap-2">
-                    {item.details.map((detail, i) => (
-                      <li key={i} className="flex items-start text-sm">
-                        <CheckCircle className="h-4 w-4 text-primary mr-2 mt-0.5 shrink-0" />
-                        <span className="text-muted-foreground">{detail}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </PopoverContent>
-            </Popover>
+          {ourProducts.map((item) => (
+            <ProductCard key={item.id} product={item} />
           ))}
         </div>
       </div>

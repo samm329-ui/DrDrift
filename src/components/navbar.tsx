@@ -6,9 +6,13 @@ import { siteConfig } from '@/lib/config';
 import { cn } from '@/lib/utils';
 import { useScrollSpy } from '@/hooks/use-scroll-spy';
 import ThemeToggle from '@/components/theme-toggle';
+import { Button } from '@/components/ui/button';
+import { ShoppingCart, Badge } from 'lucide-react';
+import { useApp } from '@/hooks/use-app';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { cart, setIsCartOpen } = useApp();
 
   const sectionIds = siteConfig.navLinks.map(link => link.href);
   const activeId = useScrollSpy(sectionIds, { rootMargin: '-50% 0px -50% 0px' });
@@ -30,6 +34,8 @@ const Navbar = () => {
       });
     }
   };
+
+  const cartItemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <header
@@ -59,8 +65,17 @@ const Navbar = () => {
             </Link>
           ))}
         </nav>
-        <div className="flex items-center">
+        <div className="flex items-center gap-2">
           <ThemeToggle />
+          <Button variant="ghost" size="icon" onClick={() => setIsCartOpen(true)} className="relative">
+            <ShoppingCart className="h-5 w-5" />
+            {cartItemCount > 0 && (
+              <span className="absolute top-0 right-0 flex h-5 w-5 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
+                {cartItemCount}
+              </span>
+            )}
+            <span className="sr-only">Open Cart</span>
+          </Button>
         </div>
       </div>
     </header>
