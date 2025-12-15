@@ -7,7 +7,7 @@ import { siteConfig, siteProducts } from '@/lib/config';
 import { cn } from '@/lib/utils';
 import ThemeToggle from '@/components/theme-toggle';
 import { Button } from '@/components/ui/button';
-import { ShoppingCart, ChevronDown } from 'lucide-react';
+import { ShoppingCart, ChevronDown, LogOut, User as UserIcon } from 'lucide-react';
 import { useApp } from '@/hooks/use-app';
 import { useScrollSpy } from '@/hooks/use-scroll-spy';
 import {
@@ -15,13 +15,21 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from '@/components/ui/dropdown-menu';
 import Image from 'next/image';
+import { useAuthDialog } from '@/hooks/use-auth-dialog';
+import { useUser } from '@/firebase';
+import { getAuth, signOut } from 'firebase/auth';
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const { cart, setIsCartOpen, isCartAnimating, setSearchQuery } = useApp();
   const [isProductDropdownOpen, setIsProductDropdownOpen] = useState(false);
+  const { openAuthDialog } = useAuthDialog();
+  const { user, isUserLoading } = useUser();
 
   const sectionIds = siteConfig.navLinks.map((link) => link.href.substring(1));
   const activeSection = useScrollSpy(sectionIds.map((id) => `#${id}`), {
@@ -65,6 +73,11 @@ const Navbar = () => {
     e.preventDefault();
     window.location.reload();
   };
+
+  const handleSignOut = async () => {
+    const auth = getAuth();
+    await signOut(auth);
+  }
 
   const cartItemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
   const isInOurProductsSection = activeSection === 'our-products';
@@ -185,6 +198,43 @@ const Navbar = () => {
             )}
             <span className="sr-only">Open Cart</span>
           </Button>
+
+          {isUserLoading ? (
+            <div className="h-9 w-20 rounded-md bg-muted animate-pulse" />
+          ) : user ? (
+             <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="relative h-9 w-9 rounded-full">
+                  <Avatar className="h-9 w-9">
+                    <AvatarImage src={user.photoURL ?? ''} alt={user.displayName ?? 'User'} />
+                    <AvatarFallback>
+                      <UserIcon className="h-5 w-5" />
+                    </AvatarFallback>
+                  </Avatar>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56" align="end" forceMount>
+                <DropdownMenuLabel className="font-normal">
+                  <div className="flex flex-col space-y-1">
+                    <p className="text-sm font-medium leading-none">{user.displayName}</p>
+                    <p className="text-xs leading-none text-muted-foreground">
+                      {user.email}
+                    </p>
+                  </div>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={handleSignOut}>
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>Log out</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <Button variant="outline" onClick={openAuthDialog}>
+              Sign In
+            </Button>
+          )}
+
         </div>
       </div>
     </header>

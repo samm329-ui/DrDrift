@@ -7,6 +7,8 @@ import { cn } from '@/lib/utils';
 import CartDrawer from '@/components/cart-drawer';
 import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
+import { FirebaseClientProvider } from '@/firebase';
+import AuthProvider from '@/components/auth-provider';
 
 export const metadata: Metadata = {
   title: 'Drift Dynamic',
@@ -29,15 +31,19 @@ export default function RootLayout({
         />
       </head>
       <body className={cn('font-body antialiased')}>
-        <AppContextProvider>
-            <div className="flex flex-col min-h-screen">
-              <Navbar />
-              <main className="flex-grow">{children}</main>
-              <Footer />
-            </div>
-            <CartDrawer />
-            <Toaster />
-        </AppContextProvider>
+        <FirebaseClientProvider>
+          <AppContextProvider>
+            <AuthProvider>
+              <div className="flex flex-col min-h-screen">
+                <Navbar />
+                <main className="flex-grow">{children}</main>
+                <Footer />
+              </div>
+              <CartDrawer />
+              <Toaster />
+            </AuthProvider>
+          </AppContextProvider>
+        </FirebaseClientProvider>
       </body>
     </html>
   );
