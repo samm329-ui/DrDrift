@@ -29,7 +29,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay"
-import { SprayCan, Sparkles, CircleSlashed, Info } from 'lucide-react';
+import { SprayCan, Sparkles, CircleSlashed, Info, Zap } from 'lucide-react';
 import Image from 'next/image';
 import { useApp } from '@/hooks/use-app';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -85,7 +85,7 @@ const ourProducts = [
 const ProductCard = ({ product }: { product: (typeof ourProducts)[0] }) => {
   const [quantity, setQuantity] = useState(1);
   const [isOpen, setIsOpen] = useState(false);
-  const { addToCart } = useApp();
+  const { addToCart, buyNow } = useApp();
   const isMobile = useIsMobile();
   const autoplayPlugin = useRef(Autoplay({ delay: 2000 + Math.random() * 1000, stopOnInteraction: true }));
 
@@ -100,6 +100,16 @@ const ProductCard = ({ product }: { product: (typeof ourProducts)[0] }) => {
     addToCart(item, quantity);
   };
   
+  const handleBuyNow = () => {
+    const item = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      imageUrl: product.imageUrls[0],
+    };
+    buyNow(item, quantity);
+  };
+
   const trigger = (
     <div className="absolute top-2 right-2 z-10">
         <Button size="icon" variant="ghost" className="rounded-full h-8 w-8 bg-background/50 backdrop-blur-sm hover:bg-background/80">
@@ -175,28 +185,34 @@ const ProductCard = ({ product }: { product: (typeof ourProducts)[0] }) => {
           <CardContent className="flex-grow">
             <p className="text-sm text-muted-foreground">{product.description}</p>
           </CardContent>
-          <CardFooter className="flex items-center justify-between gap-4 bg-secondary/50 p-4 mt-auto">
-            <div className="flex items-center gap-2">
-              <label htmlFor={`quantity-${product.id}`} className="text-xs font-medium">
-                Qty:
-              </label>
-              <Select
-                value={String(quantity)}
-                onValueChange={(val) => setQuantity(Number(val))}
-              >
-                <SelectTrigger id={`quantity-${product.id}`} className="w-16 h-9">
-                  <SelectValue placeholder="Qty" />
-                </SelectTrigger>
-                <SelectContent>
-                  {[...Array(8).keys()].map((i) => (
-                    <SelectItem key={i + 1} value={String(i + 1)}>
-                      {i + 1}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+          <CardFooter className="flex flex-col items-stretch gap-2 bg-secondary/50 p-4 mt-auto">
+            <div className="flex items-center justify-between gap-4">
+              <div className="flex items-center gap-2">
+                <label htmlFor={`quantity-${product.id}`} className="text-xs font-medium">
+                  Qty:
+                </label>
+                <Select
+                  value={String(quantity)}
+                  onValueChange={(val) => setQuantity(Number(val))}
+                >
+                  <SelectTrigger id={`quantity-${product.id}`} className="w-16 h-9">
+                    <SelectValue placeholder="Qty" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {[...Array(8).keys()].map((i) => (
+                      <SelectItem key={i + 1} value={String(i + 1)}>
+                        {i + 1}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              <Button onClick={handleAddToCart} size="sm">Add to Cart</Button>
             </div>
-            <Button onClick={handleAddToCart} size="sm">Add to Cart</Button>
+            <Button onClick={handleBuyNow} size="sm" variant="outline" className="w-full">
+              <Zap className="mr-2 h-4 w-4" />
+              Buy Now
+            </Button>
           </CardFooter>
         </div>
       </Card>

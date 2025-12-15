@@ -18,11 +18,14 @@ interface AppContextType {
   cart: CartItem[];
   isCartOpen: boolean;
   isCartAnimating: boolean;
+  startCheckout: boolean;
   addToCart: (item: CartItemToAdd, quantity: number) => void;
+  buyNow: (item: CartItemToAdd, quantity: number) => void;
   updateQuantity: (itemId: string, quantity: number) => void;
   removeFromCart: (itemId: string) => void;
   clearCart: () => void;
   setIsCartOpen: (isOpen: boolean) => void;
+  setStartCheckout: (start: boolean) => void;
   switchProduct: (direction: 'next' | 'prev') => void;
   setTheme: (theme: Theme) => void;
   triggerCartAnimation: () => void;
@@ -38,6 +41,7 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isCartAnimating, setIsCartAnimating] = useState(false);
+  const [startCheckout, setStartCheckout] = useState(false);
   const { toast } = useToast();
   
   const currentProduct = useMemo(() => products[currentProductIndex], [currentProductIndex]);
@@ -71,6 +75,12 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       description: `${quantity} x ${item.name} added to your cart.`,
     });
   }, [toast, triggerCartAnimation]);
+
+  const buyNow = useCallback((item: CartItemToAdd, quantity: number) => {
+    setCart([{...item, quantity}]);
+    setStartCheckout(true);
+    setIsCartOpen(true);
+  }, []);
 
   const updateQuantity = useCallback((itemId: string, quantity: number) => {
     setCart(prevCart => {
@@ -156,15 +166,18 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     cart,
     isCartOpen,
     isCartAnimating,
+    startCheckout,
     addToCart,
+    buyNow,
     updateQuantity,
     removeFromCart,
     clearCart,
     setIsCartOpen,
+    setStartCheckout,
     switchProduct,
     setTheme,
     triggerCartAnimation,
-  }), [products, currentProduct, currentProductIndex, theme, isLoading, isSwitching, cart, isCartOpen, isCartAnimating, addToCart, updateQuantity, removeFromCart, clearCart, setIsCartOpen, switchProduct, setTheme, triggerCartAnimation]);
+  }), [products, currentProduct, currentProductIndex, theme, isLoading, isSwitching, cart, isCartOpen, isCartAnimating, startCheckout, addToCart, buyNow, updateQuantity, removeFromCart, clearCart, setIsCartOpen, setStartCheckout, switchProduct, setTheme, triggerCartAnimation]);
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };

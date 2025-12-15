@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useApp } from '@/hooks/use-app';
 import {
   Sheet,
@@ -18,9 +18,15 @@ import { CheckoutForm } from './checkout-form';
 import type { CartItem } from '@/types';
 
 export default function CartDrawer() {
-  const { cart, isCartOpen, setIsCartOpen, updateQuantity, removeFromCart, clearCart } = useApp();
+  const { cart, isCartOpen, setIsCartOpen, updateQuantity, removeFromCart, clearCart, startCheckout, setStartCheckout } = useApp();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
 
+  useEffect(() => {
+    if (startCheckout) {
+      setIsCheckingOut(true);
+    }
+  }, [startCheckout]);
+  
   const subtotal = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
   const handleClose = () => {
@@ -28,6 +34,7 @@ export default function CartDrawer() {
     // Give sheet time to close before resetting checkout state
     setTimeout(() => {
         setIsCheckingOut(false);
+        setStartCheckout(false);
     }, 300);
   }
 
