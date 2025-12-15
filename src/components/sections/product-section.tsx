@@ -51,7 +51,7 @@ const ProductSection = () => {
                         {siteProducts.map((product, productIndex) => (
                              <Carousel
                                 key={product.id}
-                                plugins={[autoplayPlugins[productIndex]]}
+                                plugins={autoplayPlugins[productIndex] ? [autoplayPlugins[productIndex].current] : []}
                                 className="w-full"
                                 opts={{ loop: true }}
                             >
