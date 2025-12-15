@@ -52,9 +52,10 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     if (!searchQuery) {
       return siteProducts;
     }
+    const lowercasedQuery = searchQuery.toLowerCase();
     return siteProducts.filter(product =>
-      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      product.description.toLowerCase().includes(searchQuery.toLowerCase())
+      product.name.toLowerCase().includes(lowercasedQuery) ||
+      product.description.toLowerCase().includes(lowercasedQuery)
     );
   }, [searchQuery]);
   
@@ -194,7 +195,7 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     switchProduct,
     setTheme,
     triggerCartAnimation,
-  }), [products, currentProduct, currentProductIndex, theme, isLoading, isSwitching, cart, isCartOpen, isCartAnimating, startCheckout, searchQuery, filteredProducts, addToCart, buyNow, updateQuantity, removeFromCart, clearCart, setIsCartOpen, setStartCheckout, switchProduct, setTheme, triggerCartAnimation]);
+  }), [products, currentProduct, currentProductIndex, theme, isLoading, isSwitching, cart, isCartOpen, isCartAnimating, startCheckout, searchQuery, filteredProducts, addToCart, buyNow, updateQuantity, removeFromCart, clearCart, switchProduct, setTheme, triggerCartAnimation]);
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
