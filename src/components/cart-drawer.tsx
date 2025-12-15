@@ -71,7 +71,7 @@ export default function CartDrawer() {
                         <div className="flex-grow">
                           <h4 className="font-semibold text-base">{item.name}</h4>
                           <p className="text-sm text-muted-foreground mt-1">
-                            ₹{item.price.toFixed(2)}
+                            Rs. {item.price.toFixed(2)}
                           </p>
                           <div className="flex items-center justify-between mt-3">
                             <div className="flex items-center gap-2">
@@ -94,7 +94,7 @@ export default function CartDrawer() {
                               </Button>
                             </div>
                              <p className="font-semibold text-base">
-                              ₹{(item.price * item.quantity).toFixed(2)}
+                              Rs. {(item.price * item.quantity).toFixed(2)}
                             </p>
                           </div>
                         </div>
@@ -115,7 +115,7 @@ export default function CartDrawer() {
                     <Separator />
                     <div className="flex justify-between items-center font-bold text-lg">
                       <span>Subtotal</span>
-                      <span>₹{subtotal.toFixed(2)}</span>
+                      <span>Rs. {subtotal.toFixed(2)}</span>
                     </div>
                     <Button onClick={() => setIsCheckingOut(true)} className="w-full" size="lg">
                       Proceed to Checkout <ArrowRight className="ml-2 h-4 w-4" />
