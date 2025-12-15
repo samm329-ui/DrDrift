@@ -36,7 +36,7 @@ const ReviewsSection = () => {
                 </p>
                 <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
                     {reviews.map((review, index) => (
-                        <Card key={index} className="bg-background dark:bg-background/80 backdrop-blur-sm">
+                        <Card key={index} className="bg-white dark:bg-background/80 backdrop-blur-sm">
                             <CardContent className="p-8">
                                 <Image
                                     src={getAvatarUrl(review.avatarId)}
