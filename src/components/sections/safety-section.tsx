@@ -21,8 +21,8 @@ const safetyInfo = [
 
 const SafetySection = () => {
     return (
-        <section id="safety" className="bg-background">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="safety" className="bg-background py-20 md:py-32 section-bg">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="text-center mb-12">
                     <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl font-headline">Safety Without Compromise</h2>
                     <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground">
@@ -31,7 +31,7 @@ const SafetySection = () => {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {safetyInfo.map((item, index) => (
-                        <Card key={index} className="flex flex-col items-center text-center p-6 bg-secondary/50">
+                        <Card key={index} className="flex flex-col items-center text-center p-6 bg-secondary/80 backdrop-blur-sm">
                              <div className="bg-primary text-primary-foreground rounded-full p-4 mb-4">
                                 <item.icon className="w-8 h-8" />
                             </div>

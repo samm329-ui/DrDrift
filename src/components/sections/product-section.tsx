@@ -15,8 +15,8 @@ const ProductSection = () => {
     ];
 
     return (
-        <section id="product" className="bg-secondary">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="product" className="bg-secondary py-20 md:py-32 section-bg">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                     <div className="order-2 md:order-1">
                         <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl font-headline">Pure Power, Clean Conscience</h2>
@@ -33,7 +33,7 @@ const ProductSection = () => {
                         </ul>
                     </div>
                     <div className="order-1 md:order-2">
-                         <Card className="overflow-hidden shadow-lg">
+                         <Card className="overflow-hidden shadow-2xl rounded-2xl border-white/10 bg-black/20 backdrop-blur-lg">
                             <CardContent className="p-0">
                                 <Image
                                     key={currentProduct.id}

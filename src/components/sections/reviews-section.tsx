@@ -28,15 +28,15 @@ const getAvatarUrl = (id: string) => PlaceHolderImages.find(img => img.id === id
 
 const ReviewsSection = () => {
     return (
-        <section id="reviews" className="bg-secondary">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <section id="reviews" className="bg-secondary py-20 md:py-32 section-bg">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
                 <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl font-headline">Loved by Homes Everywhere</h2>
                 <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground">
                     Don't just take our word for it. Here's what our customers have to say.
                 </p>
                 <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
                     {reviews.map((review, index) => (
-                        <Card key={index} className="bg-background">
+                        <Card key={index} className="bg-background/80 backdrop-blur-sm">
                             <CardContent className="p-8">
                                 <Image
                                     src={getAvatarUrl(review.avatarId)}

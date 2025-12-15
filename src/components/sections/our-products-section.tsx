@@ -90,7 +90,7 @@ const ProductCard = ({ product }: { product: (typeof ourProducts)[0] }) => {
 
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
-      <Card className="text-left shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden h-full flex flex-col group">
+      <Card className="text-left shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden h-full flex flex-col group bg-background/80 backdrop-blur-sm border-white/20">
         <PopoverTrigger asChild onClick={(e) => { if (isMobile) e.preventDefault(); setIsOpen(!isOpen)}}>
             <div className="relative">
                 <Image
@@ -172,8 +172,8 @@ const ProductCard = ({ product }: { product: (typeof ourProducts)[0] }) => {
 
 const OurProductsSection = () => {
   return (
-    <section id="our-products" className="bg-background pt-0 md:pt-0">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <section id="our-products" className="bg-background pt-0 md:pt-0 py-20 md:py-32 section-bg">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl font-headline">
           Our Products
         </h2>

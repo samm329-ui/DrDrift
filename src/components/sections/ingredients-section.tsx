@@ -21,15 +21,15 @@ const ingredients = [
 
 const IngredientsSection = () => {
     return (
-        <section id="ingredients" className="bg-secondary">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <section id="ingredients" className="bg-secondary py-20 md:py-32 section-bg">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
                 <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl font-headline">The Science of Clean</h2>
                 <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground">
                     Our formulas are a blend of nature's best and scientific precision.
                 </p>
                 <div className="mt-12 grid md:grid-cols-3 gap-8">
                     {ingredients.map((item, index) => (
-                        <Card key={index} className="text-left bg-background">
+                        <Card key={index} className="text-left bg-background/80 backdrop-blur-sm">
                             <CardHeader>
                                 <div className="bg-primary/10 text-primary w-12 h-12 rounded-md flex items-center justify-center mb-4">
                                     <item.icon className="w-6 h-6" />
