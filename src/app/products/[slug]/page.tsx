@@ -13,7 +13,7 @@ import {
 } from '@/components/ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import Image from 'next/image';
-import { Minus, Plus, CheckCircle } from 'lucide-react';
+import { Minus, Plus, CheckCircle, Sparkles } from 'lucide-react';
 import { useApp } from '@/hooks/use-app';
 import { Separator } from '@/components/ui/separator';
 
@@ -56,6 +56,17 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
       imageUrl: product.imageUrls[0],
     };
     buyNow(item, quantity);
+  };
+
+  const handleBuyPackOf8 = () => {
+    const discountedPrice = Math.round(product.price * 0.92);
+    const item = {
+      id: `${product.id}-pack8`,
+      name: `${product.name} (Pack of 8)`,
+      price: discountedPrice,
+      imageUrl: product.imageUrls[0],
+    };
+    buyNow(item, 8);
   };
 
   return (
@@ -156,6 +167,10 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 </Button>
               </div>
             </div>
+             <Button onClick={handleBuyPackOf8} size="lg" className="w-full bg-orange-500 hover:bg-orange-600 text-white">
+                <Sparkles className="mr-2 h-5 w-5 animate-pulse" />
+                Buy Pack of 8 (8% OFF)
+            </Button>
           </div>
         </div>
       </div>

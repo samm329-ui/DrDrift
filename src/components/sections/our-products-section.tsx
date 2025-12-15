@@ -17,7 +17,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay"
-import { Plus, Minus, Sparkles } from 'lucide-react';
+import { Plus, Minus, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useApp } from '@/hooks/use-app';
@@ -25,7 +25,6 @@ import { siteProducts } from '@/lib/config';
 import type { SiteProduct } from '@/types';
 
 const ProductCard = ({ product }: { product: SiteProduct }) => {
-  const [quantity, setQuantity] = useState(1);
   const { addToCart, buyNow } = useApp();
   const autoplayPlugin = useRef(Autoplay({ delay: 2000 + Math.random() * 1000, stopOnInteraction: true }));
   
@@ -38,7 +37,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
       price: product.price,
       imageUrl: product.imageUrls[0],
     };
-    addToCart(item, quantity);
+    addToCart(item, 1);
   };
   
   const handleBuyNow = () => {
@@ -48,18 +47,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
       price: product.price,
       imageUrl: product.imageUrls[0],
     };
-    buyNow(item, quantity);
-  };
-
-  const handleBuyPackOf8 = () => {
-    const discountedPrice = Math.round(product.price * 0.92);
-    const item = {
-      id: `${product.id}-pack8`,
-      name: `${product.name} (Pack of 8)`,
-      price: discountedPrice,
-      imageUrl: product.imageUrls[0],
-    };
-    buyNow(item, 8);
+    buyNow(item, 1);
   };
 
   return (
@@ -108,37 +96,19 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
             <p className="text-sm text-muted-foreground line-clamp-2">{product.description}</p>
           </CardContent>
           <CardFooter className="flex flex-col items-stretch gap-2 bg-secondary/50 p-3 mt-auto">
-            <div className="flex items-center justify-between gap-2">
-                <div className="flex items-center gap-1">
-                    <Button
-                    variant="outline"
-                    size="icon"
-                    className="h-8 w-8"
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    >
-                    <Minus className="h-3.5 w-3.5" />
-                    </Button>
-                    <span className="w-10 text-center font-medium">{quantity}</span>
-                    <Button
-                    variant="outline"
-                    size="icon"
-                    className="h-8 w-8"
-                    onClick={() => setQuantity(quantity + 1)}
-                    >
-                    <Plus className="h-3.5 w-3.5" />
-                    </Button>
-                </div>
+             <div className="flex items-center justify-between gap-2">
+                <Button onClick={handleAddToCart} size="sm" variant="outline" className="flex-1">
+                    Add to Cart
+                </Button>
                 <Button onClick={handleBuyNow} size="sm" className="flex-1">
                   Buy Now
                 </Button>
             </div>
-            <Button onClick={handleAddToCart} size="sm" variant="outline" className="w-full">
-                Add to Cart
-            </Button>
-            <Button onClick={handleBuyPackOf8} size="sm" variant="destructive" className="w-full bg-red-500 hover:bg-red-600 text-white mt-2">
-                <Sparkles className="mr-2 h-4 w-4" />
-                Buy Pack of 8 (8% OFF)
-            </Button>
+             <Link href={`/products/${product.slug}`} className='w-full'>
+                <Button variant="ghost" size="sm" className="w-full text-sm">
+                    Learn More <ArrowRight className="ml-1 h-3 w-3" />
+                </Button>
+            </Link>
           </CardFooter>
         </div>
       </Card>
@@ -156,7 +126,7 @@ const OurProductsSection = () => {
         <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground">
           A range of products to keep your home shining.
         </p>
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 items-stretch">
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
             {siteProducts.map((item, index) => (
                 <ProductCard key={index} product={item} />
             ))}
