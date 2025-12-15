@@ -27,7 +27,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className={cn('font-body antialiased pattern-bg')}>
+      <body className={cn('font-body antialiased')}>
         <AppContextProvider>
             <div className="flex flex-col min-h-screen">
               <Navbar />

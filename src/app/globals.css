@@ -67,28 +67,6 @@
     @apply bg-background text-foreground;
     min-height: 100vh;
   }
-  .pattern-bg {
-    background-color: hsl(var(--background));
-  }
-  
-  .mandala-bg {
-    background-color: hsl(var(--secondary));
-    background-image:
-      radial-gradient(hsl(var(--border) / 0.8) 1.5px, transparent 1.5px),
-      radial-gradient(hsl(var(--border) / 0.8) 1.5px, transparent 1.5px);
-    background-size: 40px 40px;
-    background-position: 0 0, 20px 20px;
-  }
-
-  .dark .mandala-bg {
-    background-image:
-      radial-gradient(hsl(var(--border)) 1px, transparent 1px),
-      radial-gradient(hsl(var(--border)) 1px, transparent 1px);
-  }
-
-  section {
-    @apply py-12 md:py-24;
-  }
 }
 
 @keyframes shake {
