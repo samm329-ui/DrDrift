@@ -56,7 +56,7 @@ const HeroSection = () => {
   return (
     <section id="hero" className="relative h-screen w-full overflow-hidden p-0">
       <div className="absolute top-0 left-0 right-0 z-30 p-2">
-        <div className="max-w-xl mx-auto">
+        <div className="max-w-2xl mx-auto">
           <SearchBar />
         </div>
       </div>
