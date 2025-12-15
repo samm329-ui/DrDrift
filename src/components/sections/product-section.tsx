@@ -10,6 +10,7 @@ import {
 import Autoplay from 'embla-carousel-autoplay';
 import React, { useRef } from 'react';
 import { siteProducts } from '@/lib/config';
+import { cn } from '@/lib/utils';
 
 const ProductSection = () => {
     const autoplayPlugins = [
@@ -26,7 +27,7 @@ const ProductSection = () => {
     ];
 
     return (
-        <section id="product" className="relative bg-background-alt dark:bg-background py-20 md:py-32 overflow-hidden">
+        <section id="product" className={cn("relative bg-background-alt dark:bg-background py-20 md:py-32 overflow-hidden", "bg-wavy-2")}>
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                     <div>
