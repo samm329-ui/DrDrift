@@ -6,17 +6,16 @@ import { siteConfig } from '@/lib/config';
 import { cn } from '@/lib/utils';
 import ThemeToggle from '@/components/theme-toggle';
 import { Button } from '@/components/ui/button';
-import { ShoppingCart, Search, X } from 'lucide-react';
+import { ShoppingCart } from 'lucide-react';
 import { useApp } from '@/hooks/use-app';
-import { Input } from '@/components/ui/input';
 import { useScrollSpy } from '@/hooks/use-scroll-spy';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const { cart, setIsCartOpen, isCartAnimating } = useApp();
-  
-  const sectionIds = siteConfig.navLinks.map(link => link.href.substring(1));
-  const activeSection = useScrollSpy(sectionIds.map(id => `#${id}`), {
+  const { cart, setIsCartOpen, isCartAnimating, setSearchQuery } = useApp();
+
+  const sectionIds = siteConfig.navLinks.map((link) => link.href.substring(1));
+  const activeSection = useScrollSpy(sectionIds.map((id) => `#${id}`), {
     rootMargin: '-20% 0px -80% 0px',
   });
 
@@ -33,6 +32,9 @@ const Navbar = () => {
     href: string
   ) => {
     e.preventDefault();
+    if (href === '#our-products') {
+      setSearchQuery('');
+    }
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({
@@ -58,7 +60,11 @@ const Navbar = () => {
       )}
     >
       <div className="container mx-auto flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
-        <a href="/" onClick={handleRefresh} className="font-headline text-2xl font-bold text-primary">
+        <a
+          href="/"
+          onClick={handleRefresh}
+          className="font-headline text-2xl font-bold text-primary"
+        >
           {siteConfig.brandName}
         </a>
         <nav className="hidden items-center space-x-8 md:flex">
