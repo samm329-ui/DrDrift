@@ -22,16 +22,14 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay"
-import { SprayCan, Sparkles, CircleSlashed, Info, Zap, ShoppingCart, Plus, Minus } from 'lucide-react';
+import { Info, Zap, ShoppingCart, Plus, Minus } from 'lucide-react';
 import Image from 'next/image';
 import { useApp } from '@/hooks/use-app';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { cn } from '@/lib/utils';
 
 const ourProducts = [
   {
     id: 'prod_toilet_cleaner',
-    icon: SprayCan,
     name: 'Toilet Cleaner (5L)',
     description:
       'Powerful formula that removes tough stains and kills 99.9% of germs, leaving your toilet sparkling clean and fresh.',
@@ -46,7 +44,6 @@ const ourProducts = [
   },
   {
     id: 'prod_floor_cleaner',
-    icon: Sparkles,
     name: 'Floor Cleaner (5L)',
     description:
       'Our floor cleaner cuts through grease and grime, leaving your floors spotless and with a brilliant shine. Safe for all floor types.',
@@ -61,7 +58,6 @@ const ourProducts = [
   },
   {
     id: 'prod_dishwasher',
-    icon: CircleSlashed,
     name: 'Dishwasher Liquid (5L)',
     description:
       'Advanced cleaning for your dishwasher, removing limescale and buildup to ensure your dishes come out sparkling clean every time.',
@@ -171,17 +167,10 @@ const ProductCard = ({ product }: { product: (typeof ourProducts)[0] }) => {
           onMouseLeave={() => !isMobile && setIsOpen(false)}
         >
           <CardHeader>
-            <div className="flex items-start gap-4">
-              <div className="bg-primary/10 text-primary w-10 h-10 rounded-md flex items-center justify-center flex-shrink-0">
-                <product.icon className="w-5 h-5" />
-              </div>
-              <div>
-                <CardTitle className="font-headline text-lg">{product.name}</CardTitle>
-                 <div className="flex items-baseline gap-2 mt-1">
-                    <span className="font-bold text-lg text-primary">Rs. {product.price}</span>
-                    <span className="text-sm text-muted-foreground animate-strike-through">Rs. {originalPrice}</span>
-                </div>
-              </div>
+            <CardTitle className="font-headline text-lg">{product.name}</CardTitle>
+              <div className="flex items-baseline gap-2 mt-1">
+                <span className="font-bold text-lg text-primary">Rs. {product.price}</span>
+                <span className="text-sm text-muted-foreground animate-strike-through">Rs. {originalPrice}</span>
             </div>
           </CardHeader>
           <CardContent className="flex-grow">
