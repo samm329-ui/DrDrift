@@ -208,14 +208,14 @@ const ProductCard = ({ product }: { product: (typeof ourProducts)[0] }) => {
                     <Plus className="h-3.5 w-3.5" />
                     </Button>
                 </div>
-                <Button onClick={handleAddToCart} size="sm" variant="outline" className="flex-1">
-                    <ShoppingCart className="mr-2 h-4 w-4" />
-                    Add to Cart
+                <Button onClick={handleBuyNow} size="sm" className="flex-1">
+                  <Zap className="mr-2 h-4 w-4" />
+                  Buy Now
                 </Button>
             </div>
-            <Button onClick={handleBuyNow} size="sm" className="w-full">
-              <Zap className="mr-2 h-4 w-4" />
-              Buy Now
+            <Button onClick={handleAddToCart} size="sm" variant="outline" className="w-full">
+                <ShoppingCart className="mr-2 h-4 w-4" />
+                Add to Cart
             </Button>
           </CardFooter>
         </div>
