@@ -36,11 +36,11 @@ const CtaSection = () => {
                 <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
                     {contactOptions.map(option => (
                         <div key={option.title} className="flex flex-col items-center text-center">
-                            <div className="flex-shrink-0">
+                            <a href={option.href} target="_blank" rel="noopener noreferrer" className="flex-shrink-0">
                                 <div className="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-primary-foreground">
                                     <option.icon className="h-6 w-6" />
                                 </div>
-                            </div>
+                            </a>
                             <div className="mt-4">
                                 <h3 className="text-lg font-medium leading-6 text-foreground font-headline">{option.title}</h3>
                                 <p className="mt-2 text-base text-muted-foreground">
