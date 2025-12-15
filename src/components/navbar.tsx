@@ -46,6 +46,11 @@ const Navbar = () => {
     }
   };
 
+  const handleRefresh = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    window.location.reload();
+  };
+
   const cartItemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
@@ -58,9 +63,9 @@ const Navbar = () => {
       )}
     >
       <div className="container mx-auto flex h-20 items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="font-headline text-2xl font-bold text-primary">
+        <a href="/" onClick={handleRefresh} className="font-headline text-2xl font-bold text-primary">
           {siteConfig.brandName}
-        </Link>
+        </a>
         <nav className="hidden items-center space-x-8 md:flex">
           {siteConfig.navLinks.map((link) => (
             <Link
