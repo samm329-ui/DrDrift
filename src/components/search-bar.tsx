@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { useApp } from '@/hooks/use-app';
 import { Input } from '@/components/ui/input';
 import { Search } from 'lucide-react';
@@ -13,7 +12,6 @@ const SearchBar = () => {
   const { filteredProducts, searchQuery, setSearchQuery } = useApp();
   const [isFocused, setIsFocused] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
-  const router = useRouter();
 
   useEffect(() => {
     setActiveIndex(-1);
@@ -61,7 +59,7 @@ const SearchBar = () => {
       <Input
         type="search"
         placeholder="Search products..."
-        className="w-full bg-background/50 text-foreground placeholder:text-muted-foreground pl-9 pr-3 py-2 border-2 border-transparent focus-visible:ring-primary/50 text-sm h-10"
+        className="w-full bg-background/50 text-foreground placeholder:text-muted-foreground pl-9 pr-3 py-2 border-2 border-transparent focus-visible:ring-primary/50 text-sm h-9"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
         onFocus={() => setIsFocused(true)}
