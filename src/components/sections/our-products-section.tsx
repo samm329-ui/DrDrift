@@ -72,7 +72,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
                           alt={`${product.name} image ${index + 1}`}
                           width={600}
                           height={400}
-                          className="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-105"
+                          className="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105"
                           data-ai-hint={product.imageHint}
                       />
                   </CarouselItem>
@@ -114,7 +114,10 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
 
 
 const OurProductsSection = () => {
-  const { filteredProducts } = useApp();
+  const { filteredProducts, searchQuery } = useApp();
+
+  const productsToShow = searchQuery ? filteredProducts : siteProducts;
+
   return (
     <section id="our-products" className="bg-background-alt py-20 md:py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 flex flex-col h-full">
@@ -124,11 +127,13 @@ const OurProductsSection = () => {
         <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground">
           A range of products to keep your home shining.
         </p>
-        <div className="mt-12 flex-grow flex items-stretch pb-4 -mx-4 px-4 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {filteredProducts.map((item, index) => (
-                <ProductCard key={index} product={item} />
-            ))}
-             {filteredProducts.length === 0 && (
+        <div className="mt-12 flex-grow flex items-stretch pb-4 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="flex flex-row gap-0">
+              {productsToShow.map((item, index) => (
+                  <ProductCard key={index} product={item} />
+              ))}
+            </div>
+             {productsToShow.length === 0 && (
                 <div className="w-full text-center text-muted-foreground py-10">
                     No products found.
                 </div>

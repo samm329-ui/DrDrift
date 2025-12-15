@@ -10,6 +10,7 @@ type Theme = 'light' | 'dark';
 
 interface AppContextType {
   products: Product[];
+  siteProducts: SiteProduct[];
   currentProduct: Product;
   currentProductIndex: number;
   theme: Theme;
@@ -173,6 +174,7 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   
   const value = useMemo(() => ({
     products,
+    siteProducts,
     currentProduct,
     currentProductIndex,
     theme,
@@ -195,7 +197,7 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     switchProduct,
     setTheme,
     triggerCartAnimation,
-  }), [products, currentProduct, currentProductIndex, theme, isLoading, isSwitching, cart, isCartOpen, isCartAnimating, startCheckout, searchQuery, filteredProducts, addToCart, buyNow, updateQuantity, removeFromCart, clearCart, switchProduct, setTheme, triggerCartAnimation, setSearchQuery]);
+  }), [products, siteProducts, currentProduct, currentProductIndex, theme, isLoading, isSwitching, cart, isCartOpen, isCartAnimating, startCheckout, searchQuery, filteredProducts, addToCart, buyNow, updateQuantity, removeFromCart, clearCart, switchProduct, setTheme, triggerCartAnimation, setSearchQuery]);
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
