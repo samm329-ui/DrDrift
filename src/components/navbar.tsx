@@ -67,6 +67,8 @@ const Navbar = () => {
   };
 
   const cartItemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const isInOurProductsSection = activeSection === 'our-products';
+
 
   return (
     <header
@@ -95,7 +97,7 @@ const Navbar = () => {
               >
                 <DropdownMenuTrigger asChild>
                   <div
-                    onMouseEnter={() => setIsProductDropdownOpen(true)}
+                    onMouseEnter={() => !isInOurProductsSection && setIsProductDropdownOpen(true)}
                     onMouseLeave={() => setIsProductDropdownOpen(false)}
                     className="flex items-center"
                   >
@@ -123,8 +125,8 @@ const Navbar = () => {
                   </div>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
-                  className="w-64"
-                  onMouseEnter={() => setIsProductDropdownOpen(true)}
+                  className="w-64 data-[state=open]:animate-roll-down"
+                  onMouseEnter={() => !isInOurProductsSection && setIsProductDropdownOpen(true)}
                   onMouseLeave={() => setIsProductDropdownOpen(false)}
                 >
                   {siteProducts.map((product) => (

@@ -111,3 +111,20 @@
   background-color: hsl(var(--destructive));
   animation: strike-through 0.6s ease-out forwards;
 }
+
+@keyframes roll-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) rotateX(-15deg);
+    transform-origin: top center;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg);
+    transform-origin: top center;
+  }
+}
+
+.animate-roll-down {
+  animation: roll-down 0.3s ease-out;
+}

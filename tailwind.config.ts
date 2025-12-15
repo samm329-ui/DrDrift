@@ -101,7 +101,19 @@ export default {
           '20%, 80%': { transform: 'translate3d(2px, 0, 0)' },
           '30%, 50%, 70%': { transform: 'translate3d(-4px, 0, 0)' },
           '40%, 60%': { transform: 'translate3d(4px, 0, 0)' },
-        }
+        },
+        'roll-down': {
+          from: {
+            opacity: '0',
+            transform: 'translateY(-10px) rotateX(-15deg)',
+            transformOrigin: 'top center',
+          },
+          to: {
+            opacity: '1',
+            transform: 'translateY(0) rotateX(0deg)',
+            transformOrigin: 'top center',
+          },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -109,6 +121,7 @@ export default {
         'fade-in': 'fade-in 0.5s ease-in-out',
         'fade-out': 'fade-out 0.5s ease-in-out',
         'shake': 'shake 0.5s cubic-bezier(.36,.07,.19,.97) both',
+        'roll-down': 'roll-down 0.3s ease-out',
       },
     },
   },
