@@ -14,10 +14,16 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import Image from 'next/image';
+import { useScrollSpy } from '@/hooks/use-scroll-spy';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const { cart, setIsCartOpen, isCartAnimating } = useApp();
+  
+  const sectionIds = siteConfig.navLinks.map(link => link.href.substring(1));
+  const activeSection = useScrollSpy(sectionIds.map(id => `#${id}`), {
+    rootMargin: '-20% 0px -80% 0px',
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -65,7 +71,10 @@ const Navbar = () => {
                 'relative text-sm font-medium transition-colors hover:text-primary',
                 'text-foreground/80',
                 'after:absolute after:bottom-[-4px] after:left-0 after:h-[2px] after:w-full after:bg-primary after:transition-transform after:duration-300',
-                'after:scale-x-0 hover:after:scale-x-100'
+                'after:scale-x-0 hover:after:scale-x-100',
+                activeSection === link.href.substring(1)
+                  ? 'text-primary after:scale-x-100'
+                  : ''
               )}
             >
               {link.name}
