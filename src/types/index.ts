@@ -20,5 +20,4 @@ export type CartItem = {
 export type NavLink = {
   name: string;
   href: string;
-  preview: string;
 };

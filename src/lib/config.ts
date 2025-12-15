@@ -29,13 +29,13 @@ export const products: Product[] = [
 export const siteConfig = {
   brandName: 'Dr. Drift',
   navLinks: [
-    { name: 'Product', href: '#product', preview: 'https://picsum.photos/seed/product-preview/400/200' },
-    { name: 'Our Products', href: '#our-products', preview: 'https://picsum.photos/seed/our-products-preview/400/200' },
-    { name: 'Ingredients', href: '#ingredients', preview: 'https://picsum.photos/seed/ingredients-preview/400/200' },
-    { name: 'Safety', href: '#safety', preview: 'https://picsum.photos/seed/safety-preview/400/200' },
-    { name: 'Reviews', href: '#reviews', preview: 'https://picsum.photos/seed/reviews-preview/400/200' },
-    { name: 'FAQ', href: '#faq', preview: 'https://picsum.photos/seed/faq-preview/400/200' },
-    { name: 'Contact', href: '#contact', preview: 'https://picsum.photos/seed/contact-preview/400/200' },
+    { name: 'Product', href: '#product' },
+    { name: 'Our Products', href: '#our-products' },
+    { name: 'Ingredients', href: '#ingredients' },
+    { name: 'Safety', href: '#safety' },
+    { name: 'Reviews', href: '#reviews' },
+    { name: 'FAQ', href: '#faq' },
+    { name: 'Contact', href: '#contact' },
   ],
   socials: {
     twitter: 'https://twitter.com',
