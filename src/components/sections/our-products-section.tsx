@@ -186,7 +186,7 @@ const ProductCard = ({ product }: { product: (typeof ourProducts)[0] }) => {
                 <CardTitle className="font-headline text-lg">{product.name}</CardTitle>
                  <div className="flex items-baseline gap-2 mt-1">
                     <span className="font-bold text-lg text-primary">Rs. {product.price}</span>
-                    <span className="text-sm text-muted-foreground line-through">Rs. {originalPrice}</span>
+                    <span className="text-sm text-muted-foreground animate-strike-through">Rs. {originalPrice}</span>
                 </div>
               </div>
             </div>

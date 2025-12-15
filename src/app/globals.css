@@ -89,3 +89,25 @@
 .animate-shake {
   animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
 }
+
+@keyframes strike-through {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.animate-strike-through {
+  position: relative;
+}
+.animate-strike-through::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 2px;
+  background-color: hsl(var(--destructive));
+  animation: strike-through 0.6s ease-out forwards;
+}
