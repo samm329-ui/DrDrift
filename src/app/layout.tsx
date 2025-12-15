@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils';
 import CartDrawer from '@/components/cart-drawer';
 import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
+import SearchBar from '@/components/search-bar';
 
 export const metadata: Metadata = {
   title: 'Drift Dynamic',
@@ -31,6 +32,7 @@ export default function RootLayout({
         <AppContextProvider>
             <div className="flex flex-col min-h-screen">
               <Navbar />
+              <SearchBar />
               <main className="flex-grow">{children}</main>
               <Footer />
             </div>

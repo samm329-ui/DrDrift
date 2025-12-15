@@ -13,8 +13,7 @@ import { useScrollSpy } from '@/hooks/use-scroll-spy';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const { cart, setIsCartOpen, isCartAnimating, setSearchQuery } = useApp();
+  const { cart, setIsCartOpen, isCartAnimating } = useApp();
   
   const sectionIds = siteConfig.navLinks.map(link => link.href.substring(1));
   const activeSection = useScrollSpy(sectionIds.map(id => `#${id}`), {
@@ -49,13 +48,6 @@ const Navbar = () => {
 
   const cartItemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
-  const toggleSearch = () => {
-    setIsSearchOpen(!isSearchOpen);
-    if (isSearchOpen) {
-      setSearchQuery('');
-    }
-  };
-
   return (
     <header
       className={cn(
@@ -69,7 +61,7 @@ const Navbar = () => {
         <a href="/" onClick={handleRefresh} className="font-headline text-2xl font-bold text-primary">
           {siteConfig.brandName}
         </a>
-        <nav className={cn("hidden items-center space-x-8 md:flex transition-opacity", isSearchOpen && 'opacity-0 pointer-events-none')}>
+        <nav className="hidden items-center space-x-8 md:flex">
           {siteConfig.navLinks.map((link) => (
             <Link
               key={link.name}
@@ -90,29 +82,6 @@ const Navbar = () => {
           ))}
         </nav>
         <div className="flex items-center gap-2">
-            <div className="relative flex items-center">
-              <div
-                className={cn(
-                  'relative transition-all duration-300 ease-in-out',
-                  isSearchOpen ? 'w-48' : 'w-0'
-                )}
-              >
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input
-                  type="search"
-                  placeholder="Search products..."
-                  className={cn(
-                    "pl-9 transition-opacity duration-300",
-                    isSearchOpen ? 'opacity-100' : 'opacity-0'
-                  )}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-              </div>
-              <Button variant="ghost" size="icon" onClick={toggleSearch}>
-                {isSearchOpen ? <X className="h-5 w-5" /> : <Search className="h-5 w-5" />}
-                <span className="sr-only">{isSearchOpen ? 'Close search' : 'Open search'}</span>
-              </Button>
-           </div>
           <ThemeToggle />
           <Button
             variant="ghost"
