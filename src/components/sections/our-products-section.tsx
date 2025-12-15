@@ -92,18 +92,18 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
           </CardHeader>
           <CardContent className="p-0 mt-2 flex-grow">
             <p className="text-sm text-muted-foreground line-clamp-2">{product.description}</p>
-              <div className="flex items-baseline gap-2 mt-4">
+             <div className="flex items-baseline gap-2 mt-4">
                 <span className="font-bold text-lg text-primary">Rs. {product.price}</span>
                 <span className="text-sm text-muted-foreground animate-strike-through">Rs. {originalPrice}</span>
               </div>
-              <div className='flex items-center gap-2 w-full mt-2'>
-                 <Button variant="outline" size="sm" className='w-full' onClick={handleAddToCart}>
-                    <ShoppingCart className='mr-2 h-4 w-4'/>
-                    Add to Cart
-                 </Button>
-                 <Button size="sm" className='w-full' onClick={handleBuyNow}>
-                    Buy Now
-                 </Button>
+            <div className='flex items-center gap-2 w-full mt-2'>
+                <Button variant="outline" size="sm" className='w-full' onClick={handleAddToCart}>
+                <ShoppingCart className='mr-2 h-4 w-4'/>
+                Add to Cart
+                </Button>
+                <Button size="sm" className='w-full' onClick={handleBuyNow}>
+                Buy Now
+                </Button>
             </div>
           </CardContent>
         </div>
@@ -114,7 +114,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
 
 const OurProductsSection = () => {
   return (
-    <section id="our-products" className="bg-background-alt py-20 md:pb-24 md:pt-20">
+    <section id="our-products" className="bg-background-alt py-20 md:py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 flex flex-col h-full">
         <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl font-headline">
           Our Products
@@ -122,7 +122,7 @@ const OurProductsSection = () => {
         <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground">
           A range of products to keep your home shining.
         </p>
-        <div className="mt-12 flex-grow flex items-stretch gap-6 pb-4 -mx-4 px-4 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="mt-12 flex-grow flex items-stretch pb-4 -mx-4 px-4 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {siteProducts.map((item, index) => (
                 <ProductCard key={index} product={item} />
             ))}
