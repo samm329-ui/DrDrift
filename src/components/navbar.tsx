@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { siteConfig } from '@/lib/config';
 import { cn } from '@/lib/utils';
@@ -12,8 +12,7 @@ import { useApp } from '@/hooks/use-app';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const { cart, setIsCartOpen, isCartAnimating, isCartOpen } = useApp();
-  const cartIconRef = useRef<HTMLButtonElement>(null);
+  const { cart, setIsCartOpen, isCartAnimating } = useApp();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,14 +21,6 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  useEffect(() => {
-    if (cartIconRef.current) {
-      const rect = cartIconRef.current.getBoundingClientRect();
-      document.documentElement.style.setProperty('--cart-icon-left', `${rect.left + rect.width / 2}px`);
-      document.documentElement.style.setProperty('--cart-icon-top', `${rect.top + rect.height / 2}px`);
-    }
-  }, [cartIconRef, isScrolled, isCartOpen]);
 
   const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -74,7 +65,6 @@ const Navbar = () => {
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <Button
-            ref={cartIconRef}
             variant="ghost"
             size="icon"
             onClick={() => setIsCartOpen(true)}

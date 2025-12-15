@@ -5,7 +5,6 @@ import type { Product, CartItem } from '@/types';
 import { products } from '@/lib/config';
 import { hexToHsl } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
-import Image from 'next/image';
 
 type Theme = 'light' | 'dark';
 
@@ -19,7 +18,6 @@ interface AppContextType {
   cart: CartItem[];
   isCartOpen: boolean;
   isCartAnimating: boolean;
-  animatingItemId: string | null;
   addToCart: (item: Omit<CartItem, 'quantity'>, quantity: number) => void;
   updateQuantity: (itemId: string, quantity: number) => void;
   removeFromCart: (itemId: string) => void;
@@ -27,193 +25,146 @@ interface AppContextType {
   setIsCartOpen: (isOpen: boolean) => void;
   switchProduct: (direction: 'next' | 'prev') => void;
   setTheme: (theme: Theme) => void;
-  setAnimatingItemId: (id: string | null) => void;
   triggerCartAnimation: () => void;
 }
 
 export const AppContext = createContext<AppContextType | undefined>(undefined);
 
-const FlyToCartAnimation = () => {
-    const { cart, animatingItemId, setAnimatingItemId } = useApp();
-    const item = cart.find(i => i.id === animatingItemId);
-  
-    useEffect(() => {
-      if (item) {
-        const timer = setTimeout(() => {
-          setAnimatingItemId(null);
-        }, 600); // Animation duration
-        return () => clearTimeout(timer);
+export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [currentProductIndex, setCurrentProductIndex] = useState(0);
+  const [theme, setThemeState] = useState<Theme>('dark');
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSwitching, setIsSwitching] = useState(false);
+  const [cart, setCart] = useState<CartItem[]>([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isCartAnimating, setIsCartAnimating] = useState(false);
+  const { toast } = useToast();
+
+  const currentProduct = useMemo(() => products[currentProductIndex], [currentProductIndex]);
+
+  const triggerCartAnimation = useCallback(() => {
+    setIsCartAnimating(true);
+    setTimeout(() => setIsCartAnimating(false), 500); // Duration of the shake animation
+  }, []);
+
+  const setTheme = useCallback((newTheme: Theme) => {
+    setThemeState(newTheme);
+    document.documentElement.classList.remove('light', 'dark');
+    document.documentElement.classList.add(newTheme);
+  }, []);
+
+  const addToCart = useCallback((item: Omit<CartItem, 'quantity'>, quantity: number) => {
+    setCart(prevCart => {
+      const existingItem = prevCart.find(cartItem => cartItem.id === item.id);
+      if (existingItem) {
+        return prevCart.map(cartItem =>
+          cartItem.id === item.id
+            ? { ...cartItem, quantity: cartItem.quantity + quantity }
+            : cartItem
+        );
       }
-    }, [item, setAnimatingItemId]);
-  
-    if (!item || !item.rect) return null;
-  
-    return (
-      <div
-        className="fly-to-cart fixed z-[999] rounded-lg overflow-hidden"
-        style={{
-          left: `${item.rect.left}px`,
-          top: `${item.rect.top}px`,
-          width: `${item.rect.width}px`,
-          height: `${item.rect.height}px`,
-        }}
-      >
-        <Image src={item.imageUrl} alt={item.name} fill className="object-cover" />
-      </div>
-    );
+      return [...prevCart, { ...item, quantity }];
+    });
+    triggerCartAnimation();
+    toast({
+      title: 'Added to cart',
+      description: `${quantity} x ${item.name} added to your cart.`,
+    });
+  }, [toast, triggerCartAnimation]);
+
+  const updateQuantity = useCallback((itemId: string, quantity: number) => {
+    setCart(prevCart => {
+      if (quantity <= 0) {
+        return prevCart.filter(item => item.id !== itemId);
+      }
+      return prevCart.map(item =>
+        item.id === itemId ? { ...item, quantity } : item
+      );
+    });
+  }, []);
+
+  const removeFromCart = useCallback((itemId: string) => {
+    setCart(prevCart => prevCart.filter(item => item.id !== itemId));
+  }, []);
+
+  const clearCart = useCallback(() => {
+    setCart([]);
+  }, []);
+
+  useEffect(() => {
+    const firstProduct = products[0];
+    if (!firstProduct) {
+        setIsLoading(false);
+        return;
+    }
+    const mediaUrl = firstProduct.animatedWebpUrl;
+    
+    setTheme(firstProduct.mode === 'inherit' ? 'dark' : firstProduct.mode);
+
+    if (mediaUrl.endsWith('.mp4') || mediaUrl.endsWith('.webm')) {
+      const video = document.createElement('video');
+      video.src = mediaUrl;
+      video.oncanplaythrough = () => setIsLoading(false);
+      video.onerror = () => setIsLoading(false);
+    } else {
+      const img = new Image();
+      img.src = mediaUrl;
+      img.onload = () => setIsLoading(false);
+      img.onerror = () => setIsLoading(false);
+    }
+  }, [setTheme]);
+
+  useEffect(() => {
+    if (currentProduct) {
+      if (currentProduct.mode !== 'inherit') {
+        setTheme(currentProduct.mode);
+      }
+
+      const [h, s, l] = hexToHsl(currentProduct.themeColor);
+      document.documentElement.style.setProperty('--primary-h', `${h}`);
+      document.documentElement.style.setProperty('--primary-s', `${s}%`);
+      document.documentElement.style.setProperty('--primary-l', `${l}%`);
+    }
+  }, [currentProduct, setTheme]);
+
+  const switchProduct = (direction: 'next' | 'prev') => {
+    if (products.length <= 1) return;
+    setIsSwitching(true);
+    
+    setTimeout(() => {
+      setCurrentProductIndex(prevIndex => {
+        let nextIndex;
+        if (direction === 'next') {
+          nextIndex = (prevIndex + 1) % products.length;
+        } else {
+          nextIndex = (prevIndex - 1 + products.length) % products.length;
+        }
+        return nextIndex;
+      });
+
+      setTimeout(() => setIsSwitching(false), 50);
+    }, 400);
   };
   
-  export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [currentProductIndex, setCurrentProductIndex] = useState(0);
-    const [theme, setThemeState] = useState<Theme>('dark');
-    const [isLoading, setIsLoading] = useState(true);
-    const [isSwitching, setIsSwitching] = useState(false);
-    const [cart, setCart] = useState<CartItem[]>([]);
-    const [isCartOpen, setIsCartOpen] = useState(false);
-    const [isCartAnimating, setIsCartAnimating] = useState(false);
-    const [animatingItemId, setAnimatingItemId] = useState<string | null>(null);
-    const { toast } = useToast();
-  
-    const currentProduct = useMemo(() => products[currentProductIndex], [currentProductIndex]);
-  
-    const triggerCartAnimation = useCallback(() => {
-        setIsCartAnimating(true);
-        setTimeout(() => setIsCartAnimating(false), 500); // Duration of the shake animation
-    }, []);
-  
-    const setTheme = useCallback((newTheme: Theme) => {
-      setThemeState(newTheme);
-      document.documentElement.classList.remove('light', 'dark');
-      document.documentElement.classList.add(newTheme);
-    }, []);
-  
-    const addToCart = useCallback((item: Omit<CartItem, 'quantity'>, quantity: number) => {
-      setCart(prevCart => {
-        const existingItem = prevCart.find(cartItem => cartItem.id === item.id);
-        if (existingItem) {
-          return prevCart.map(cartItem =>
-            cartItem.id === item.id
-              ? { ...cartItem, quantity: cartItem.quantity + quantity, rect: item.rect }
-              : cartItem
-          );
-        }
-        return [...prevCart, { ...item, quantity }];
-      });
-      triggerCartAnimation();
-      toast({
-        title: 'Added to cart',
-        description: `${quantity} x ${item.name} added to your cart.`,
-      });
-    }, [toast, triggerCartAnimation]);
-  
-    const updateQuantity = useCallback((itemId: string, quantity: number) => {
-      setCart(prevCart => {
-        if (quantity <= 0) {
-          return prevCart.filter(item => item.id !== itemId);
-        }
-        return prevCart.map(item =>
-          item.id === itemId ? { ...item, quantity } : item
-        );
-      });
-    }, []);
-  
-    const removeFromCart = useCallback((itemId: string) => {
-      setCart(prevCart => prevCart.filter(item => item.id !== itemId));
-    }, []);
-  
-    const clearCart = useCallback(() => {
-      setCart([]);
-    }, []);
-  
-    useEffect(() => {
-      const firstProduct = products[0];
-      if (!firstProduct) {
-          setIsLoading(false);
-          return;
-      }
-      const mediaUrl = firstProduct.animatedWebpUrl;
-      
-      setTheme(firstProduct.mode === 'inherit' ? 'dark' : firstProduct.mode);
-  
-      if (mediaUrl.endsWith('.mp4') || mediaUrl.endsWith('.webm')) {
-        const video = document.createElement('video');
-        video.src = mediaUrl;
-        video.oncanplaythrough = () => setIsLoading(false);
-        video.onerror = () => setIsLoading(false);
-      } else {
-        const img = new Image();
-        img.src = mediaUrl;
-        img.onload = () => setIsLoading(false);
-        img.onerror = () => setIsLoading(false);
-      }
-    }, [setTheme]);
-  
-    useEffect(() => {
-      if (currentProduct) {
-        if (currentProduct.mode !== 'inherit') {
-          setTheme(currentProduct.mode);
-        }
-  
-        const [h, s, l] = hexToHsl(currentProduct.themeColor);
-        document.documentElement.style.setProperty('--primary-h', `${h}`);
-        document.documentElement.style.setProperty('--primary-s', `${s}%`);
-        document.documentElement.style.setProperty('--primary-l', `${l}%`);
-      }
-    }, [currentProduct, setTheme]);
-  
-    const switchProduct = (direction: 'next' | 'prev') => {
-      if (products.length <= 1) return;
-      setIsSwitching(true);
-      
-      setTimeout(() => {
-        setCurrentProductIndex(prevIndex => {
-          let nextIndex;
-          if (direction === 'next') {
-            nextIndex = (prevIndex + 1) % products.length;
-          } else {
-            nextIndex = (prevIndex - 1 + products.length) % products.length;
-          }
-          return nextIndex;
-        });
-  
-        setTimeout(() => setIsSwitching(false), 50);
-      }, 400);
-    };
-    
-    const value = useMemo(() => ({
-      products,
-      currentProduct,
-      currentProductIndex,
-      theme,
-      isLoading,
-      isSwitching,
-      cart,
-      isCartOpen,
-      isCartAnimating,
-      animatingItemId,
-      addToCart,
-      updateQuantity,
-      removeFromCart,
-      clearCart,
-      setIsCartOpen,
-      switchProduct,
-      setTheme,
-      setAnimatingItemId,
-      triggerCartAnimation,
-    }), [products, currentProduct, currentProductIndex, theme, isLoading, isSwitching, cart, isCartOpen, isCartAnimating, animatingItemId, addToCart, updateQuantity, removeFromCart, clearCart, setIsCartOpen, switchProduct, setTheme, triggerCartAnimation]);
-  
-    return <AppContext.Provider value={value}>
-        {children}
-        <FlyToCartAnimation />
-    </AppContext.Provider>;
+  const value = useMemo(() => ({
+    products,
+    currentProduct,
+    currentProductIndex,
+    theme,
+    isLoading,
+    isSwitching,
+    cart,
+    isCartOpen,
+    isCartAnimating,
+    addToCart,
+    updateQuantity,
+    removeFromCart,
+    clearCart,
+    setIsCartOpen,
+    switchProduct,
+    setTheme,
+    triggerCartAnimation,
+  }), [products, currentProduct, currentProductIndex, theme, isLoading, isSwitching, cart, isCartOpen, isCartAnimating, addToCart, updateQuantity, removeFromCart, clearCart, setIsCartOpen, switchProduct, setTheme, triggerCartAnimation]);
+
+  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
-  
-// A bit of a hack to use the context in the provider file itself
-// This is to avoid creating another file for the animation component
-function useApp() {
-    const context = React.useContext(AppContext);
-    if (context === undefined) {
-      throw new Error('useApp must be used within an AppContextProvider');
-    }
-    return context;
-}

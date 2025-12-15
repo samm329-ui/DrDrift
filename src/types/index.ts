@@ -15,5 +15,4 @@ export type CartItem = {
   price: number;
   quantity: number;
   imageUrl: string;
-  rect?: DOMRect;
 };
