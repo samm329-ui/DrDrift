@@ -54,8 +54,8 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
   };
 
   return (
-      <Card className="text-left shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden h-full flex flex-col group bg-background dark:bg-background/80 backdrop-blur-sm border-white/20 min-w-[280px] sm:min-w-[300px]">
-        <div className="relative overflow-hidden">
+      <Card className="text-left transition-shadow duration-300 overflow-hidden h-full flex flex-col group bg-transparent border-transparent shadow-none min-w-[280px] sm:min-w-[300px]">
+        <div className="relative overflow-hidden rounded-lg">
             <Link href={`/products/${product.slug}`} className="absolute inset-0 z-10">
                  <span className="sr-only">View Details</span>
             </Link>
@@ -82,7 +82,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
             </Carousel>
         </div>
 
-        <div className="flex flex-col flex-grow p-4">
+        <div className="flex flex-col flex-grow p-4 bg-background dark:bg-background/80 rounded-b-lg">
           <CardHeader className="p-0">
             <CardTitle className="font-headline text-lg">
               <Link href={`/products/${product.slug}`} className="hover:text-primary transition-colors z-30 relative">
