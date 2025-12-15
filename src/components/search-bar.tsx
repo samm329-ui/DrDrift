@@ -5,6 +5,7 @@ import { useApp } from '@/hooks/use-app';
 import { Input } from '@/components/ui/input';
 import { Search } from 'lucide-react';
 import Image from 'next/image';
+import type { SiteProduct } from '@/types';
 
 const SearchBar = () => {
   const { filteredProducts, searchQuery, setSearchQuery } = useApp();
@@ -17,10 +18,9 @@ const SearchBar = () => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
-    setSearchQuery('');
     setIsFocused(false);
   };
-
+  
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (filteredProducts.length > 0) {
@@ -29,8 +29,9 @@ const SearchBar = () => {
     }
   };
 
-  const handleSuggestionClick = (slug: string) => {
-    handleScrollToProduct(slug);
+  const handleSuggestionClick = (product: SiteProduct) => {
+    setSearchQuery(product.name);
+    handleScrollToProduct(product.slug);
   }
 
   return (
@@ -55,7 +56,7 @@ const SearchBar = () => {
                 <li key={product.id}>
                   <button
                     type="button"
-                    onClick={() => handleSuggestionClick(product.slug)}
+                    onClick={() => handleSuggestionClick(product)}
                     className="flex items-center gap-4 p-3 hover:bg-accent transition-colors w-full text-left"
                   >
                     <div className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-md">
