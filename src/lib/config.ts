@@ -22,7 +22,7 @@ export const products: Product[] = [
     description: 'A cutting-edge solution that eradicates 99.9% of bacteria, leaving your floors with a pristine, streak-free shine that lasts.',
     themeColor: '#a6d500',
     mode: 'dark',
-    animatedWebpUrl: "https://lrcqwbnytcceesofhdot.supabase.co/storage/v1/object/public/asset/hero/Sequence01-ezgif.com-video-to-webp-converter%20(1).webp",
+    animatedWebpUrl: getImageUrl('animated-hero-1'),
     productImageUrl: getImageUrl('product-image-1', 'kitchen'),
   },
 ];
@@ -35,9 +35,9 @@ export const siteProducts: SiteProduct[] = [
     description:
       'A robust formula engineered to tackle the most stubborn stains and eliminate germs, ensuring your toilet bowl remains immaculately clean, sanitized, and odor-free day after day.',
     imageUrls: [
-        'https://picsum.photos/seed/toilet1/800/600',
-        'https://picsum.photos/seed/toilet2/800/600',
-        'https://picsum.photos/seed/toilet3/800/600',
+        getImageUrl('toilet-cleaner-1'),
+        getImageUrl('toilet-cleaner-2'),
+        getImageUrl('toilet-cleaner-3'),
     ],
     imageHint: 'toilet cleaner',
     price: 833,
@@ -56,9 +56,9 @@ export const siteProducts: SiteProduct[] = [
     description:
       'Our advanced floor cleaner effortlessly cuts through stubborn grease and daily grime, leaving your floors not just clean, but with a brilliant, streak-free shine. Perfectly safe for all types of hard flooring.',
     imageUrls: [
-        'https://picsum.photos/seed/floor1/800/600',
-        'https://picsum.photos/seed/floor2/800/600',
-        'https://picsum.photos/seed/floor3/800/600',
+        getImageUrl('floor-cleaner-1'),
+        getImageUrl('floor-cleaner-2'),
+        getImageUrl('floor-cleaner-3'),
     ],
     imageHint: 'floor cleaner',
     price: 599,
@@ -77,9 +77,9 @@ export const siteProducts: SiteProduct[] = [
     description:
       'Experience next-level cleaning for your dishwasher. This liquid powerhouse actively removes limescale and hidden buildup, ensuring your dishes emerge sparkling and spotless after every single wash.',
     imageUrls: [
-        'https://picsum.photos/seed/dish1/800/600',
-        'https://picsum.photos/seed/dish2/800/600',
-        'https://picsum.photos/seed/dish3/800/600',
+        getImageUrl('dishwasher-liquid-1'),
+        getImageUrl('dishwasher-liquid-2'),
+        getImageUrl('dishwasher-liquid-3'),
     ],
     imageHint: 'dishwasher tablets',
     price: 619,

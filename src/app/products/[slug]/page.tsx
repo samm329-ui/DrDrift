@@ -1,6 +1,7 @@
+
 'use client';
 
-import React, { useState, useRef, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { notFound } from 'next/navigation';
 import { siteProducts } from '@/lib/config';
 import { Button } from '@/components/ui/button';
@@ -8,6 +9,8 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
 } from '@/components/ui/carousel';
 import Image from 'next/image';
 import { Minus, Plus, CheckCircle, Sparkles } from 'lucide-react';
@@ -84,6 +87,8 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                   </CarouselItem>
                 ))}
               </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
             </Carousel>
             <Button
               onClick={handleBuyPackOf8}

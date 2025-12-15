@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useRef } from 'react';
@@ -13,6 +14,8 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay"
 import { ArrowRight, ShoppingCart } from 'lucide-react';
@@ -79,6 +82,8 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
                   </CarouselItem>
                 ))}
               </CarouselContent>
+              <CarouselPrevious className="left-2 opacity-0 group-hover:opacity-100" />
+              <CarouselNext className="right-2 opacity-0 group-hover:opacity-100" />
             </Carousel>
         </div>
 

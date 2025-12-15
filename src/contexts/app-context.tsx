@@ -1,6 +1,7 @@
+
 'use client';
 
-import React, { createContext, useState, useEffect, useMemo, useCallback, useRef } from 'react';
+import React, { createContext, useState, useEffect, useMemo, useCallback } from 'react';
 import type { Product, CartItem, CartItemToAdd, SiteProduct } from '@/types';
 import { products, siteProducts } from '@/lib/config';
 import { hexToHsl } from '@/lib/utils';
@@ -93,10 +94,10 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   }, [toast, triggerCartAnimation]);
 
   const buyNow = useCallback((item: CartItemToAdd, quantity: number) => {
-    setCart([{...item, quantity}]);
+    addToCart(item, quantity);
     setStartCheckout(true);
     setIsCartOpen(true);
-  }, []);
+  }, [addToCart]);
 
   const updateQuantity = useCallback((itemId: string, quantity: number) => {
     setCart(prevCart => {
