@@ -19,7 +19,6 @@ import { ArrowRight, ShoppingCart } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useApp } from '@/hooks/use-app';
-import { siteProducts } from '@/lib/config';
 import type { SiteProduct } from '@/types';
 import { cn } from '@/lib/utils';
 
@@ -73,7 +72,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
                           alt={`${product.name} image ${index + 1}`}
                           width={600}
                           height={400}
-                          className="w-full h-72 object-cover transition-transform duration-300 group-hover:scale-105"
+                          className="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-105"
                           data-ai-hint={product.imageHint}
                       />
                   </CarouselItem>
@@ -96,6 +95,8 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
                 <span className="font-bold text-lg text-primary">Rs. {product.price}</span>
                 <span className="text-sm text-muted-foreground animate-strike-through">Rs. {originalPrice}</span>
               </div>
+          </CardContent>
+          <CardFooter className='p-0 mt-4'>
             <div className='flex items-center gap-2 w-full mt-2'>
                 <Button variant="outline" size="sm" className='w-full' onClick={handleAddToCart}>
                 <ShoppingCart className='mr-2 h-4 w-4'/>
@@ -105,7 +106,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
                 Buy Now
                 </Button>
             </div>
-          </CardContent>
+          </CardFooter>
         </div>
       </Card>
   );
@@ -113,6 +114,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
 
 
 const OurProductsSection = () => {
+  const { filteredProducts } = useApp();
   return (
     <section id="our-products" className="bg-background-alt py-20 md:py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 flex flex-col h-full">
@@ -123,9 +125,14 @@ const OurProductsSection = () => {
           A range of products to keep your home shining.
         </p>
         <div className="mt-12 flex-grow flex items-stretch pb-4 -mx-4 px-4 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {siteProducts.map((item, index) => (
+            {filteredProducts.map((item, index) => (
                 <ProductCard key={index} product={item} />
             ))}
+             {filteredProducts.length === 0 && (
+                <div className="w-full text-center text-muted-foreground py-10">
+                    No products found.
+                </div>
+            )}
         </div>
       </div>
     </section>

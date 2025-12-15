@@ -1,8 +1,8 @@
 'use client';
 
 import React, { createContext, useState, useEffect, useMemo, useCallback, useRef } from 'react';
-import type { Product, CartItem, CartItemToAdd } from '@/types';
-import { products } from '@/lib/config';
+import type { Product, CartItem, CartItemToAdd, SiteProduct } from '@/types';
+import { products, siteProducts } from '@/lib/config';
 import { hexToHsl } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
 
@@ -19,6 +19,9 @@ interface AppContextType {
   isCartOpen: boolean;
   isCartAnimating: boolean;
   startCheckout: boolean;
+  searchQuery: string;
+  filteredProducts: SiteProduct[];
+  setSearchQuery: (query: string) => void;
   addToCart: (item: CartItemToAdd, quantity: number) => void;
   buyNow: (item: CartItemToAdd, quantity: number) => void;
   updateQuantity: (itemId: string, quantity: number) => void;
@@ -43,6 +46,17 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   const [isCartAnimating, setIsCartAnimating] = useState(false);
   const [startCheckout, setStartCheckout] = useState(false);
   const { toast } = useToast();
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const filteredProducts = useMemo(() => {
+    if (!searchQuery) {
+      return siteProducts;
+    }
+    return siteProducts.filter(product =>
+      product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      product.description.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }, [searchQuery]);
   
   const currentProduct = useMemo(() => products[currentProductIndex], [currentProductIndex]);
 
@@ -167,6 +181,9 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     isCartOpen,
     isCartAnimating,
     startCheckout,
+    searchQuery,
+    filteredProducts,
+    setSearchQuery,
     addToCart,
     buyNow,
     updateQuantity,
@@ -177,7 +194,7 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     switchProduct,
     setTheme,
     triggerCartAnimation,
-  }), [products, currentProduct, currentProductIndex, theme, isLoading, isSwitching, cart, isCartOpen, isCartAnimating, startCheckout, addToCart, buyNow, updateQuantity, removeFromCart, clearCart, setIsCartOpen, setStartCheckout, switchProduct, setTheme, triggerCartAnimation]);
+  }), [products, currentProduct, currentProductIndex, theme, isLoading, isSwitching, cart, isCartOpen, isCartAnimating, startCheckout, searchQuery, filteredProducts, addToCart, buyNow, updateQuantity, removeFromCart, clearCart, setIsCartOpen, setStartCheckout, switchProduct, setTheme, triggerCartAnimation]);
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };

@@ -6,19 +6,14 @@ import { siteConfig } from '@/lib/config';
 import { cn } from '@/lib/utils';
 import ThemeToggle from '@/components/theme-toggle';
 import { Button } from '@/components/ui/button';
-import { ShoppingCart } from 'lucide-react';
+import { ShoppingCart, Search } from 'lucide-react';
 import { useApp } from '@/hooks/use-app';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/ui/popover';
-import Image from 'next/image';
+import { Input } from '@/components/ui/input';
 import { useScrollSpy } from '@/hooks/use-scroll-spy';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const { cart, setIsCartOpen, isCartAnimating } = useApp();
+  const { cart, setIsCartOpen, isCartAnimating, setSearchQuery } = useApp();
   
   const sectionIds = siteConfig.navLinks.map(link => link.href.substring(1));
   const activeSection = useScrollSpy(sectionIds.map(id => `#${id}`), {
@@ -87,6 +82,15 @@ const Navbar = () => {
           ))}
         </nav>
         <div className="flex items-center gap-2">
+           <div className="relative hidden md:block">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input
+                type="search"
+                placeholder="Search products..."
+                className="pl-9"
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
           <ThemeToggle />
           <Button
             variant="ghost"
