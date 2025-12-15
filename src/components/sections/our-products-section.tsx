@@ -16,7 +16,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { Wrench, WashingMachine, SprayCan } from 'lucide-react';
+import { Sparkles, CircleSlashed, SprayCan } from 'lucide-react';
 import Image from 'next/image';
 import { useApp } from '@/hooks/use-app';
 
@@ -24,32 +24,32 @@ const ourProducts = [
   {
     id: 'prod_toilet_cleaner',
     icon: SprayCan,
-    name: 'Toilet Cleaner',
+    name: 'Toilet Cleaner (5L)',
     description:
       'Powerful formula that removes tough stains and kills 99.9% of germs, leaving your toilet sparkling clean and fresh.',
     imageUrl: 'https://picsum.photos/seed/toilet/600/400',
     imageHint: 'toilet cleaner',
-    price: 12.99,
+    price: 833,
   },
   {
     id: 'prod_floor_cleaner',
-    icon: Wrench,
-    name: 'Floor Cleaners',
+    icon: Sparkles,
+    name: 'Floor Cleaner (5L)',
     description:
       'Our floor cleaner cuts through grease and grime, leaving your floors spotless and with a brilliant shine. Safe for all floor types.',
     imageUrl: 'https://picsum.photos/seed/floor/600/400',
     imageHint: 'floor cleaner',
-    price: 15.99,
+    price: 599,
   },
   {
     id: 'prod_dishwasher',
-    icon: WashingMachine,
-    name: 'Dishwasher',
+    icon: CircleSlashed,
+    name: 'Dishwasher Liquid (5L)',
     description:
       'Advanced cleaning for your dishwasher, removing limescale and buildup to ensure your dishes come out sparkling clean every time.',
     imageUrl: 'https://picsum.photos/seed/dishwasher/600/400',
     imageHint: 'dishwasher tablets',
-    price: 19.99,
+    price: 619,
   },
 ];
 

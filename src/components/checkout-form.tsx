@@ -208,7 +208,7 @@ export function CheckoutForm({ subtotal, onBack }: CheckoutFormProps) {
         <div className="mt-auto pt-4 space-y-4">
             <div className="flex justify-between font-semibold">
                 <span>Total</span>
-                <span>${subtotal.toFixed(2)}</span>
+                <span>₹{subtotal.toFixed(2)}</span>
             </div>
              <p className="text-sm text-muted-foreground">Payment Method: Cash on Delivery</p>
             <Button onClick={form.handleSubmit(onSubmit)} className="w-full">
