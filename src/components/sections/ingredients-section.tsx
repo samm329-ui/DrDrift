@@ -21,7 +21,7 @@ const ingredients = [
 
 const IngredientsSection = () => {
     return (
-        <section id="ingredients" className="bg-secondary">
+        <section id="ingredients" className="mandala-bg">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl font-headline">The Science of Clean</h2>
                 <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground">
