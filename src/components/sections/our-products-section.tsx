@@ -54,8 +54,8 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
   };
 
   return (
-      <Card className="text-left transition-shadow duration-300 overflow-hidden h-full flex flex-col group bg-transparent border-transparent shadow-none min-w-[380px] sm:min-w-[400px]">
-        <div className="relative overflow-hidden rounded-lg">
+      <Card className="text-left transition-shadow duration-300 overflow-hidden h-full flex flex-col group min-w-[380px] sm:min-w-[420px] border-transparent shadow-none bg-transparent">
+        <div className="relative overflow-hidden rounded-lg group-hover:shadow-2xl transition-shadow duration-300">
             <Link href={`/products/${product.slug}`} className="absolute inset-0 z-10">
                  <span className="sr-only">View Details</span>
             </Link>
@@ -92,13 +92,11 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
           </CardHeader>
           <CardContent className="p-0 mt-2 flex-grow">
             <p className="text-sm text-muted-foreground line-clamp-2">{product.description}</p>
-          </CardContent>
-          <CardFooter className="p-0 mt-4 flex flex-col items-stretch gap-2">
-              <div className="flex items-baseline gap-2">
+              <div className="flex items-baseline gap-2 mt-4">
                 <span className="font-bold text-lg text-primary">Rs. {product.price}</span>
                 <span className="text-sm text-muted-foreground animate-strike-through">Rs. {originalPrice}</span>
               </div>
-              <div className='flex items-center gap-2 w-full'>
+              <div className='flex items-center gap-2 w-full mt-2'>
                  <Button variant="outline" size="sm" className='w-full' onClick={handleAddToCart}>
                     <ShoppingCart className='mr-2 h-4 w-4'/>
                     Add to Cart
@@ -107,6 +105,16 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
                     Buy Now
                  </Button>
             </div>
+          </CardContent>
+          <CardFooter className="p-0 mt-4 flex flex-col items-stretch gap-2">
+              <ul className="space-y-2 text-left text-sm text-muted-foreground">
+                {product.features.map((feature, index) => (
+                  <li key={index} className="flex items-start gap-2">
+                    <span className="text-primary mt-1">&bull;</span>
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
           </CardFooter>
         </div>
       </Card>
@@ -117,14 +125,14 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
 const OurProductsSection = () => {
   return (
     <section id="our-products" className="bg-background-alt py-20 md:py-24">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 flex flex-col h-full">
         <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl font-headline">
           Our Products
         </h2>
         <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground">
           A range of products to keep your home shining.
         </p>
-        <div className="mt-12 flex gap-0 pb-4 -mx-4 px-4 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="mt-12 flex-grow flex items-stretch gap-6 pb-4 -mx-4 px-4 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {siteProducts.map((item, index) => (
                 <ProductCard key={index} product={item} />
             ))}
