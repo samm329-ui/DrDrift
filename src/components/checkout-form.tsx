@@ -69,7 +69,7 @@ export function CheckoutForm({ subtotal, onBack }: CheckoutFormProps) {
   }
 
   return (
-    <div className="flex flex-col h-full">
+    <>
       <div className="flex items-center gap-2 mb-4 -ml-2 pr-6 flex-shrink-0">
         <Button variant="ghost" size="icon" className="h-8 w-8" onClick={onBack}>
             <ArrowLeft className="h-5 w-5" />
@@ -79,7 +79,7 @@ export function CheckoutForm({ subtotal, onBack }: CheckoutFormProps) {
 
       <ScrollArea className="flex-grow -mr-6 pr-6">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 pb-4">
+          <form onSubmit={form.handleSubmit(onSubmit)} id="checkout-form" className="space-y-6 pb-4">
             <div className="space-y-2">
                 <h4 className="font-medium">Contact Information</h4>
                 <FormField
@@ -221,10 +221,10 @@ export function CheckoutForm({ subtotal, onBack }: CheckoutFormProps) {
             <span>₹{subtotal.toFixed(2)}</span>
         </div>
           <p className="text-sm text-muted-foreground">Payment Method: Cash on Delivery</p>
-        <Button onClick={form.handleSubmit(onSubmit)} className="w-full" size="lg">
+        <Button onClick={form.handleSubmit(onSubmit)} form="checkout-form" className="w-full" size="lg">
             Place Order
         </Button>
       </div>
-    </div>
+    </>
   );
 }
