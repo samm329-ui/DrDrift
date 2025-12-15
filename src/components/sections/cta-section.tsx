@@ -17,7 +17,7 @@ const contactOptions = [
     {
         icon: MapPin,
         title: "Visit Us",
-        content: "123 Clean St, Sparkle City",
+        content: "11/10 Newland Extension, Jadavpur, Jheel Road, 700075",
         href: "#"
     },
 ]
