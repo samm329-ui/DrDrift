@@ -54,7 +54,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
   };
 
   return (
-      <Card className="text-left transition-shadow duration-300 overflow-hidden h-full flex flex-col group bg-transparent border-transparent shadow-none min-w-[320px] sm:min-w-[350px]">
+      <Card className="text-left transition-shadow duration-300 overflow-hidden h-full flex flex-col group bg-transparent border-transparent shadow-none min-w-[360px] sm:min-w-[380px]">
         <div className="relative overflow-hidden rounded-lg">
             <Link href={`/products/${product.slug}`} className="absolute inset-0 z-10">
                  <span className="sr-only">View Details</span>
@@ -124,7 +124,7 @@ const OurProductsSection = () => {
         <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground">
           A range of products to keep your home shining.
         </p>
-        <div className="mt-12 flex gap-4 pb-4 -mx-4 px-4 overflow-x-auto">
+        <div className="mt-12 flex gap-2 pb-4 -mx-4 px-4 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {siteProducts.map((item, index) => (
                 <ProductCard key={index} product={item} />
             ))}
