@@ -21,6 +21,13 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import { SprayCan, Sparkles, CircleSlashed, Info } from 'lucide-react';
 import Image from 'next/image';
 import { useApp } from '@/hooks/use-app';
@@ -171,6 +178,7 @@ const ProductCard = ({ product }: { product: (typeof ourProducts)[0] }) => {
 
 
 const OurProductsSection = () => {
+  const isMobile = useIsMobile();
   return (
     <section id="our-products" className="bg-background-alt py-20 md:py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
@@ -180,10 +188,30 @@ const OurProductsSection = () => {
         <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground">
           A range of products to keep your home shining.
         </p>
-        <div className="mt-12 grid md:grid-cols-3 gap-8">
-          {ourProducts.map((item) => (
-            <ProductCard key={item.id} product={item} />
-          ))}
+        <div className="mt-12">
+           <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-4">
+              {ourProducts.map((item, index) => (
+                <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
+                  <div className="p-1 h-full">
+                    <ProductCard product={item} />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            {!isMobile && (
+              <>
+                <CarouselPrevious className="absolute left-[-50px] top-1/2 -translate-y-1/2" />
+                <CarouselNext className="absolute right-[-50px] top-1/2 -translate-y-1/2" />
+              </>
+            )}
+          </Carousel>
         </div>
       </div>
     </section>
