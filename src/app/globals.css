@@ -74,16 +74,16 @@
   .mandala-bg {
     background-color: hsl(var(--secondary));
     background-image:
-      radial-gradient(hsl(var(--border)) 1px, transparent 1px),
-      radial-gradient(hsl(var(--border)) 1px, transparent 1px);
-    background-size: 40px 40px, 40px 40px;
+      radial-gradient(hsl(var(--border) / 0.8) 1.5px, transparent 1.5px),
+      radial-gradient(hsl(var(--border) / 0.8) 1.5px, transparent 1.5px);
+    background-size: 40px 40px;
     background-position: 0 0, 20px 20px;
   }
 
   .dark .mandala-bg {
     background-image:
-      radial-gradient(hsl(var(--border) / 0.5) 0.5px, transparent 0.5px),
-      radial-gradient(hsl(var(--border) / 0.5) 0.5px, transparent 0.5px);
+      radial-gradient(hsl(var(--border)) 1px, transparent 1px),
+      radial-gradient(hsl(var(--border)) 1px, transparent 1px);
   }
 
   section {
