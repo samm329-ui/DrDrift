@@ -15,6 +15,7 @@ import { Trash2, Plus, Minus, ShoppingCart, ArrowRight } from 'lucide-react';
 import { Separator } from './ui/separator';
 import { ScrollArea } from './ui/scroll-area';
 import { CheckoutForm } from './checkout-form';
+import type { CartItem } from '@/types';
 
 export default function CartDrawer() {
   const { cart, isCartOpen, setIsCartOpen, updateQuantity, removeFromCart, clearCart } = useApp();
@@ -58,7 +59,7 @@ export default function CartDrawer() {
               <>
                 <ScrollArea className="flex-grow my-4 -mr-6 pr-6">
                   <div className="flex flex-col gap-6">
-                    {cart.map((item) => (
+                    {cart.map((item: CartItem) => (
                       <div key={item.id} className="flex items-start gap-4">
                         <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-lg border">
                           <Image

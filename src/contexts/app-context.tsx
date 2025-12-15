@@ -1,7 +1,7 @@
 'use client';
 
 import React, { createContext, useState, useEffect, useMemo, useCallback, useRef } from 'react';
-import type { Product, CartItem } from '@/types';
+import type { Product, CartItem, CartItemToAdd } from '@/types';
 import { products } from '@/lib/config';
 import { hexToHsl } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
@@ -18,7 +18,7 @@ interface AppContextType {
   cart: CartItem[];
   isCartOpen: boolean;
   isCartAnimating: boolean;
-  addToCart: (item: Omit<CartItem, 'quantity'>, quantity: number) => void;
+  addToCart: (item: CartItemToAdd, quantity: number) => void;
   updateQuantity: (itemId: string, quantity: number) => void;
   removeFromCart: (itemId: string) => void;
   clearCart: () => void;
@@ -53,7 +53,7 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     document.documentElement.classList.add(newTheme);
   }, []);
 
-  const addToCart = useCallback((item: Omit<CartItem, 'quantity'>, quantity: number) => {
+  const addToCart = useCallback((item: CartItemToAdd, quantity: number) => {
     setCart(prevCart => {
       const existingItem = prevCart.find(cartItem => cartItem.id === item.id);
       if (existingItem) {

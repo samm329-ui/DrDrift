@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   Card,
   CardContent,
@@ -28,11 +28,11 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay"
 import { SprayCan, Sparkles, CircleSlashed, Info } from 'lucide-react';
 import Image from 'next/image';
 import { useApp } from '@/hooks/use-app';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { cn } from '@/lib/utils';
 
 const ourProducts = [
   {
@@ -41,7 +41,11 @@ const ourProducts = [
     name: 'Toilet Cleaner (5L)',
     description:
       'Powerful formula that removes tough stains and kills 99.9% of germs, leaving your toilet sparkling clean and fresh.',
-    imageUrl: 'https://picsum.photos/seed/toilet/600/400',
+    imageUrls: [
+        'https://picsum.photos/seed/toilet1/600/400',
+        'https://picsum.photos/seed/toilet2/600/400',
+        'https://picsum.photos/seed/toilet3/600/400',
+    ],
     imageHint: 'toilet cleaner',
     price: 833,
     features: ["Kills 99.9% of germs", "Removes tough stains", "Fresh scent", "5L value pack"],
@@ -52,7 +56,11 @@ const ourProducts = [
     name: 'Floor Cleaner (5L)',
     description:
       'Our floor cleaner cuts through grease and grime, leaving your floors spotless and with a brilliant shine. Safe for all floor types.',
-    imageUrl: 'https://picsum.photos/seed/floor/600/400',
+    imageUrls: [
+        'https://picsum.photos/seed/floor1/600/400',
+        'https://picsum.photos/seed/floor2/600/400',
+        'https://picsum.photos/seed/floor3/600/400',
+    ],
     imageHint: 'floor cleaner',
     price: 599,
     features: ["Cuts through grease", "Brilliant shine", "Safe for all floors", "Concentrated formula"],
@@ -63,7 +71,11 @@ const ourProducts = [
     name: 'Dishwasher Liquid (5L)',
     description:
       'Advanced cleaning for your dishwasher, removing limescale and buildup to ensure your dishes come out sparkling clean every time.',
-    imageUrl: 'https://picsum.photos/seed/dishwasher/600/400',
+    imageUrls: [
+        'https://picsum.photos/seed/dish1/600/400',
+        'https://picsum.photos/seed/dish2/600/400',
+        'https://picsum.photos/seed/dish3/600/400',
+    ],
     imageHint: 'dishwasher tablets',
     price: 619,
     features: ["Removes limescale", "Prevents buildup", "Sparkling clean dishes", "5L economy size"],
@@ -75,6 +87,7 @@ const ProductCard = ({ product }: { product: (typeof ourProducts)[0] }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { addToCart } = useApp();
   const isMobile = useIsMobile();
+  const autoplayPlugin = useRef(Autoplay({ delay: 2000 + Math.random() * 1000, stopOnInteraction: true }));
 
 
   const handleAddToCart = () => {
@@ -82,7 +95,7 @@ const ProductCard = ({ product }: { product: (typeof ourProducts)[0] }) => {
       id: product.id,
       name: product.name,
       price: product.price,
-      imageUrl: product.imageUrl,
+      imageUrl: product.imageUrls[0],
     };
     addToCart(item, quantity);
   };
@@ -100,14 +113,29 @@ const ProductCard = ({ product }: { product: (typeof ourProducts)[0] }) => {
       <Card className="text-left shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden h-full flex flex-col group bg-background dark:bg-background/80 backdrop-blur-sm border-white/20">
         <PopoverTrigger asChild onClick={(e) => { if (isMobile) e.preventDefault(); setIsOpen(!isOpen)}}>
             <div className="relative">
-                <Image
-                    src={product.imageUrl}
-                    alt={product.name}
-                    width={600}
-                    height={400}
-                    className="w-full h-48 object-cover"
-                    data-ai-hint={product.imageHint}
-                />
+                <Carousel
+                  plugins={[autoplayPlugin.current]}
+                  className="w-full"
+                  onMouseEnter={autoplayPlugin.current.stop}
+                  onMouseLeave={autoplayPlugin.current.play}
+                >
+                  <CarouselContent>
+                    {product.imageUrls.map((url, index) => (
+                      <CarouselItem key={index}>
+                        <Image
+                            src={url}
+                            alt={`${product.name} image ${index + 1}`}
+                            width={600}
+                            height={400}
+                            className="w-full h-48 object-cover"
+                            data-ai-hint={product.imageHint}
+                        />
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </Carousel>
                 {!isMobile && trigger}
             </div>
         </PopoverTrigger>
@@ -178,7 +206,6 @@ const ProductCard = ({ product }: { product: (typeof ourProducts)[0] }) => {
 
 
 const OurProductsSection = () => {
-  const isMobile = useIsMobile();
   return (
     <section id="our-products" className="bg-background-alt py-20 md:py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
@@ -188,30 +215,10 @@ const OurProductsSection = () => {
         <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground">
           A range of products to keep your home shining.
         </p>
-        <div className="mt-12">
-           <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full"
-          >
-            <CarouselContent className="-ml-4">
-              {ourProducts.map((item, index) => (
-                <CarouselItem key={index} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                  <div className="p-1 h-full">
-                    <ProductCard product={item} />
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            {!isMobile && (
-              <>
-                <CarouselPrevious className="absolute left-[-50px] top-1/2 -translate-y-1/2" />
-                <CarouselNext className="absolute right-[-50px] top-1/2 -translate-y-1/2" />
-              </>
-            )}
-          </Carousel>
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {ourProducts.map((item, index) => (
+                <ProductCard key={index} product={item} />
+            ))}
         </div>
       </div>
     </section>

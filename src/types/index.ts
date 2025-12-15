@@ -17,6 +17,8 @@ export type CartItem = {
   imageUrl: string;
 };
 
+export type CartItemToAdd = Omit<CartItem, 'quantity'>;
+
 export type NavLink = {
   name: string;
   href: string;
