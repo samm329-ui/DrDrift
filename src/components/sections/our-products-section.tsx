@@ -68,15 +68,6 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
                 ))}
               </CarouselContent>
             </Carousel>
-            <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 flex items-center justify-center gap-2">
-                <Button variant="outline" size="sm" className="bg-white/90 text-foreground hover:bg-white" onClick={handleAddToCart}>
-                    <ShoppingCart className="h-4 w-4 mr-2" />
-                    Add to Cart
-                </Button>
-                <Button variant="ghost" size="sm" className="text-white hover:bg-white/20 hover:text-white">
-                    View <ArrowRight className="ml-1 h-3 w-3" />
-                </Button>
-            </div>
         </div>
 
         <div className="flex flex-col flex-grow p-4">
@@ -90,10 +81,20 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
           <CardContent className="p-0 mt-2 flex-grow">
             <p className="text-sm text-muted-foreground line-clamp-2">{product.description}</p>
           </CardContent>
-          <CardFooter className="p-0 mt-4">
+          <CardFooter className="p-0 mt-4 flex items-center justify-between">
               <div className="flex items-baseline gap-2">
                 <span className="font-bold text-lg text-primary">Rs. {product.price}</span>
                 <span className="text-sm text-muted-foreground animate-strike-through">Rs. {originalPrice}</span>
+            </div>
+            <div className='flex items-center gap-1'>
+                 <Button variant="ghost" size="icon" className='h-8 w-8' onClick={handleAddToCart}>
+                    <ShoppingCart className='h-4 w-4'/>
+                 </Button>
+                 <Link href={`/products/${product.slug}`}>
+                    <Button variant="ghost" size="icon" className='h-8 w-8'>
+                        <ArrowRight className='h-4 w-4'/>
+                    </Button>
+                 </Link>
             </div>
           </CardFooter>
         </div>
