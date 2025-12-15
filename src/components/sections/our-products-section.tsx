@@ -195,38 +195,32 @@ const ProductCard = ({ product }: { product: (typeof ourProducts)[0] }) => {
           <CardContent className="flex-grow">
             <p className="text-sm text-muted-foreground">{product.description}</p>
           </CardContent>
-          <CardFooter className="flex flex-col items-stretch gap-3 bg-secondary/50 p-3 mt-auto">
+          <CardFooter className="flex-col items-stretch gap-2 bg-secondary/50 p-3 mt-auto">
              <div className="flex items-center justify-between gap-2">
-                <div className="flex items-center gap-2">
-                    <label htmlFor={`quantity-${product.id}`} className="text-xs font-medium">
-                    Qty:
-                    </label>
-                    <Select
-                    value={String(quantity)}
-                    onValueChange={(val) => setQuantity(Number(val))}
-                    >
-                    <SelectTrigger id={`quantity-${product.id}`} className="w-[60px] h-9">
-                        <SelectValue placeholder="Qty" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        {[...Array(8).keys()].map((i) => (
-                        <SelectItem key={i + 1} value={String(i + 1)}>
-                            {i + 1}
-                        </SelectItem>
-                        ))}
-                    </SelectContent>
-                    </Select>
-                </div>
-                <div className="flex items-center gap-2">
-                    <Button onClick={handleAddToCart} size="sm" variant="outline">
-                        <ShoppingCart className="h-4 w-4" />
-                    </Button>
-                    <Button onClick={handleBuyNow} size="sm" className="flex-grow">
-                        <Zap className="mr-2 h-4 w-4" />
-                        Buy Now
-                    </Button>
-                </div>
+                  <Select
+                  value={String(quantity)}
+                  onValueChange={(val) => setQuantity(Number(val))}
+                  >
+                  <SelectTrigger id={`quantity-${product.id}`} className="w-[75px] h-9">
+                      <SelectValue placeholder="Qty" />
+                  </SelectTrigger>
+                  <SelectContent>
+                      {[...Array(8).keys()].map((i) => (
+                      <SelectItem key={i + 1} value={String(i + 1)}>
+                          {i + 1}
+                      </SelectItem>
+                      ))}
+                  </SelectContent>
+                  </Select>
+                  <Button onClick={handleBuyNow} size="sm" className="flex-grow">
+                      <Zap className="mr-2 h-4 w-4" />
+                      Buy Now
+                  </Button>
             </div>
+             <Button onClick={handleAddToCart} size="sm" variant="outline" className="w-full">
+                <ShoppingCart className="mr-2 h-4 w-4" />
+                Add to Cart
+              </Button>
           </CardFooter>
         </div>
       </Card>
@@ -245,7 +239,7 @@ const OurProductsSection = () => {
         <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground">
           A range of products to keep your home shining.
         </p>
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
             {ourProducts.map((item, index) => (
                 <ProductCard key={index} product={item} />
             ))}
