@@ -21,6 +21,7 @@ import Link from 'next/link';
 import { useApp } from '@/hooks/use-app';
 import type { SiteProduct } from '@/types';
 import { cn } from '@/lib/utils';
+import { siteProducts } from '@/lib/config';
 
 const ProductCard = ({ product }: { product: SiteProduct }) => {
   const { addToCart, buyNow } = useApp();
