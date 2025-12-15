@@ -10,6 +10,7 @@ import SafetySection from '@/components/sections/safety-section';
 import ReviewsSection from '@/components/sections/reviews-section';
 import FaqSection from '@/components/sections/faq-section';
 import CtaSection from '@/components/sections/cta-section';
+import SearchBar from '@/components/search-bar';
 
 export default function Home() {
   const { isLoading } = useApp();
@@ -20,6 +21,7 @@ export default function Home() {
       {!isLoading && (
         <div className='bg-background'>
           <HeroSection />
+          <SearchBar />
           <ProductSection />
           <OurProductsSection />
           <IngredientsSection />
