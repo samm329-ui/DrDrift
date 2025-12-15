@@ -6,13 +6,14 @@ import { siteConfig } from '@/lib/config';
 import { cn } from '@/lib/utils';
 import ThemeToggle from '@/components/theme-toggle';
 import { Button } from '@/components/ui/button';
-import { ShoppingCart, Search } from 'lucide-react';
+import { ShoppingCart, Search, X } from 'lucide-react';
 import { useApp } from '@/hooks/use-app';
 import { Input } from '@/components/ui/input';
 import { useScrollSpy } from '@/hooks/use-scroll-spy';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const { cart, setIsCartOpen, isCartAnimating, setSearchQuery } = useApp();
   
   const sectionIds = siteConfig.navLinks.map(link => link.href.substring(1));
@@ -48,6 +49,13 @@ const Navbar = () => {
 
   const cartItemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
+  const toggleSearch = () => {
+    setIsSearchOpen(!isSearchOpen);
+    if (isSearchOpen) {
+      setSearchQuery('');
+    }
+  };
+
   return (
     <header
       className={cn(
@@ -61,7 +69,7 @@ const Navbar = () => {
         <a href="/" onClick={handleRefresh} className="font-headline text-2xl font-bold text-primary">
           {siteConfig.brandName}
         </a>
-        <nav className="hidden items-center space-x-8 md:flex">
+        <nav className={cn("hidden items-center space-x-8 md:flex transition-opacity", isSearchOpen && 'opacity-0 pointer-events-none')}>
           {siteConfig.navLinks.map((link) => (
             <Link
               key={link.name}
@@ -82,15 +90,29 @@ const Navbar = () => {
           ))}
         </nav>
         <div className="flex items-center gap-2">
-           <div className="relative hidden md:block">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                type="search"
-                placeholder="Search products..."
-                className="pl-9"
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-            </div>
+            <div className="relative flex items-center">
+              <div
+                className={cn(
+                  'relative transition-all duration-300 ease-in-out',
+                  isSearchOpen ? 'w-48' : 'w-0'
+                )}
+              >
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  type="search"
+                  placeholder="Search products..."
+                  className={cn(
+                    "pl-9 transition-opacity duration-300",
+                    isSearchOpen ? 'opacity-100' : 'opacity-0'
+                  )}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+              </div>
+              <Button variant="ghost" size="icon" onClick={toggleSearch}>
+                {isSearchOpen ? <X className="h-5 w-5" /> : <Search className="h-5 w-5" />}
+                <span className="sr-only">{isSearchOpen ? 'Close search' : 'Open search'}</span>
+              </Button>
+           </div>
           <ThemeToggle />
           <Button
             variant="ghost"
