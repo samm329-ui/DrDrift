@@ -17,7 +17,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay"
-import { Plus, Minus, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useApp } from '@/hooks/use-app';
@@ -51,7 +51,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
   };
 
   return (
-      <Card className="text-left shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden h-full flex flex-col group bg-background dark:bg-background/80 backdrop-blur-sm border-white/20">
+      <Card className="text-left shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden h-full flex flex-col group bg-background dark:bg-background/80 backdrop-blur-sm border-white/20 min-w-[280px] sm:min-w-[300px]">
         <div className="relative">
             <Carousel
               plugins={[autoplayPlugin.current]}
@@ -97,16 +97,16 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
           </CardContent>
           <CardFooter className="flex flex-col items-stretch gap-2 bg-secondary/50 p-3 mt-auto">
              <div className="flex items-center justify-between gap-2">
-                <Button onClick={handleAddToCart} size="sm" variant="outline" className="flex-1">
-                    Add to Cart
-                </Button>
                 <Button onClick={handleBuyNow} size="sm" className="flex-1">
                   Buy Now
+                </Button>
+                <Button onClick={handleAddToCart} size="sm" variant="outline" className="flex-1">
+                    Add to Cart
                 </Button>
             </div>
              <Link href={`/products/${product.slug}`} className='w-full'>
                 <Button variant="ghost" size="sm" className="w-full text-sm">
-                    Learn More <ArrowRight className="ml-1 h-3 w-3" />
+                    View Details <ArrowRight className="ml-1 h-3 w-3" />
                 </Button>
             </Link>
           </CardFooter>
@@ -126,7 +126,7 @@ const OurProductsSection = () => {
         <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground">
           A range of products to keep your home shining.
         </p>
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+        <div className="mt-12 flex gap-6 pb-4 -mx-4 px-4 overflow-x-auto">
             {siteProducts.map((item, index) => (
                 <ProductCard key={index} product={item} />
             ))}
