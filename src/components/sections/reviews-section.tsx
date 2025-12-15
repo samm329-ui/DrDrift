@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Card, CardContent } from '@/components/ui/card';
@@ -6,19 +7,19 @@ import { cn } from '@/lib/utils';
 
 const reviews = [
     {
-        name: "Jessica M.",
+        name: "Priya S.",
         avatarId: "review-avatar-1",
         text: "I'm genuinely impressed. My floors have never looked better, and I love that it's safe for my toddler and dog. The shine is real!",
         rating: 5,
     },
     {
-        name: "David L.",
+        name: "Rohan K.",
         avatarId: "review-avatar-2",
         text: "As a professional cleaner, I'm very picky. Dr. Drift's Glaze Guard is now a staple in my kit. It cuts my window cleaning time in half.",
         rating: 5,
     },
     {
-        name: "Samantha P.",
+        name: "Anjali D.",
         avatarId: "review-avatar-3",
         text: "Finally, a bathroom cleaner that actually works on soap scum without toxic fumes. The bathroom smells fresh, not like chemicals.",
         rating: 5,
