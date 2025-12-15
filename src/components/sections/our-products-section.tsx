@@ -106,16 +106,6 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
                  </Button>
             </div>
           </CardContent>
-          <CardFooter className="p-0 mt-4 flex flex-col items-stretch gap-2">
-              <ul className="space-y-2 text-left text-sm text-muted-foreground">
-                {product.features.map((feature, index) => (
-                  <li key={index} className="flex items-start gap-2">
-                    <span className="text-primary mt-1">&bull;</span>
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-          </CardFooter>
         </div>
       </Card>
   );
