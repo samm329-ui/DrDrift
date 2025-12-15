@@ -114,6 +114,16 @@ export default {
             transformOrigin: 'top center',
           },
         },
+        celebrate: {
+          '0%, 100%': {
+            transform: 'scale(1)',
+            opacity: '1',
+          },
+          '50%': {
+            transform: 'scale(1.4)',
+            opacity: '0.8',
+          },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -122,6 +132,7 @@ export default {
         'fade-out': 'fade-out 0.5s ease-in-out',
         'shake': 'shake 0.5s cubic-bezier(.36,.07,.19,.97) both',
         'roll-down': 'roll-down 0.3s ease-out',
+        celebrate: 'celebrate 1.5s ease-in-out infinite',
       },
     },
   },

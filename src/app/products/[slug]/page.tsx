@@ -90,7 +90,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               size="lg"
               className="w-full bg-orange-500 hover:bg-orange-600 text-white text-lg"
             >
-              <Sparkles className="mr-2 h-5 w-5 animate-pulse" />
+              <Sparkles className="mr-2 h-5 w-5 animate-celebrate" />
               Buy Pack of 8 (8% OFF)
             </Button>
           </div>
