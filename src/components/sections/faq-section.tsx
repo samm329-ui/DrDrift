@@ -28,18 +28,20 @@ const FaqSection = () => {
     return (
         <section id="faq" className="bg-background">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-12">
-                    <h2 className="font-headline text-3xl md:text-4xl font-bold">Frequently Asked Questions</h2>
-                    <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-                        Have questions? We have answers.
+                <div className="text-center mb-16">
+                    <h2 className="font-headline text-4xl md:text-5xl font-bold tracking-tight">Frequently Asked Questions</h2>
+                    <p className="mt-6 max-w-2xl mx-auto text-lg text-muted-foreground leading-relaxed">
+                        Have questions? We have answers. Find information about our products, ingredients, and policies right here.
                     </p>
                 </div>
-                <div className="max-w-3xl mx-auto">
-                    <Accordion type="single" collapsible className="w-full">
+                <div className="max-w-4xl mx-auto">
+                    <Accordion type="single" collapsible className="w-full space-y-4">
                         {faqItems.map((item, index) => (
-                            <AccordionItem key={index} value={`item-${index}`}>
-                                <AccordionTrigger className="text-left font-bold text-lg">{item.question}</AccordionTrigger>
-                                <AccordionContent className="text-muted-foreground text-base">
+                            <AccordionItem key={index} value={`item-${index}`} className="bg-secondary/50 rounded-xl border-b-0">
+                                <AccordionTrigger className="text-left font-bold text-lg px-6 py-4 hover:no-underline">
+                                    {item.question}
+                                </AccordionTrigger>
+                                <AccordionContent className="text-muted-foreground text-base px-6">
                                     {item.answer}
                                 </AccordionContent>
                             </AccordionItem>

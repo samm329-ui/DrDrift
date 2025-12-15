@@ -79,8 +79,8 @@ const ProductCard = ({ product }: { product: (typeof ourProducts)[0] }) => {
   };
   
   const trigger = (
-    <div className="absolute top-2 right-2 z-10">
-        <Button size="icon" variant="secondary" className="rounded-full h-8 w-8 bg-background/50 backdrop-blur-sm">
+    <div className="absolute top-3 right-3 z-10">
+        <Button size="icon" variant="secondary" className="rounded-full h-8 w-8 bg-background/50 backdrop-blur-sm hover:bg-background/80">
             <Info className="h-4 w-4 text-foreground/80" />
         </Button>
     </div>
@@ -88,7 +88,7 @@ const ProductCard = ({ product }: { product: (typeof ourProducts)[0] }) => {
 
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
-      <Card className="text-left shadow-lg hover:shadow-primary/20 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 overflow-hidden h-full flex flex-col group">
+      <Card className="text-left shadow-lg hover:shadow-primary/20 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 overflow-hidden h-full flex flex-col group rounded-2xl">
         <PopoverTrigger asChild onClick={(e) => { if (isMobile) e.preventDefault(); setIsOpen(!isOpen)}}>
             <div className="relative">
                 <Image
@@ -96,7 +96,7 @@ const ProductCard = ({ product }: { product: (typeof ourProducts)[0] }) => {
                     alt={product.name}
                     width={600}
                     height={400}
-                    className="w-full h-48 object-cover"
+                    className="w-full h-56 object-cover"
                     data-ai-hint={product.imageHint}
                 />
                 {!isMobile && trigger}
@@ -110,7 +110,7 @@ const ProductCard = ({ product }: { product: (typeof ourProducts)[0] }) => {
         <PopoverContent 
             side="top" 
             align="center" 
-            className="w-80 bg-background/80 backdrop-blur-sm"
+            className="w-80 bg-background/90 backdrop-blur-sm rounded-xl"
             onMouseEnter={() => !isMobile && setIsOpen(true)}
             onMouseLeave={() => !isMobile && setIsOpen(false)}
         >
@@ -132,7 +132,7 @@ const ProductCard = ({ product }: { product: (typeof ourProducts)[0] }) => {
               <div className="bg-primary/10 text-primary w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0">
                 <product.icon className="w-6 h-6" />
               </div>
-              <CardTitle className="font-headline">{product.name}</CardTitle>
+              <CardTitle className="font-headline text-xl">{product.name}</CardTitle>
             </div>
           </CardHeader>
           <CardContent className="flex-grow">
@@ -172,13 +172,13 @@ const OurProductsSection = () => {
   return (
     <section id="our-products" className="bg-background pt-0 md:pt-0">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="font-headline text-3xl md:text-4xl font-bold">
+        <h2 className="font-headline text-4xl md:text-5xl font-bold tracking-tight">
           Our Products
         </h2>
-        <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-          A range of products to keep your home shining.
+        <p className="mt-6 max-w-2xl mx-auto text-lg text-muted-foreground leading-relaxed">
+          A range of products to keep your home shining, built with integrity and performance in mind.
         </p>
-        <div className="mt-12 grid md:grid-cols-3 gap-8">
+        <div className="mt-16 grid md:grid-cols-3 gap-8">
           {ourProducts.map((item) => (
             <ProductCard key={item.id} product={item} />
           ))}

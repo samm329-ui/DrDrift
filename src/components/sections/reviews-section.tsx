@@ -30,29 +30,29 @@ const ReviewsSection = () => {
     return (
         <section id="reviews" className="bg-secondary">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 className="font-headline text-3xl md:text-4xl font-bold">Loved by Homes Everywhere</h2>
-                <p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-                    Don't just take our word for it. Here's what our customers have to say.
+                <h2 className="font-headline text-4xl md:text-5xl font-bold tracking-tight">Loved by Homes Everywhere</h2>
+                <p className="mt-6 max-w-2xl mx-auto text-lg text-muted-foreground leading-relaxed">
+                    Don't just take our word for it. Here's what our customers have to say about the Dr. Drift difference.
                 </p>
-                <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
                     {reviews.map((review, index) => (
-                        <Card key={index} className="bg-background shadow-lg">
+                        <Card key={index} className="bg-background shadow-lg rounded-2xl">
                             <CardContent className="p-8 flex flex-col items-center">
                                 <Image
                                     src={getAvatarUrl(review.avatarId)}
                                     alt={review.name}
                                     width={80}
                                     height={80}
-                                    className="rounded-full mb-4 border-2 border-primary"
+                                    className="rounded-full mb-5 border-4 border-primary/20"
                                     data-ai-hint="person face"
                                 />
-                                <h3 className="font-bold text-lg">{review.name}</h3>
-                                <div className="flex my-2">
+                                <h3 className="font-bold text-xl font-headline">{review.name}</h3>
+                                <div className="flex my-3">
                                     {[...Array(review.rating)].map((_, i) => (
                                         <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
                                     ))}
                                 </div>
-                                <blockquote className="mt-2 text-muted-foreground italic">
+                                <blockquote className="mt-2 text-muted-foreground italic text-base leading-relaxed">
                                     "{review.text}"
                                 </blockquote>
                             </CardContent>
