@@ -4,20 +4,20 @@ const contactOptions = [
     {
         icon: Mail,
         title: "Email Us",
-        content: "drdriftpvtltd@gmail.com",
+        content: "Click to send us an email",
         href: "mailto:drdriftpvtltd@gmail.com"
     },
     {
         icon: Phone,
         title: "Call Us",
-        content: "(555) 123-4567",
+        content: "Click to give us a call",
         href: "tel:555-123-4567"
     },
     {
         icon: MapPin,
         title: "Visit Us",
-        content: "11/10 Newland Extension, Jadavpur, Jheel Road, 700075",
-        href: "#"
+        content: "Click to find us on the map",
+        href: "https://www.google.com/maps/search/?api=1&query=11/10+Newland+Extension,+Jadavpur,+Jheel+Road,+700075,+Kolkata"
     },
 ]
 
@@ -44,7 +44,7 @@ const CtaSection = () => {
                             <div className="mt-4">
                                 <h3 className="text-lg font-medium leading-6 text-foreground font-headline">{option.title}</h3>
                                 <p className="mt-2 text-base text-muted-foreground">
-                                    <a href={option.href} className="hover:text-primary">{option.content}</a>
+                                    <a href={option.href} target="_blank" rel="noopener noreferrer" className="hover:text-primary">{option.content}</a>
                                 </p>
                             </div>
                         </div>
