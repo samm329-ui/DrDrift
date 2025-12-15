@@ -61,7 +61,6 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       title: 'Added to cart',
       description: `${quantity} x ${item.name} added to your cart.`,
     });
-    setIsCartOpen(true);
   }, [toast]);
 
   const updateQuantity = useCallback((itemId: string, quantity: number) => {
