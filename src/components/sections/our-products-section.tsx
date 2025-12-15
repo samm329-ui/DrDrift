@@ -29,10 +29,11 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay"
-import { SprayCan, Sparkles, CircleSlashed, Info, Zap } from 'lucide-react';
+import { SprayCan, Sparkles, CircleSlashed, Info, Zap, ShoppingCart } from 'lucide-react';
 import Image from 'next/image';
 import { useApp } from '@/hooks/use-app';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { cn } from '@/lib/utils';
 
 const ourProducts = [
   {
@@ -88,6 +89,9 @@ const ProductCard = ({ product }: { product: (typeof ourProducts)[0] }) => {
   const { addToCart, buyNow } = useApp();
   const isMobile = useIsMobile();
   const autoplayPlugin = useRef(Autoplay({ delay: 2000 + Math.random() * 1000, stopOnInteraction: true }));
+  
+  // Create a fake original price for display purposes
+  const originalPrice = Math.round(product.price * 1.25);
 
 
   const handleAddToCart = () => {
@@ -179,40 +183,50 @@ const ProductCard = ({ product }: { product: (typeof ourProducts)[0] }) => {
               <div className="bg-primary/10 text-primary w-10 h-10 rounded-md flex items-center justify-center flex-shrink-0">
                 <product.icon className="w-5 h-5" />
               </div>
-              <CardTitle className="font-headline text-lg">{product.name}</CardTitle>
+              <div>
+                <CardTitle className="font-headline text-lg">{product.name}</CardTitle>
+                 <div className="flex items-baseline gap-2 mt-1">
+                    <span className="font-bold text-lg text-primary">Rs. {product.price}</span>
+                    <span className="text-sm text-muted-foreground line-through">Rs. {originalPrice}</span>
+                </div>
+              </div>
             </div>
           </CardHeader>
           <CardContent className="flex-grow">
             <p className="text-sm text-muted-foreground">{product.description}</p>
           </CardContent>
-          <CardFooter className="flex flex-col items-stretch gap-2 bg-secondary/50 p-4 mt-auto">
-            <div className="flex items-center justify-between gap-4">
-              <div className="flex items-center gap-2">
-                <label htmlFor={`quantity-${product.id}`} className="text-xs font-medium">
-                  Qty:
-                </label>
-                <Select
-                  value={String(quantity)}
-                  onValueChange={(val) => setQuantity(Number(val))}
-                >
-                  <SelectTrigger id={`quantity-${product.id}`} className="w-16 h-9">
-                    <SelectValue placeholder="Qty" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {[...Array(8).keys()].map((i) => (
-                      <SelectItem key={i + 1} value={String(i + 1)}>
-                        {i + 1}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              <Button onClick={handleAddToCart} size="sm">Add to Cart</Button>
+          <CardFooter className="flex flex-col items-stretch gap-3 bg-secondary/50 p-3 mt-auto">
+             <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2">
+                    <label htmlFor={`quantity-${product.id}`} className="text-xs font-medium">
+                    Qty:
+                    </label>
+                    <Select
+                    value={String(quantity)}
+                    onValueChange={(val) => setQuantity(Number(val))}
+                    >
+                    <SelectTrigger id={`quantity-${product.id}`} className="w-[60px] h-9">
+                        <SelectValue placeholder="Qty" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        {[...Array(8).keys()].map((i) => (
+                        <SelectItem key={i + 1} value={String(i + 1)}>
+                            {i + 1}
+                        </SelectItem>
+                        ))}
+                    </SelectContent>
+                    </Select>
+                </div>
+                <div className="flex items-center gap-2">
+                    <Button onClick={handleAddToCart} size="sm" variant="outline">
+                        <ShoppingCart className="h-4 w-4" />
+                    </Button>
+                    <Button onClick={handleBuyNow} size="sm" className="flex-grow">
+                        <Zap className="mr-2 h-4 w-4" />
+                        Buy Now
+                    </Button>
+                </div>
             </div>
-            <Button onClick={handleBuyNow} size="sm" variant="outline" className="w-full">
-              <Zap className="mr-2 h-4 w-4" />
-              Buy Now
-            </Button>
           </CardFooter>
         </div>
       </Card>
@@ -231,7 +245,7 @@ const OurProductsSection = () => {
         <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground">
           A range of products to keep your home shining.
         </p>
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {ourProducts.map((item, index) => (
                 <ProductCard key={index} product={item} />
             ))}
