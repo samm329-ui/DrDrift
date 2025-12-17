@@ -77,7 +77,7 @@ const CommentSection = ({ reviews, onAddComment }: { reviews: Review[], onAddCom
           <AccordionTrigger className="p-0 pt-2 text-sm justify-center">
             <div className="flex items-center gap-1 text-muted-foreground hover:text-primary">
                 <MessageCircle className="h-4 w-4" />
-                <span>Comments ({reviews.length})</span>
+                <span className="text-xs">Comments ({reviews.length})</span>
             </div>
           </AccordionTrigger>
           <AccordionContent className="pt-2">
@@ -143,7 +143,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
       <Card 
         id={`product-card-${product.slug}`} 
         onClick={(e) => handleNavigate(e, `/products/${product.slug}`)}
-        className="text-left flex flex-col group w-full md:w-[380px] flex-shrink-0 transition-all duration-500 bg-background/50 dark:bg-background/10 shadow-glass backdrop-blur-md rounded-[17px] active:scale-95 active:rotate-[1.7deg] cursor-pointer border-0"
+        className="text-left flex flex-col group w-full transition-all duration-500 bg-background/50 dark:bg-background/10 shadow-glass backdrop-blur-md rounded-[17px] active:scale-95 active:rotate-[1.7deg] cursor-pointer border-0"
     >
         <div className="relative rounded-t-[17px]">
             {isNavigating && (
@@ -228,10 +228,10 @@ const OurProductsSection = () => {
           A range of products to keep your home shining.
         </p>
         <div 
-          className="mt-12 flex flex-nowrap md:flex-wrap justify-start md:justify-center gap-2 md:gap-8 pb-4 overflow-x-auto md:overflow-x-visible"
+          className="mt-12 flex flex-nowrap justify-center gap-2 md:gap-8 pb-4"
         >
               {productsToShow.map((item, index) => (
-                  <div key={index} className="flex-shrink-0 w-1/3 md:w-auto px-1 md:px-0">
+                  <div key={index} className="w-1/3 flex-shrink-0 md:w-auto px-1 md:px-0">
                     <ProductCard product={item} />
                   </div>
               ))}
