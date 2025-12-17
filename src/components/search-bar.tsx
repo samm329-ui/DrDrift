@@ -53,7 +53,7 @@ const SearchBar = () => {
   const showSuggestions = isFocused && searchQuery.length > 0;
 
   return (
-    <form onSubmit={(e) => e.preventDefault()} className="relative w-full max-w-2xl mx-auto">
+    <form onSubmit={(e) => e.preventDefault()} className="relative w-full max-w-md mx-auto">
       <div className="flex items-center w-full bg-background/80 dark:bg-background/60 rounded-lg overflow-hidden backdrop-blur-sm border ring-1 shadow-xl shadow-black/5 ring-border">
         <Search className="h-5 w-5 mx-3 text-muted-foreground" />
         <Input
