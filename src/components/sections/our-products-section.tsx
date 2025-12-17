@@ -57,8 +57,8 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
   };
 
   return (
-      <Card id={`product-card-${product.slug}`} className="text-left transition-shadow duration-300 overflow-hidden h-full flex flex-col group min-w-[380px] sm:min-w-[420px] border-transparent shadow-none bg-transparent">
-        <div className="relative overflow-hidden rounded-lg group-hover:shadow-2xl transition-shadow duration-300">
+      <Card id={`product-card-${product.slug}`} className="text-left overflow-hidden h-full flex flex-col group w-[320px] sm:w-[380px] shadow-strong transition-all duration-500 ease-custom-bezier hover:rounded-xl bg-background">
+        <div className="relative overflow-hidden rounded-t-lg">
             <Link href={`/products/${product.slug}`} className="absolute inset-0 z-10">
                  <span className="sr-only">View Details</span>
             </Link>
@@ -76,7 +76,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
                           alt={`${product.name} image ${index + 1}`}
                           width={600}
                           height={400}
-                          className="w-full h-96 object-cover transition-transform duration-300 group-hover:scale-105"
+                          className="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-105"
                           data-ai-hint={product.imageHint}
                       />
                   </CarouselItem>
@@ -133,8 +133,8 @@ const OurProductsSection = () => {
         <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground">
           A range of products to keep your home shining.
         </p>
-        <div className="mt-12 flex-grow flex items-stretch pb-4 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            <div className="flex flex-row gap-0">
+        <div className="mt-12 flex-grow flex items-stretch pb-4 -mx-4 px-4 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="flex flex-row gap-8">
               {productsToShow.map((item, index) => (
                   <ProductCard key={index} product={item} />
               ))}

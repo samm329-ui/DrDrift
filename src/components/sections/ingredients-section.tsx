@@ -29,7 +29,7 @@ const IngredientsSection = () => {
                 </p>
                 <div className="mt-12 grid md:grid-cols-3 gap-8">
                     {ingredients.map((item, index) => (
-                        <Card key={index} className="text-left bg-background dark:bg-background/80 backdrop-blur-sm">
+                        <Card key={index} className="text-left bg-background dark:bg-background/80 backdrop-blur-sm shadow-strong transition-all duration-500 ease-custom-bezier hover:rounded-xl">
                             <CardHeader>
                                 <div className="bg-primary/10 text-primary w-12 h-12 rounded-md flex items-center justify-center mb-4">
                                     <item.icon className="w-6 h-6" />
