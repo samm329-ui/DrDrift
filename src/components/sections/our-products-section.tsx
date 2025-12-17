@@ -160,8 +160,8 @@ const OurProductsSection = () => {
         <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground">
           A range of products to keep your home shining.
         </p>
-        <div className="mt-12 flex-grow flex items-stretch pb-4 -mx-4 px-4 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            <div className="flex flex-row gap-8">
+        <div className="mt-12 flex-grow flex justify-center pb-4 -mx-4 px-4 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="flex flex-wrap justify-center gap-8">
               {productsToShow.map((item, index) => (
                   <ProductCard key={index} product={item} />
               ))}

@@ -28,7 +28,7 @@ const IngredientsSection = () => {
                 <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground">
                     Our formulas are a blend of nature's best and scientific precision.
                 </p>
-                <div className="mt-12 grid md:grid-cols-3 gap-8">
+                <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
                     {ingredients.map((item, index) => (
                         <div key={index} className="ag-courses_item">
                             <Link href="#" className="ag-courses-item_link">

@@ -8,10 +8,10 @@ const Footer = () => {
         <footer className="bg-gray-900 text-gray-400">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div className="md:col-span-1">
+                    <div className="md:col-span-1 text-center md:text-left">
                         <h3 className="font-headline text-2xl font-bold text-white">{siteConfig.brandName}</h3>
                         <p className="mt-2 text-sm">The future of clean is here.</p>
-                        <div className="mt-4 flex space-x-4">
+                        <div className="mt-4 flex space-x-4 justify-center md:justify-start">
                             <Link href={siteConfig.socials.twitter} target="_blank" aria-label="Twitter">
                                 <TwitterIcon className="h-6 w-6 transition-colors hover:text-white" />
                             </Link>

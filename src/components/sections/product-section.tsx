@@ -30,7 +30,7 @@ const ProductSection = () => {
         <section id="product" className={cn("relative bg-background-alt dark:bg-background py-20 md:py-32 overflow-hidden")}>
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
-                    <div>
+                    <div className="text-center md:text-left">
                         <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl font-headline">Pure Power, Clean Conscience</h2>
                         <p className="mt-6 text-xl text-muted-foreground">
                             Dr. Drift represents the new standard in home cleaning. We merge potent, lab-tested formulas with eco-conscious practices to deliver a superior clean that you can feel good about.
@@ -40,7 +40,7 @@ const ProductSection = () => {
                         </p>
                         <ul className="mt-2 space-y-3">
                             {features.map((feature, index) => (
-                                <li key={index} className="flex items-center text-lg text-foreground">
+                                <li key={index} className="flex items-center text-lg text-foreground justify-center md:justify-start">
                                     <CheckCircle className="h-5 w-5 text-primary mr-3" />
                                     <span>{feature}</span>
                                 </li>
