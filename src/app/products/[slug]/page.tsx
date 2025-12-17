@@ -23,6 +23,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { ReviewForm } from '@/components/review-form';
+import { PackButton } from '@/components/ui/pack-button';
 
 export default function ProductPage({ params }: { params: { slug: string } }) {
   const [quantity, setQuantity] = useState(1);
@@ -97,14 +98,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               <CarouselPrevious />
               <CarouselNext />
             </Carousel>
-            <Button
-              onClick={handleBuyPackOf8}
-              size="lg"
-              className="w-full bg-orange-500 hover:bg-orange-600 text-white text-lg"
-            >
-              <Sparkles className="mr-2 h-5 w-5 animate-celebrate" />
-              Buy Pack of 8 (8% OFF)
-            </Button>
+            <PackButton onClick={handleBuyPackOf8} />
           </div>
 
           {/* Product Details */}
