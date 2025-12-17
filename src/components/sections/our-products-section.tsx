@@ -78,7 +78,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
       <Card 
         id={`product-card-${product.slug}`} 
         onClick={(e) => handleNavigate(e, `/products/${product.slug}`)}
-        className="text-left overflow-hidden h-full flex flex-col group w-[320px] sm:w-[380px] transition-all duration-500 bg-gray-200/50 dark:bg-gray-500/10 shadow-glass backdrop-blur-md rounded-[17px] hover:border-foreground/50 hover:scale-105 active:scale-95 active:rotate-[1.7deg] cursor-pointer"
+        className="text-left overflow-hidden h-full flex flex-col group w-[320px] sm:w-[380px] transition-all duration-500 bg-gray-200/50 dark:bg-gray-500/10 shadow-glass backdrop-blur-md rounded-[17px] hover:scale-105 active:scale-95 active:rotate-[1.7deg] cursor-pointer"
     >
         <div className="relative overflow-hidden rounded-t-[17px]">
             {isNavigating && (
@@ -152,7 +152,7 @@ const OurProductsSection = () => {
   const productsToShow = searchQuery ? filteredProducts : siteProducts;
 
   return (
-    <section id="our-products" className="bg-background-alt py-20 md:py-24">
+    <section id="our-products" className="bg-background dark:bg-background-alt py-20 md:py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 flex flex-col h-full">
         <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl font-headline">
           Our Products
