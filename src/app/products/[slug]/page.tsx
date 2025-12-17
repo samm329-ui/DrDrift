@@ -1,7 +1,7 @@
 
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, 'useState', useMemo } from 'react';
 import { notFound } from 'next/navigation';
 import { siteProducts } from '@/lib/config';
 import { Button } from '@/components/ui/button';
@@ -16,6 +16,13 @@ import Image from 'next/image';
 import { Minus, Plus, CheckCircle, Sparkles, ArrowRight } from 'lucide-react';
 import { useApp } from '@/hooks/use-app';
 import { Separator } from '@/components/ui/separator';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
+import { ReviewForm } from '@/components/review-form';
 
 export default function ProductPage({ params }: { params: { slug: string } }) {
   const [quantity, setQuantity] = useState(1);
@@ -161,19 +168,31 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
 
             <Separator />
 
-            <div>
-              <h3 className="text-lg font-semibold mb-3 font-headline">
-                Features:
-              </h3>
-              <ul className="space-y-2">
-                {product.features.map((feature, index) => (
-                  <li key={index} className="flex items-center gap-2">
-                    <CheckCircle className="h-5 w-5 text-primary" />
-                    <span className="text-muted-foreground">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <Accordion type="single" collapsible className="w-full space-y-2">
+              <AccordionItem value="features">
+                <AccordionTrigger className="text-lg font-semibold font-headline px-4 py-3 bg-muted/50 rounded-md">
+                  Features
+                </AccordionTrigger>
+                <AccordionContent className="pt-4">
+                  <ul className="space-y-2 pl-2">
+                    {product.features.map((feature, index) => (
+                      <li key={index} className="flex items-start gap-2">
+                        <CheckCircle className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
+                        <span className="text-muted-foreground">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="review">
+                <AccordionTrigger className="text-lg font-semibold font-headline px-4 py-3 bg-muted/50 rounded-md">
+                  Write a review
+                </AccordionTrigger>
+                <AccordionContent className="pt-4">
+                  <ReviewForm productId={product.id} />
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
           </div>
         </div>
       </div>

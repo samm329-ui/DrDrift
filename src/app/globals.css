@@ -125,10 +125,11 @@
   .dark .ag-courses-item_date-box {
     @apply text-foreground;
   }
-  .dark .ag-courses-item_link:hover,
-  .dark .ag-courses-item_link:hover .ag-courses-item_date {
+  .dark .ag-courses-item_link:hover .ag-courses-item_title,
+  .dark .ag-courses-item_link:hover .ag-courses-item_date-box {
     @apply text-primary-foreground;
   }
+
 
   /* Review card styles */
   .review-card {
@@ -151,6 +152,85 @@
   }
   .review-card-author {
     @apply mt-5 text-sm text-muted-foreground flex items-center gap-3;
+  }
+
+  /* Interactive Rating Styles */
+  .interactive-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 0.3rem;
+    --perspective: 1000px;
+    transform-style: preserve-3d;
+    perspective: var(--perspective);
+  }
+  .interactive-rating input {
+    display: none;
+  }
+  .interactive-rating label {
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    transition: all 0.5s ease;
+  }
+  .interactive-rating label .star-bg {
+    stroke: #ccc;
+    fill: rgba(255, 217, 0, 0);
+    transition: stroke 0.5s ease, fill 0.5s ease;
+  }
+  .interactive-rating label .star-fg {
+    position: absolute;
+    top: -1px;
+    fill: gold;
+    stroke: rgba(255, 217, 0, 0);
+    opacity: 0;
+    transition: stroke 0.5s ease, fill 0.5s ease, opacity 0.5s ease;
+  }
+  .dark .interactive-rating label .star-bg {
+    stroke: #555;
+  }
+  .interactive-rating label:hover .star-bg,
+  .interactive-rating label:hover ~ label .star-bg {
+    stroke: gold;
+  }
+  .interactive-rating input:checked ~ label .star-bg {
+    stroke: #cccccc00;
+  }
+  .interactive-rating input:checked ~ label .star-fg {
+    transform: rotateX(0deg) rotateY(0deg) translateY(0px);
+    opacity: 1;
+    animation: display-star 0.5s cubic-bezier(0.75, 0.41, 0.82, 1.2);
+  }
+  .interactive-rating label .star-shadow {
+    background: radial-gradient(
+      ellipse closest-side,
+      rgba(0, 0, 0, 0.24),
+      rgba(0, 0, 0, 0)
+    );
+    width: 30px;
+    height: 8px;
+    opacity: 0;
+    transition: opacity 0.6s ease 0.2s;
+  }
+  .dark .interactive-rating label .star-shadow {
+     background: radial-gradient(
+      ellipse closest-side,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0)
+    );
+  }
+  .interactive-rating label:hover .star-shadow,
+  .interactive-rating label:hover ~ label .star-shadow {
+    opacity: 0.3;
+  }
+  .interactive-rating input:checked ~ label .star-shadow {
+    opacity: 1;
+  }
+  .interactive-rating label:hover .star-fg:hover {
+    animation: shake-star 0.6s ease-out, display-star none 1s;
   }
 }
 
@@ -239,4 +319,22 @@
 
 .animate-celebrate {
   animation: celebrate 1.5s ease-in-out infinite;
+}
+
+
+@keyframes display-star {
+  0% {
+    transform: rotateX(100deg) rotateY(100deg) translateY(10px);
+  }
+  100% {
+    transform: rotateX(0deg) rotateY(0deg) translateY(0px);
+  }
+}
+
+@keyframes shake-star {
+  0% { transform: rotate(0deg); }
+  20% { transform: rotate(-20deg); }
+  50% { transform: rotate(20deg); }
+  80% { transform: rotate(-20deg); }
+  100% { transform: rotate(0deg); }
 }

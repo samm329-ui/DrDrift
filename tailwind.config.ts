@@ -131,6 +131,21 @@ export default {
             opacity: '0.8',
           },
         },
+        'display-star': {
+          '0%': {
+            transform: 'rotateX(100deg) rotateY(100deg) translateY(10px)',
+          },
+          '100%': {
+            transform: 'rotateX(0deg) rotateY(0deg) translateY(0px)',
+          },
+        },
+        'shake-star': {
+          '0%': { transform: 'rotate(0deg)' },
+          '20%': { transform: 'rotate(-20deg)' },
+          '50%': { transform: 'rotate(20deg)' },
+          '80%': { transform: 'rotate(-20deg)' },
+          '100%': { transform: 'rotate(0deg)' },
+        }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -140,6 +155,8 @@ export default {
         'shake': 'shake 0.5s cubic-bezier(.36,.07,.19,.97) both',
         'roll-down': 'roll-down 0.3s ease-out',
         celebrate: 'celebrate 1.5s ease-in-out infinite',
+        'display-star': 'display-star 0.5s cubic-bezier(0.75, 0.41, 0.82, 1.2)',
+        'shake-star': 'shake-star 0.6s ease-out',
       },
     },
   },
