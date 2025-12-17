@@ -21,7 +21,7 @@ export const products: Product[] = [
     subtitle: 'Advanced Hygiene Formula',
     description: 'A cutting-edge solution that eradicates 99.9% of bacteria, leaving your floors with a pristine, streak-free shine that lasts.',
     themeColor: '#a6d500',
-    mode: 'dark',
+    mode: 'light',
     animatedWebpUrl: getImageUrl('animated-hero-1'),
     productImageUrl: getImageUrl('product-image-1', 'kitchen'),
   },

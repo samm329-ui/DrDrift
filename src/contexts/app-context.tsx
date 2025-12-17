@@ -40,7 +40,7 @@ export const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [currentProductIndex, setCurrentProductIndex] = useState(0);
-  const [theme, setThemeState] = useState<Theme>('dark');
+  const [theme, setThemeState] = useState<Theme>('light');
   const [isLoading, setIsLoading] = useState(true);
   const [isSwitching, setIsSwitching] = useState(false);
   const [cart, setCart] = useState<CartItem[]>([]);
@@ -126,7 +126,7 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     }
     const mediaUrl = firstProduct.animatedWebpUrl;
     
-    setTheme(firstProduct.mode === 'inherit' ? 'dark' : firstProduct.mode);
+    setTheme(firstProduct.mode === 'inherit' ? 'light' : firstProduct.mode);
 
     if (mediaUrl.endsWith('.mp4') || mediaUrl.endsWith('.webm')) {
       const video = document.createElement('video');
