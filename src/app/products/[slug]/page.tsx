@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useState, useMemo } from 'react';
@@ -12,7 +13,7 @@ import {
   CarouselNext,
 } from '@/components/ui/carousel';
 import Image from 'next/image';
-import { Minus, Plus, CheckCircle } from 'lucide-react';
+import { Minus, Plus, CheckCircle, Leaf, Truck, ShieldCheck } from 'lucide-react';
 import { useApp } from '@/hooks/use-app';
 import { Separator } from '@/components/ui/separator';
 import {
@@ -98,6 +99,29 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               <CarouselPrevious />
               <CarouselNext />
             </Carousel>
+            <div className="hidden md:block mt-8 space-y-4">
+                <div className="flex items-center gap-4 p-4 rounded-lg bg-muted/50 border">
+                    <Leaf className="h-8 w-8 text-primary flex-shrink-0" />
+                    <div>
+                        <h4 className="font-semibold text-foreground">Eco-Friendly</h4>
+                        <p className="text-sm text-muted-foreground">Made with sustainable, plant-based ingredients.</p>
+                    </div>
+                </div>
+                <div className="flex items-center gap-4 p-4 rounded-lg bg-muted/50 border">
+                    <Truck className="h-8 w-8 text-primary flex-shrink-0" />
+                    <div>
+                        <h4 className="font-semibold text-foreground">Fast Delivery</h4>
+                        <p className="text-sm text-muted-foreground">Get your order delivered to your doorstep in 2-3 days.</p>
+                    </div>
+                </div>
+                <div className="flex items-center gap-4 p-4 rounded-lg bg-muted/50 border">
+                    <ShieldCheck className="h-8 w-8 text-primary flex-shrink-0" />
+                    <div>
+                        <h4 className="font-semibold text-foreground">Secure Payments</h4>
+                        <p className="text-sm text-muted-foreground">Cash on delivery and secure online payments.</p>
+                    </div>
+                </div>
+            </div>
           </div>
 
           {/* Product Details */}
@@ -119,7 +143,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             </div>
 
             <Separator />
-
+            
             <div className="flex flex-col sm:flex-row items-center gap-4">
               <div className="flex items-center gap-2 border rounded-full p-1">
                 <Button
