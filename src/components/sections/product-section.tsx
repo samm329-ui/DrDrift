@@ -28,7 +28,7 @@ const ProductSection = () => {
     ];
 
     return (
-        <section id="product" className={cn("relative bg-background-alt dark:bg-background py-20 md:py-32 overflow-hidden")}>
+        <section id="product" className={cn("relative bg-background dark:bg-background py-20 md:py-32 overflow-hidden")}>
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                     <div className="text-center md:text-left">
@@ -82,4 +82,5 @@ const ProductSection = () => {
 };
 
 export default ProductSection;
+
 
