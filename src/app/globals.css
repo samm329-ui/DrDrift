@@ -936,7 +936,7 @@
   /* Add to Cart Button */
   .add-to-cart-button {
     font-family: inherit;
-    font-size: 16px;
+    font-size: 14px;
     background: hsl(var(--foreground));
     color: hsl(var(--background));
     fill: hsl(var(--background));
@@ -997,7 +997,7 @@
     border: 1px solid transparent;
     display: flex;
     align-items: center;
-    font-size: 15px;
+    font-size: 14px;
   }
 
   .hero-buy-now-btn:hover {
@@ -1332,3 +1332,5 @@
     
 
     
+
+      
