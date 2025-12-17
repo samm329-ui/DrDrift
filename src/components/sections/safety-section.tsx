@@ -3,11 +3,11 @@ import { cn } from "@/lib/utils";
 
 const safetyInfo = [
     {
-        title: "Proper Handling",
+        title: "Handling",
         description: "Always dilute as recommended. Use in a well-ventilated area and wear gloves for prolonged contact to ensure a safe and pleasant cleaning experience."
     },
     {
-        title: "Safety Warnings",
+        title: "Warnings",
         description: "Do not mix with other cleaning agents. Avoid contact with eyes and direct ingestion. Keep bottles sealed and stored away from children and pets."
     },
     {
