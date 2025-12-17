@@ -64,8 +64,6 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
   const router = useRouter();
   const [isNavigating, setIsNavigating] = useState(false);
   
-  const originalPrice = Math.round(product.price * 1.25);
-
   const handleNavigate = (e: React.MouseEvent, href: string) => {
     e.preventDefault();
     e.stopPropagation();
@@ -102,7 +100,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
       id={`product-card-${product.slug}`}
       onClick={(e) => handleNavigate(e, `/products/${product.slug}`)}
       className={cn(
-        "box-border w-[190px] h-[254px] p-4 flex flex-col justify-between cursor-pointer",
+        "box-border w-[240px] md:w-72 flex flex-col justify-between cursor-pointer",
         "bg-white/40 dark:bg-gray-500/20",
         "border border-white/50",
         "shadow-lg shadow-black/20",
@@ -111,7 +109,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
         "transition-all duration-500",
         "hover:border-black/50 dark:hover:border-white/80 hover:scale-105",
         "active:scale-95 active:rotate-[1.7deg]",
-        "md:w-72 md:h-auto snap-center"
+        "overflow-hidden"
       )}
     >
         {isNavigating && (
@@ -119,7 +117,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
                 <Spinner />
             </div>
         )}
-        <div className="w-full h-24 md:h-auto md:aspect-[4/5] rounded-lg overflow-hidden">
+        <div className="w-full h-40 md:aspect-[4/5] rounded-t-lg overflow-hidden">
             <Carousel
                 plugins={[autoplayPlugin.current]}
                 className="w-full h-full"
@@ -133,8 +131,8 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
                         <Image
                             src={url}
                             alt={`${product.name} image ${index + 1}`}
-                            width={158}
-                            height={96}
+                            width={288}
+                            height={360}
                             className="w-full h-full object-cover"
                             data-ai-hint={product.imageHint}
                         />
@@ -144,8 +142,9 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
             </Carousel>
         </div>
         
-        <div className="flex flex-col gap-1 text-center">
-            <span className="text-primary font-bold text-xs">{product.name}</span>
+        <div className="flex flex-col gap-2 text-center p-3">
+            <span className="text-primary font-bold text-sm">{product.name}</span>
+            <p className="text-xs text-muted-foreground truncate">{product.description}</p>
             <div className="flex items-baseline justify-center gap-2">
                 <span className="font-bold text-xl text-foreground">
                     Rs. {product.price}
@@ -154,14 +153,14 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
             <ProductRating productId={product.id} />
         </div>
         
-        <div className="flex flex-col items-center gap-2 w-full">
+        <div className="flex items-center gap-2 w-full p-3 pt-0">
             <AddToCartButton
               onClick={handleAddToCart}
-              className="w-full h-9 text-xs"
+              className="w-full h-9 text-xs flex-1"
             />
             <button
               onClick={handleBuyNow}
-              className="hero-buy-now-btn w-full justify-center text-black h-9 !py-0 text-xs"
+              className="hero-buy-now-btn w-full justify-center text-black h-9 !py-0 text-xs flex-1"
             >
               <span>Buy Now</span>
             </button>
