@@ -148,7 +148,10 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               <CarouselNext />
             </Carousel>
             
-            <div className="md:hidden mt-8">
+            <div className="md:hidden mt-8 space-y-6">
+              <h1 className="font-headline text-4xl md:text-5xl font-bold text-foreground">
+                {product.name}
+              </h1>
               <PurchaseActions />
             </div>
 
@@ -179,7 +182,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
 
           {/* Product Details */}
           <div className="space-y-6">
-            <h1 className="font-headline text-4xl md:text-5xl font-bold text-foreground">
+            <h1 className="hidden md:block font-headline text-4xl md:text-5xl font-bold text-foreground">
               {product.name}
             </h1>
             <p className="text-lg text-muted-foreground">
