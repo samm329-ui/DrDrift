@@ -1,5 +1,5 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Leaf, FlaskConical, Droplets } from "lucide-react";
+import Link from 'next/link';
 
 const ingredients = [
     {
@@ -29,17 +29,17 @@ const IngredientsSection = () => {
                 </p>
                 <div className="mt-12 grid md:grid-cols-3 gap-8">
                     {ingredients.map((item, index) => (
-                        <Card key={index} className="text-left bg-background dark:bg-background/80 backdrop-blur-sm shadow-strong transition-all duration-500 ease-custom-bezier hover:rounded-xl">
-                            <CardHeader>
-                                <div className="bg-primary/10 text-primary w-12 h-12 rounded-md flex items-center justify-center mb-4">
-                                    <item.icon className="w-6 h-6" />
+                        <div key={index} className="ag-courses_item">
+                            <Link href="#" className="ag-courses-item_link">
+                                <div className="ag-courses-item_bg"></div>
+                                <div className="ag-courses-item_title">
+                                    {item.name}
                                 </div>
-                                <CardTitle className="font-headline text-xl">{item.name}</CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                <p className="text-muted-foreground">{item.description}</p>
-                            </CardContent>
-                        </Card>
+                                <div className="ag-courses-item_date-box">
+                                    {item.description}
+                                </div>
+                            </Link>
+                        </div>
                     ))}
                 </div>
             </div>
