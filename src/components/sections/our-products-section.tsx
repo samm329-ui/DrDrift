@@ -109,7 +109,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
         "backdrop-blur-sm",
         "rounded-[17px]",
         "transition-all duration-500",
-        "hover:border-black/50 dark:hover:border-white/80 hover:scale-105",
+        "dark:hover:border-white/80 hover:scale-105",
         "active:scale-95 active:rotate-[1.7deg]",
         "overflow-hidden"
       )}
