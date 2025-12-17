@@ -9,6 +9,7 @@ import SafetySection from '@/components/sections/safety-section';
 import ReviewsSection from '@/components/sections/reviews-section';
 import FaqSection from '@/components/sections/faq-section';
 import CtaSection from '@/components/sections/cta-section';
+import FeedbackSection from '@/components/sections/feedback-section';
 
 export default function Home() {
   const { isLoading } = useApp();
@@ -25,6 +26,7 @@ export default function Home() {
           <ReviewsSection />
           <FaqSection />
           <CtaSection />
+          <FeedbackSection />
         </div>
       )}
     </>

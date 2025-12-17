@@ -73,6 +73,21 @@
 }
 
 @layer utilities {
+  .feedback-form-container {
+    @apply bg-background/50 dark:bg-background/10 shadow-glass backdrop-blur-md rounded-2xl p-8 border border-border/20;
+  }
+
+  .feedback-form-label {
+    @apply text-foreground/80;
+  }
+
+  .feedback-form-input {
+    @apply bg-background/80 dark:bg-background/60 border-border/50 h-12 text-base;
+  }
+
+  .feedback-form-button {
+    @apply mt-4;
+  }
   .bg-wavy-2 {
     --s: 200px;
     --c1: hsl(var(--foreground) / 0.03);
@@ -936,7 +951,7 @@
   /* Add to Cart Button */
   .add-to-cart-button {
     font-family: inherit;
-    font-size: 14px;
+    font-size: 13px;
     background: hsl(var(--foreground));
     color: hsl(var(--background));
     fill: hsl(var(--background));
@@ -997,7 +1012,7 @@
     border: 1px solid transparent;
     display: flex;
     align-items: center;
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .hero-buy-now-btn:hover {
@@ -1239,3 +1254,4 @@
     
 
       
+
