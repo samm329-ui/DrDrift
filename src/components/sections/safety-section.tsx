@@ -1,21 +1,17 @@
 
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { ShieldCheck, PawPrint, Globe } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const safetyInfo = [
     {
-        icon: ShieldCheck,
         title: "How to Use",
         description: "Always dilute as recommended. Use in a well-ventilated area and wear gloves for prolonged contact to ensure a safe and pleasant cleaning experience."
     },
     {
-        icon: PawPrint,
         title: "What to Avoid",
         description: "Do not mix with other cleaning agents. Avoid contact with eyes and direct ingestion. Keep bottles sealed and stored away from children and pets."
     },
     {
-        icon: Globe,
         title: "Responsible Disposal",
         description: "Our bottles are recyclable. Please rinse the container thoroughly and dispose of it in your local recycling bin to help protect our environment."
     }
@@ -34,8 +30,8 @@ const SafetySection = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-center">
                     {safetyInfo.map((item, index) => (
                         <div key={index} className="group relative w-full max-w-[300px] h-[200px] [perspective:1000px] mx-auto">
-                            <div className="relative w-full h-full rounded-lg bg-background dark:bg-secondary/80 flex items-center justify-center overflow-hidden transition-all duration-500 ease-custom-bezier group-hover:scale-105 shadow-md group-hover:shadow-xl dark:shadow-black/20">
-                                <item.icon className="w-12 h-12 text-primary transition-all duration-500 ease-custom-bezier group-hover:scale-0" />
+                            <div className="relative w-full h-full rounded-lg bg-background dark:bg-secondary/80 flex items-center justify-center overflow-hidden transition-all duration-500 ease-custom-bezier group-hover:scale-105 shadow-md group-hover:shadow-xl dark:shadow-black/20 text-center p-5">
+                               <h3 className="font-headline text-2xl text-foreground transition-all duration-500 ease-custom-bezier group-hover:scale-0">{item.title}</h3>
                                 
                                 <div className="absolute top-0 left-0 w-full h-full p-5 box-border bg-background dark:bg-secondary/90 text-center [transform-style:preserve-3d] [transform:rotateX(-90deg)] [transform-origin:bottom] transition-all duration-500 ease-custom-bezier group-hover:[transform:rotateX(0deg)]">
                                     <h3 className="font-headline text-xl text-foreground">{item.title}</h3>
@@ -51,4 +47,3 @@ const SafetySection = () => {
 }
 
 export default SafetySection;
-
