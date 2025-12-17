@@ -954,6 +954,7 @@
     display: block;
     margin-left: 0.3em;
     transition: all 0.3s ease-in-out;
+    white-space: nowrap;
   }
   
   .add-to-cart-button svg {
@@ -982,6 +983,38 @@
   }
   
   .add-to-cart-button:active {
+    transform: scale(0.95);
+  }
+
+  /* Hero Buy Now Button */
+  .hero-buy-now-btn {
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.2s;
+    padding: 10px 20px;
+    border-radius: 100px;
+    background: #cfef00;
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+  }
+
+  .hero-buy-now-btn:hover {
+    background: #c4e201;
+  }
+
+  .hero-buy-now-btn > svg {
+    width: 34px;
+    margin-left: 10px;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .hero-buy-now-btn:hover svg {
+    transform: translateX(5px);
+  }
+
+  .hero-buy-now-btn:active {
     transform: scale(0.95);
   }
 
@@ -1135,3 +1168,4 @@
     
 
     
+
