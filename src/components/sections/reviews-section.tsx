@@ -51,14 +51,6 @@ const ReviewsSection = () => {
                                 </div>
                             </div>
                             <div className="review-card-author">
-                                <Image
-                                    src={getAvatarUrl(review.avatarId)}
-                                    alt={review.name}
-                                    width={40}
-                                    height={40}
-                                    className="rounded-full border-2 border-primary/50"
-                                    data-ai-hint="person face"
-                                />
                                 <span className='font-semibold text-foreground/80'>{review.name}</span>
                             </div>
                         </div>

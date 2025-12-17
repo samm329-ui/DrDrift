@@ -108,10 +108,6 @@
   .ag-courses-item_date-box {
     @apply text-lg text-white z-[2] relative;
   }
-  .ag-courses-item_date {
-    @apply font-bold text-primary;
-    transition: color 0.5s ease;
-  }
   .ag-courses-item_bg {
     @apply h-[130px] w-[100px] bg-primary z-[1] absolute top-[-75px] right-[-75px] rounded-full;
     transition: all 0.5s ease;
@@ -148,7 +144,7 @@
     @apply mt-4;
   }
   .review-card-description {
-    @apply mt-1.5 leading-relaxed text-muted-foreground italic;
+    @apply mt-1.5 leading-relaxed text-muted-foreground;
   }
   .review-card-author {
     @apply mt-5 text-sm text-muted-foreground flex items-center gap-3;
