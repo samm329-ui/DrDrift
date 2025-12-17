@@ -6,18 +6,18 @@ import { cn } from "@/lib/utils";
 const safetyInfo = [
     {
         icon: ShieldCheck,
-        title: "Dermatologically Tested",
-        description: "Gentle on skin. Our formulas are hypoallergenic and free from common irritants."
+        title: "How to Use",
+        description: "Always dilute as recommended. Use in a well-ventilated area and wear gloves for prolonged contact to ensure a safe and pleasant cleaning experience."
     },
     {
         icon: PawPrint,
-        title: "Pet & Family Safe",
-        description: "Non-toxic formulation, safe for use around children and pets when used as directed."
+        title: "What to Avoid",
+        description: "Do not mix with other cleaning agents. Avoid contact with eyes and direct ingestion. Keep bottles sealed and stored away from children and pets."
     },
     {
         icon: Globe,
-        title: "Eco-Conscious",
-        description: "100% biodegradable ingredients and packaged in recycled materials."
+        title: "Responsible Disposal",
+        description: "Our bottles are recyclable. Please rinse the container thoroughly and dispose of it in your local recycling bin to help protect our environment."
     }
 ];
 
@@ -51,3 +51,4 @@ const SafetySection = () => {
 }
 
 export default SafetySection;
+
