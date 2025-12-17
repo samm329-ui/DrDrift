@@ -119,26 +119,16 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   }, []);
 
   useEffect(() => {
-    const firstProduct = products[0];
-    if (!firstProduct) {
-        setIsLoading(false);
-        return;
-    }
-    const mediaUrl = firstProduct.animatedWebpUrl;
+    // Show loader for a very short period to allow initial render, then hide it.
+    const timer = setTimeout(() => setIsLoading(false), 100);
     
-    setTheme(firstProduct.mode === 'inherit' ? 'light' : firstProduct.mode);
-
-    if (mediaUrl.endsWith('.mp4') || mediaUrl.endsWith('.webm')) {
-      const video = document.createElement('video');
-      video.src = mediaUrl;
-      video.oncanplaythrough = () => setIsLoading(false);
-      video.onerror = () => setIsLoading(false);
-    } else {
-      const img = new Image();
-      img.src = mediaUrl;
-      img.onload = () => setIsLoading(false);
-      img.onerror = () => setIsLoading(false);
+    // Set initial theme based on the first product
+    const firstProduct = products[0];
+    if (firstProduct) {
+        setTheme(firstProduct.mode === 'inherit' ? 'light' : firstProduct.mode);
     }
+    
+    return () => clearTimeout(timer);
   }, [setTheme]);
 
   useEffect(() => {
