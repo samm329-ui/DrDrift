@@ -1,7 +1,9 @@
-
+'use client';
 
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { useRef } from "react";
+import { ArrowRight } from "lucide-react";
 
 const safetyInfo = [
     {
@@ -19,6 +21,16 @@ const safetyInfo = [
 ];
 
 const SafetySection = () => {
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+    const handleScrollRight = () => {
+        if (scrollContainerRef.current) {
+            const cardWidth = 256; // approx width of a card in px (w-64)
+            const gap = 32; // gap between cards (gap-8)
+            scrollContainerRef.current.scrollBy({ left: cardWidth + gap, behavior: 'smooth' });
+        }
+    };
+
     return (
         <section id="safety" className="py-20 md:py-24 bg-secondary overflow-hidden">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -29,7 +41,10 @@ const SafetySection = () => {
                     </p>
                 </div>
             </div>
-            <div className="mt-12 flex flex-nowrap gap-8 overflow-x-auto no-scrollbar md:grid md:grid-cols-3 md:px-4 -ml-4 pl-8 md:ml-0 md:pl-4">
+            <div 
+                ref={scrollContainerRef}
+                className="mt-12 flex flex-nowrap gap-8 pb-4 overflow-x-auto no-scrollbar -ml-4 pl-8 md:grid md:grid-cols-3 md:px-4 md:ml-0 md:pl-4"
+            >
                 {safetyInfo.map((item, index) => (
                     <div key={index} className="ag-courses_item h-full w-64 flex-shrink-0 md:w-auto">
                         <Link href="#" className="ag-courses-item_link h-full">
@@ -43,6 +58,14 @@ const SafetySection = () => {
                         </Link>
                     </div>
                 ))}
+            </div>
+            <div className="mt-4 text-center md:hidden">
+                <p className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+                    Swipe right for more
+                    <button onClick={handleScrollRight} className="p-1 rounded-full transition-transform duration-200 ease-in-out active:scale-125">
+                        <ArrowRight className="h-4 w-4" />
+                    </button>
+                </p>
             </div>
         </section>
     );
