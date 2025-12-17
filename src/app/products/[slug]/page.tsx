@@ -147,7 +147,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
 
               <div className="flex-grow w-full flex items-center gap-2">
                 <AddToCartButton onClick={handleAddToCart} />
-                <button onClick={handleBuyNow} className="hero-buy-now-btn flex-grow justify-center text-black">
+                <button onClick={handleBuyNow} className="hero-buy-now-btn flex-grow-0 justify-center text-black">
                   <span>Buy Now</span>
                   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="none">
                     <path d="M0 0h24v24H0V0z" fill="none"/>
