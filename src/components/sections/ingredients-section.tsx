@@ -29,25 +29,24 @@ const IngredientsSection = () => {
                 <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground">
                     Our formulas are a blend of nature's best and scientific precision.
                 </p>
-                <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {ingredients.map((item, index) => (
-                        <div key={index} className="ag-courses_item">
-                            <Link href="#" className="ag-courses-item_link">
-                                <div className="ag-courses-item_bg"></div>
-                                <div className="ag-courses-item_title">
-                                    {item.name}
-                                </div>
-                                <div className="ag-courses-item_date-box">
-                                    {item.description}
-                                </div>
-                            </Link>
-                        </div>
-                    ))}
-                </div>
+            </div>
+            <div className="mt-12 flex flex-nowrap gap-8 overflow-x-auto no-scrollbar md:grid md:grid-cols-3 md:px-4 -ml-4 pl-8 md:ml-0 md:pl-4">
+                {ingredients.map((item, index) => (
+                    <div key={index} className="ag-courses_item w-64 flex-shrink-0 md:w-auto">
+                        <Link href="#" className="ag-courses-item_link">
+                            <div className="ag-courses-item_bg"></div>
+                            <div className="ag-courses-item_title">
+                                {item.name}
+                            </div>
+                            <div className="ag-courses-item_date-box">
+                                {item.description}
+                            </div>
+                        </Link>
+                    </div>
+                ))}
             </div>
         </section>
     );
 };
 
 export default IngredientsSection;
-
