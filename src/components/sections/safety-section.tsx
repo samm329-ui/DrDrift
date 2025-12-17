@@ -29,7 +29,7 @@ const SafetySection = () => {
                     {safetyInfo.map((item, index) => (
                         <div key={index} className="group relative w-full max-w-[300px] h-[180px] mx-auto">
                             <div className="relative w-full h-full rounded-lg bg-background flex items-center justify-center overflow-hidden transition-all duration-500 ease-custom-bezier group-hover:scale-105 shadow-md group-hover:shadow-xl dark:border dark:border-border/20">
-                               <h3 className="font-headline text-2xl font-extrabold text-foreground dark:text-primary transition-all duration-500 ease-custom-bezier group-hover:scale-0 group-hover:opacity-0">{item.title}</h3>
+                               <h3 className="font-headline text-2xl font-bold text-foreground dark:text-primary transition-all duration-500 ease-custom-bezier group-hover:scale-0 group-hover:opacity-0">{item.title}</h3>
                                 
                                 <div className="absolute inset-0 w-full h-full p-5 box-border bg-background text-center flex items-center justify-center opacity-0 transition-opacity duration-500 ease-custom-bezier group-hover:opacity-100">
                                     <p className="text-muted-foreground text-sm leading-snug">{item.description}</p>
