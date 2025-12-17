@@ -1,3 +1,4 @@
+
 import type {Config} from 'tailwindcss';
 
 export default {
@@ -17,8 +18,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        body: ['Inter', 'system-ui', 'sans-serif'],
-        headline: ['Inter', 'system-ui', 'sans-serif'],
+        body: ['Roboto', 'system-ui', 'sans-serif'],
+        headline: ['Roboto', 'system-ui', 'sans-serif'],
         code: ['monospace'],
       },
       boxShadow: {
