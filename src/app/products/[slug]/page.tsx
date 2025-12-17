@@ -63,17 +63,6 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
     buyNow(item, quantity);
   };
 
-  const handleBuyPackOf8 = () => {
-    const discountedPrice = Math.round(product.price * 0.92);
-    const item = {
-      id: `${product.id}-pack8`,
-      name: `${product.name} (Pack of 8)`,
-      price: discountedPrice,
-      imageUrl: product.imageUrls[0],
-    };
-    buyNow(item, 8);
-  };
-
   return (
     <div className="bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
@@ -99,7 +88,6 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               <CarouselPrevious />
               <CarouselNext />
             </Carousel>
-            <PackButton onClick={handleBuyPackOf8} />
           </div>
 
           {/* Product Details */}

@@ -95,19 +95,6 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
     buyNow(item, 1);
   };
 
-  const handleBuyPackOf8 = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    const discountedPrice = Math.round(product.price * 0.92);
-    const item = {
-      id: `${product.id}-pack8`,
-      name: `${product.name} (Pack of 8)`,
-      price: discountedPrice,
-      imageUrl: product.imageUrls[0],
-    };
-    buyNow(item, 8);
-  };
-
   const originalPrice = Math.round(product.price * 1.25);
 
   return (
@@ -174,10 +161,6 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
               >
                 <span>Buy Now</span>
               </button>
-            </div>
-
-            <div className="h-12" onClick={(e) => e.stopPropagation()}>
-              <PackButton onClick={(e) => handleBuyPackOf8(e)} />
             </div>
 
             <div className="flex items-baseline justify-start gap-2">
