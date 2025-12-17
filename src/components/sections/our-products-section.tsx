@@ -95,6 +95,8 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
     buyNow(item, 1);
   };
 
+  const originalPrice = Math.round(product.price * 1.25);
+
   return (
     <div
       id={`product-card-${product.slug}`}
@@ -125,9 +127,9 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
                 onMouseLeave={autoplayPlugin.current.play}
                 opts={{loop: true}}
             >
-                <CarouselContent>
+                <CarouselContent className="-ml-0">
                     {product.imageUrls.map((url, index) => (
-                    <CarouselItem key={index}>
+                    <CarouselItem key={index} className="pl-0">
                         <Image
                             src={url}
                             alt={`${product.name} image ${index + 1}`}
@@ -143,12 +145,15 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
         </div>
         
         <div className="flex flex-col gap-2 text-center p-3">
-            <span className="text-primary font-bold text-sm">{product.name}</span>
+            <span className="text-foreground font-bold text-sm">{product.name}</span>
             <p className="text-xs text-muted-foreground truncate">{product.description}</p>
             <div className="flex items-baseline justify-center gap-2">
-                <span className="font-bold text-xl text-foreground">
-                    Rs. {product.price}
-                </span>
+              <span className="font-bold text-xl text-primary">
+                Rs. {product.price}
+              </span>
+              <span className="text-base text-muted-foreground animate-strike-through">
+                Rs. {originalPrice}
+              </span>
             </div>
             <ProductRating productId={product.id} />
         </div>
@@ -196,7 +201,7 @@ const OurProductsSection = () => {
       </div>
        <div
           ref={scrollContainerRef}
-          className="mt-12 flex flex-nowrap gap-4 pb-4 overflow-x-auto no-scrollbar md:grid md:grid-cols-3 md:gap-6 md:justify-items-center md:container md:mx-auto snap-x snap-mandatory"
+          className="mt-12 flex flex-nowrap pb-4 overflow-x-auto no-scrollbar md:grid md:grid-cols-3 md:justify-items-center md:container md:mx-auto snap-x snap-mandatory"
         >
               {productsToShow.map((item, index) => (
                   <div key={index} className="flex-shrink-0 md:w-auto flex justify-center first:pl-4 last:pr-4 md:first:pl-0 md:last:pr-0 snap-center">
