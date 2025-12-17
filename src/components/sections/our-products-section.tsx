@@ -101,14 +101,24 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
     <div
       id={`product-card-${product.slug}`}
       onClick={(e) => handleNavigate(e, `/products/${product.slug}`)}
-      className="neumorphic-card w-[190px] h-[254px] p-4 flex flex-col justify-between cursor-pointer"
+      className={cn(
+        "box-border w-[190px] h-[254px] p-4 flex flex-col justify-between cursor-pointer",
+        "bg-white/40 dark:bg-gray-500/20",
+        "border border-white/50",
+        "shadow-lg shadow-black/20",
+        "backdrop-blur-sm",
+        "rounded-[17px]",
+        "transition-all duration-500",
+        "hover:border-black/50 dark:hover:border-white/80 hover:scale-105",
+        "active:scale-95 active:rotate-[1.7deg]"
+      )}
     >
         {isNavigating && (
-            <div className="absolute inset-0 z-20 flex items-center justify-center bg-background/50 backdrop-blur-sm rounded-[50px]">
+            <div className="absolute inset-0 z-20 flex items-center justify-center bg-background/50 backdrop-blur-sm rounded-[17px]">
                 <Spinner />
             </div>
         )}
-        <div className="w-full h-24 rounded-3xl overflow-hidden">
+        <div className="w-full h-24 rounded-lg overflow-hidden">
             <Carousel
                 plugins={[autoplayPlugin.current]}
                 className="w-full h-full"
