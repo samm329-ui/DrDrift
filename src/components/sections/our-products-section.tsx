@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useRef, useState, useMemo } from 'react';
@@ -100,20 +101,20 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
     <div
       id={`product-card-${product.slug}`}
       onClick={(e) => handleNavigate(e, `/products/${product.slug}`)}
-      className="relative group duration-500 cursor-pointer group overflow-hidden text-gray-50 h-72 w-56 rounded-2xl hover:duration-700"
+      className="neumorphic-card w-[190px] h-[254px] p-4 flex flex-col justify-between cursor-pointer"
     >
-      <div className="w-56 h-72 bg-primary dark:bg-primary/80">
-        <div className="relative w-full h-full">
-            {isNavigating && (
-                <div className="absolute inset-0 z-20 flex items-center justify-center bg-background/50 backdrop-blur-sm">
-                    <Spinner />
-                </div>
-            )}
+        {isNavigating && (
+            <div className="absolute inset-0 z-20 flex items-center justify-center bg-background/50 backdrop-blur-sm rounded-[50px]">
+                <Spinner />
+            </div>
+        )}
+        <div className="w-full h-24 rounded-3xl overflow-hidden">
             <Carousel
                 plugins={[autoplayPlugin.current]}
                 className="w-full h-full"
                 onMouseEnter={autoplayPlugin.current.stop}
                 onMouseLeave={autoplayPlugin.current.play}
+                opts={{loop: true}}
             >
                 <CarouselContent>
                     {product.imageUrls.map((url, index) => (
@@ -121,44 +122,39 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
                         <Image
                             src={url}
                             alt={`${product.name} image ${index + 1}`}
-                            width={224} // 56 * 4
-                            height={288} // 72 * 4
+                            width={158}
+                            height={96}
                             className="w-full h-full object-cover"
                             data-ai-hint={product.imageHint}
                         />
                     </CarouselItem>
                     ))}
                 </CarouselContent>
-                <CarouselPrevious className="left-2 opacity-0 group-hover:opacity-100" />
-                <CarouselNext className="right-2 opacity-0 group-hover:opacity-100" />
             </Carousel>
         </div>
-      </div>
-      <div className="card-slide-up-panel">
-        <span className="text-primary font-bold text-xs">{product.name}</span>
-        <div className="flex items-baseline gap-2">
-            <span className="font-bold text-xl text-foreground">
-                Rs. {product.price}
-            </span>
-            <span className="text-sm text-muted-foreground line-through">
-                Rs. {originalPrice}
-            </span>
+        
+        <div className="flex flex-col gap-1 text-center">
+            <span className="text-primary font-bold text-xs">{product.name}</span>
+            <div className="flex items-baseline justify-center gap-2">
+                <span className="font-bold text-xl text-foreground">
+                    Rs. {product.price}
+                </span>
+            </div>
+            <ProductRating productId={product.id} />
         </div>
-        <p className="text-neutral-800 text-sm">{product.description}</p>
-        <ProductRating productId={product.id} />
-        <div className="flex items-center gap-2 w-full pt-2">
+        
+        <div className="flex flex-col items-center gap-2 w-full">
             <AddToCartButton
               onClick={handleAddToCart}
-              className="flex-grow basis-0 justify-center h-9"
+              className="w-full h-9 text-xs"
             />
             <button
               onClick={handleBuyNow}
-              className="hero-buy-now-btn flex-grow basis-0 justify-center text-black h-9 !py-0"
+              className="hero-buy-now-btn w-full justify-center text-black h-9 !py-0 text-xs"
             >
               <span>Buy Now</span>
             </button>
         </div>
-      </div>
     </div>
   );
 };
@@ -172,7 +168,7 @@ const OurProductsSection = () => {
 
   const handleScrollRight = () => {
     if (scrollContainerRef.current) {
-      const cardWidth = 224; // w-56
+      const cardWidth = 190;
       const gap = 24; // gap-6
       scrollContainerRef.current.scrollBy({ left: cardWidth + gap, behavior: 'smooth' });
     }
@@ -190,10 +186,10 @@ const OurProductsSection = () => {
       </div>
        <div 
           ref={scrollContainerRef}
-          className="mt-12 flex flex-nowrap gap-6 pb-4 overflow-x-auto no-scrollbar md:grid md:grid-cols-3 md:gap-8 md:justify-center -ml-4 pl-8 md:ml-0 md:px-4"
+          className="mt-12 flex flex-nowrap gap-6 pb-4 overflow-x-auto no-scrollbar md:grid md:grid-cols-3 md:gap-8 md:justify-items-center -ml-4 pl-8 md:ml-0 md:px-4"
         >
               {productsToShow.map((item, index) => (
-                  <div key={index} className="flex-shrink-0">
+                  <div key={index} className="flex-shrink-0 md:w-auto flex justify-center">
                     <ProductCard product={item} />
                   </div>
               ))}
