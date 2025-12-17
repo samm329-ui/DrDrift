@@ -1,7 +1,7 @@
 
 'use client';
 
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import { useApp } from '@/hooks/use-app';
 import { Button } from '@/components/ui/button';
 import { siteConfig } from '@/lib/config';
@@ -26,23 +26,9 @@ const SocialLinks = () => (
 
 const HeroSection = () => {
   const { currentProduct, isSwitching } = useApp();
-  const mediaRef = useRef<HTMLVideoElement | HTMLImageElement>(null);
   
   const isVideo = currentProduct.animatedWebpUrl.endsWith('.mp4') || currentProduct.animatedWebpUrl.endsWith('.webm');
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (mediaRef.current) {
-        const scrollY = window.scrollY;
-        const scale = 1 + scrollY * 0.0001;
-        const translateY = scrollY * 0.1;
-        mediaRef.current.style.transform = `scale(${scale}) translateY(${translateY}px)`;
-      }
-    };
-
-    window.addEventListener('scroll', { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const handleScrollTo = (e: React.MouseEvent<HTMLButtonElement>, selector: string) => {
     e.preventDefault();
@@ -66,7 +52,6 @@ const HeroSection = () => {
         {isVideo ? (
             <video
               key={currentProduct.id}
-              ref={mediaRef as React.RefObject<HTMLVideoElement>}
               className="absolute top-0 left-0 h-full w-full object-cover transition-opacity duration-500"
               autoPlay
               loop
@@ -77,7 +62,6 @@ const HeroSection = () => {
         ) : (
             <img
                 key={currentProduct.id}
-                ref={mediaRef as React.RefObject<HTMLImageElement>}
                 src={currentProduct.animatedWebpUrl}
                 alt="Animated background"
                 className="absolute top-0 left-0 h-full w-full object-cover transition-opacity duration-500"
@@ -93,7 +77,7 @@ const HeroSection = () => {
             </h1>
             <p className="mt-4 text-lg md:text-xl text-white/80">{currentProduct.subtitle}</p>
             <p className="mt-6 max-w-prose text-base text-white/70">{currentProduct.description}</p>
-            <div className="mt-8 flex flex-col sm:flex-row items-center">
+            <div className="mt-8 flex flex-col items-start gap-4">
                 <Button variant="outline" className="border-2 border-white bg-transparent text-white hover:bg-white hover:text-black" onClick={(e) => handleScrollTo(e, '#product')}>
                     Learn More
                 </Button>
