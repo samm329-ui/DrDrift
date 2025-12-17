@@ -35,7 +35,7 @@ const CtaSection = () => {
                         Have a question or want to work together?
                     </p>
                 </div>
-                <div className="mt-12 flex flex-row justify-around items-start md:grid md:grid-cols-3 md:gap-8">
+                <div className="mt-12 flex flex-row justify-around items-start md:justify-center md:gap-16">
                     {contactOptions.map(option => (
                         <div key={option.title} className="flex flex-col items-center text-center max-w-[120px]">
                             <a href={option.href} target="_blank" rel="noopener noreferrer" className="flex-shrink-0 group">
