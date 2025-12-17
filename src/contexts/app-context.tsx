@@ -171,7 +171,7 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       if (currentProduct.mode !== 'inherit') {
         setTheme(currentProduct.mode);
       }
-      const [h, s, l] = hexToHsl(siteConfig.products[currentProductIndex].themeColor);
+      const [h, s, l] = hexToHsl(currentProduct.themeColor);
       document.documentElement.style.setProperty('--primary', `${h} ${s}% ${l}%`);
 
     }
