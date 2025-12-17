@@ -144,7 +144,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
                   src={url}
                   alt={`${product.name} image ${index + 1}`}
                   width={600}
-                  height={400}
+                  height={600}
                   className="w-full h-auto object-cover transition-transform duration-300 md:group-hover:scale-105 rounded-t-[17px] aspect-square"
                   data-ai-hint={product.imageHint}
                 />
@@ -158,29 +158,29 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
 
       <div className="flex flex-col flex-grow p-3 md:p-4 bg-transparent rounded-b-[17px]">
         <CardHeader className="p-0">
-          <CardTitle className="font-headline text-lg">
+          <CardTitle className="font-headline text-base md:text-lg">
             <span className="hover:text-primary transition-colors z-30 relative text-foreground">
               {product.name}
             </span>
           </CardTitle>
         </CardHeader>
         <CardContent className="p-0 mt-1 md:mt-2 flex-grow">
-          <p className="text-sm text-muted-foreground line-clamp-2">
+          <p className="text-sm text-muted-foreground line-clamp-2 hidden md:block">
             {product.description}
           </p>
           <div className="flex items-center justify-between mt-1 md:mt-2">
             <div className="flex items-baseline gap-1 md:gap-2">
-              <span className="font-bold text-lg text-primary">
+              <span className="font-bold text-base md:text-lg text-primary">
                 Rs. {product.price}
               </span>
-              <span className="text-sm text-muted-foreground line-through">
+              <span className="text-xs md:text-sm text-muted-foreground line-through">
                 Rs. {originalPrice}
               </span>
             </div>
             <ProductRating productId={product.id} />
           </div>
         </CardContent>
-        <CardFooter className="p-0 mt-auto pt-2 md:pt-4 flex-col items-start">
+        <CardFooter className="hidden md:flex p-0 mt-auto pt-2 md:pt-4 flex-col items-start">
           <div className="flex items-center gap-2 w-full">
             <AddToCartButton
               onClick={handleAddToCart}
@@ -216,10 +216,10 @@ const OurProductsSection = () => {
           A range of products to keep your home shining.
         </p>
         <div 
-          className="mt-12 flex flex-nowrap gap-4 pb-4 md:gap-6 overflow-x-auto no-scrollbar"
+          className="mt-12 grid grid-cols-3 gap-3 md:flex md:flex-nowrap md:gap-6 pb-4 overflow-x-auto no-scrollbar"
         >
               {productsToShow.map((item, index) => (
-                  <div key={index} className="w-[32%] flex-shrink-0 md:w-80 md:flex-shrink-0">
+                  <div key={index} className="w-full md:w-80 md:flex-shrink-0">
                     <ProductCard product={item} />
                   </div>
               ))}
