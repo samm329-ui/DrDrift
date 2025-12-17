@@ -16,7 +16,6 @@ interface AppContextType {
   currentProductIndex: number;
   theme: Theme;
   isLoading: boolean;
-  isPageLoading: boolean;
   isSwitching: boolean;
   cart: CartItem[];
   isCartOpen: boolean;
@@ -35,7 +34,6 @@ interface AppContextType {
   switchProduct: (direction: 'next' | 'prev') => void;
   setTheme: (theme: Theme) => void;
   triggerCartAnimation: () => void;
-  setIsPageLoading: (isLoading: boolean) => void;
 }
 
 export const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -44,7 +42,6 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   const [currentProductIndex, setCurrentProductIndex] = useState(0);
   const [theme, setThemeState] = useState<Theme>('light');
   const [isLoading, setIsLoading] = useState(true);
-  const [isPageLoading, setIsPageLoading] = useState(false);
   const [isSwitching, setIsSwitching] = useState(false);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -183,7 +180,6 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     currentProductIndex,
     theme,
     isLoading,
-    isPageLoading,
     isSwitching,
     cart,
     isCartOpen,
@@ -202,8 +198,7 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
     switchProduct,
     setTheme,
     triggerCartAnimation,
-    setIsPageLoading,
-  }), [products, siteProducts, currentProduct, currentProductIndex, theme, isLoading, isPageLoading, isSwitching, cart, isCartOpen, isCartAnimating, startCheckout, searchQuery, filteredProducts, addToCart, buyNow, updateQuantity, removeFromCart, clearCart, switchProduct, setTheme, triggerCartAnimation, setSearchQuery, setIsPageLoading]);
+  }), [products, siteProducts, currentProduct, currentProductIndex, theme, isLoading, isSwitching, cart, isCartOpen, isCartAnimating, startCheckout, searchQuery, filteredProducts, addToCart, buyNow, updateQuantity, removeFromCart, clearCart, switchProduct, setTheme, triggerCartAnimation, setSearchQuery]);
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };

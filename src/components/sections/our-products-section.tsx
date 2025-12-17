@@ -39,7 +39,7 @@ const TypingLoader = () => (
   );
 
 const ProductCard = ({ product }: { product: SiteProduct }) => {
-  const { addToCart, buyNow, setIsPageLoading } = useApp();
+  const { addToCart, buyNow } = useApp();
   const autoplayPlugin = useRef(Autoplay({ delay: 2000 + Math.random() * 1000, stopOnInteraction: true }));
   const router = useRouter();
   
@@ -48,7 +48,6 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
   const handleNavigate = (e: React.MouseEvent, href: string) => {
     e.preventDefault();
     e.stopPropagation();
-    setIsPageLoading(true);
     router.push(href);
   };
 

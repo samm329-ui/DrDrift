@@ -11,11 +11,11 @@ import FaqSection from '@/components/sections/faq-section';
 import CtaSection from '@/components/sections/cta-section';
 
 export default function Home() {
-  const { isLoading, isPageLoading } = useApp();
+  const { isLoading } = useApp();
 
   return (
     <>
-      {(!isLoading && !isPageLoading) && (
+      {!isLoading && (
         <div className='bg-background'>
           <HeroSection />
           <ProductSection />

@@ -16,14 +16,13 @@ const TypingLoader = () => (
 
 
 const Loader = () => {
-  const { isLoading, isPageLoading } = useApp();
-  const showLoader = isLoading || isPageLoading;
+  const { isLoading } = useApp();
 
   return (
     <div
       className={cn(
         'fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background transition-opacity duration-500',
-        showLoader ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        isLoading ? 'opacity-100' : 'opacity-0 pointer-events-none'
       )}
     >
       <h1 className="font-headline text-4xl font-bold tracking-wider text-primary">
