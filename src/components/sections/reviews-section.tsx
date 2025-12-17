@@ -1,6 +1,4 @@
 
-import Image from 'next/image';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -25,14 +23,12 @@ const reviews = [
     }
 ];
 
-const getAvatarUrl = (id: string) => PlaceHolderImages.find(img => img.id === id)?.imageUrl || '';
-
 const ReviewsSection = () => {
     return (
         <section id="reviews" className={cn("bg-background py-20 md:py-32", "bg-wavy-1 animate-bg-scroll")}>
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl font-headline">Loved by Homes Everywhere</h2>
-                <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground">
+                <p className="mt-4 max-w-2xl text-xl text-muted-foreground">
                     Don't just take our word for it. Here's what our customers have to say.
                 </p>
                 <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 justify-center">
