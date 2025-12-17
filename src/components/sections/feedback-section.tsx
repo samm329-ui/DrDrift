@@ -17,6 +17,8 @@ import { useToast } from '@/hooks/use-toast';
 import { Textarea } from '../ui/textarea';
 import { cn } from '@/lib/utils';
 import { Send } from 'lucide-react';
+import { sendFeedbackEmail } from '@/ai/flows/send-feedback-email';
+import { useState } from 'react';
 
 const feedbackSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
@@ -28,6 +30,7 @@ type FeedbackFormValues = z.infer<typeof feedbackSchema>;
 
 export function FeedbackSection() {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<FeedbackFormValues>({
     resolver: zodResolver(feedbackSchema),
@@ -38,13 +41,25 @@ export function FeedbackSection() {
     },
   });
 
-  function onSubmit(data: FeedbackFormValues) {
-    console.log('Feedback submitted:', data);
-    toast({
-      title: 'Feedback Sent!',
-      description: "Thank you for your thoughts. We appreciate it!",
-    });
-    form.reset();
+  async function onSubmit(data: FeedbackFormValues) {
+    setIsSubmitting(true);
+    try {
+      await sendFeedbackEmail(data);
+      toast({
+        title: 'Feedback Sent!',
+        description: "Thank you for your thoughts. We appreciate it!",
+      });
+      form.reset();
+    } catch (error) {
+      console.error('Failed to send feedback:', error);
+      toast({
+        variant: 'destructive',
+        title: 'Uh oh! Something went wrong.',
+        description: 'Could not send feedback. Please try again later.',
+      });
+    } finally {
+        setIsSubmitting(false);
+    }
   }
 
   return (
@@ -107,8 +122,8 @@ export function FeedbackSection() {
                             )}
                         />
                         <div className="text-center">
-                            <Button type="submit" size="lg" className="feedback-form-button">
-                                Send Feedback <Send className="ml-2 h-4 w-4" />
+                            <Button type="submit" size="lg" className="feedback-form-button" disabled={isSubmitting}>
+                                {isSubmitting ? 'Sending...' : 'Send Feedback'} <Send className="ml-2 h-4 w-4" />
                             </Button>
                         </div>
                     </form>
