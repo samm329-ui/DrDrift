@@ -143,7 +143,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
       <Card 
         id={`product-card-${product.slug}`} 
         onClick={(e) => handleNavigate(e, `/products/${product.slug}`)}
-        className="text-left flex flex-col group w-[280px] md:w-[380px] flex-shrink-0 transition-all duration-500 bg-background/50 dark:bg-background/10 shadow-glass backdrop-blur-md rounded-[17px] active:scale-95 active:rotate-[1.7deg] cursor-pointer border-0"
+        className="text-left flex flex-col group w-full md:w-[380px] flex-shrink-0 transition-all duration-500 bg-background/50 dark:bg-background/10 shadow-glass backdrop-blur-md rounded-[17px] active:scale-95 active:rotate-[1.7deg] cursor-pointer border-0"
     >
         <div className="relative rounded-t-[17px]">
             {isNavigating && (
@@ -168,7 +168,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
                           alt={`${product.name} image ${index + 1}`}
                           width={600}
                           height={400}
-                          className="w-full h-40 md:h-80 object-cover transition-transform duration-300 md:group-hover:scale-105 rounded-t-[17px]"
+                          className="w-full h-24 md:h-80 object-cover transition-transform duration-300 md:group-hover:scale-105 rounded-t-[17px]"
                           data-ai-hint={product.imageHint}
                       />
                   </CarouselItem>
@@ -181,26 +181,26 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
 
         <div className="flex flex-col flex-grow p-3 md:p-4 bg-transparent rounded-b-[17px]">
           <CardHeader className="p-0">
-            <CardTitle className="font-headline text-base md:text-lg">
+            <CardTitle className="font-headline text-xs md:text-lg">
                 <span className="hover:text-primary transition-colors z-30 relative text-foreground">
                     {product.name}
                 </span>
             </CardTitle>
           </CardHeader>
-          <CardContent className="p-0 mt-2 flex-grow">
-            <p className="text-xs md:text-sm text-muted-foreground line-clamp-2">{product.description}</p>
-             <div className="flex items-center justify-between mt-2">
-                <div className="flex items-baseline gap-2">
-                    <span className="font-bold text-base md:text-lg text-primary">Rs. {product.price}</span>
-                    <span className="text-xs md:text-sm text-muted-foreground line-through">Rs. {originalPrice}</span>
+          <CardContent className="p-0 mt-1 md:mt-2 flex-grow">
+            <p className="text-[10px] md:text-sm text-muted-foreground line-clamp-2">{product.description}</p>
+             <div className="flex items-center justify-between mt-1 md:mt-2">
+                <div className="flex items-baseline gap-1 md:gap-2">
+                    <span className="font-bold text-xs md:text-lg text-primary">Rs. {product.price}</span>
+                    <span className="text-[10px] md:text-sm text-muted-foreground line-through">Rs. {originalPrice}</span>
                 </div>
                 <ProductRating productId={product.id} />
               </div>
           </CardContent>
           <CardFooter className='p-0 mt-auto pt-2 md:pt-4 flex-col items-start'>
-            <div className='flex items-center gap-2 w-full'>
-                <AddToCartButton onClick={handleAddToCart} className="flex-grow basis-0 justify-center !text-[11px] md:!text-[13px] !py-2 !h-auto" />
-                <button onClick={handleBuyNow} className="hero-buy-now-btn flex-grow basis-0 justify-center text-black !text-[11px] md:!text-[13px] !py-2 !px-3 h-auto">
+            <div className='flex items-center gap-1 md:gap-2 w-full'>
+                <AddToCartButton onClick={handleAddToCart} className="flex-grow basis-0 justify-center !text-[9px] md:!text-[13px] !p-1 md:!py-2 !h-auto" />
+                <button onClick={handleBuyNow} className="hero-buy-now-btn flex-grow basis-0 justify-center text-black !text-[9px] md:!text-[13px] !py-1 md:!py-2 !px-2 md:!px-3 h-auto">
                   <span>Buy Now</span>
                 </button>
             </div>
@@ -228,10 +228,12 @@ const OurProductsSection = () => {
           A range of products to keep your home shining.
         </p>
         <div 
-          className="mt-12 flex flex-wrap justify-center gap-4 md:gap-8 pb-4"
+          className="mt-12 flex flex-nowrap md:flex-wrap justify-start md:justify-center gap-2 md:gap-8 pb-4 overflow-x-auto md:overflow-x-visible"
         >
               {productsToShow.map((item, index) => (
-                  <ProductCard key={index} product={item} />
+                  <div key={index} className="flex-shrink-0 w-1/3 md:w-auto px-1 md:px-0">
+                    <ProductCard product={item} />
+                  </div>
               ))}
              {productsToShow.length === 0 && (
                 <div className="w-full text-center text-muted-foreground py-10 col-span-3">
