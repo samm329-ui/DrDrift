@@ -29,10 +29,10 @@ const SafetySection = () => {
                 </div>
                 <div className="mt-12 grid md:grid-cols-3 gap-8">
                     {safetyInfo.map((item, index) => (
-                        <div key={index} className="ag-courses_item">
-                            <Link href="#" className="ag-courses-item_link">
+                        <div key={index} className="ag-courses_item h-full">
+                            <Link href="#" className="ag-courses-item_link h-full">
                                 <div className="ag-courses-item_bg"></div>
-                                <div className="ag-courses-item_title">
+                                <div className="ag-courses-item_title font-headline">
                                     {item.title}
                                 </div>
                                 <div className="ag-courses-item_date-box">
