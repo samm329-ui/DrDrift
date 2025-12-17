@@ -31,22 +31,18 @@ const SafetySection = () => {
                         Powerful cleaning shouldn't come at a cost.
                     </p>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-center">
                     {safetyInfo.map((item, index) => (
-                        <Card key={index} className={cn(
-                            "flex flex-col items-center text-center p-6 bg-background backdrop-blur-sm shadow-strong transition-all duration-500 ease-custom-bezier hover:rounded-xl",
-                            "dark:bg-secondary/80 dark:border-none"
-                        )}>
-                             <div className="bg-primary text-primary-foreground rounded-full p-4 mb-4">
-                                <item.icon className="w-8 h-8" />
+                        <div key={index} className="group relative w-full max-w-[300px] h-[200px] [perspective:1000px] mx-auto">
+                            <div className="relative w-full h-full rounded-lg bg-background dark:bg-secondary/80 flex items-center justify-center overflow-hidden transition-all duration-500 ease-custom-bezier group-hover:scale-105 shadow-md group-hover:shadow-xl dark:shadow-black/20">
+                                <item.icon className="w-12 h-12 text-primary transition-all duration-500 ease-custom-bezier group-hover:scale-0" />
+                                
+                                <div className="absolute top-0 left-0 w-full h-full p-5 box-border bg-background dark:bg-secondary/90 text-center [transform-style:preserve-3d] [transform:rotateX(-90deg)] [transform-origin:bottom] transition-all duration-500 ease-custom-bezier group-hover:[transform:rotateX(0deg)]">
+                                    <h3 className="font-headline text-xl text-foreground">{item.title}</h3>
+                                    <p className="mt-2 text-muted-foreground text-sm leading-snug">{item.description}</p>
+                                </div>
                             </div>
-                            <CardHeader className="p-0">
-                                <CardTitle className="font-headline text-xl">{item.title}</CardTitle>
-                            </CardHeader>
-                            <CardContent className="p-0 mt-2">
-                                <p className="text-muted-foreground">{item.description}</p>
-                            </CardContent>
-                        </Card>
+                        </div>
                     ))}
                 </div>
             </div>
