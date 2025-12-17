@@ -9,6 +9,7 @@ import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
 import { FirebaseClientProvider } from '@/firebase';
 import AuthProvider from '@/components/auth-provider';
+import Loader from '@/components/loader';
 
 export const metadata: Metadata = {
   title: 'Drift Dynamic',
@@ -34,6 +35,7 @@ export default function RootLayout({
         <FirebaseClientProvider>
           <AppContextProvider>
             <AuthProvider>
+              <Loader />
               <div className="flex flex-col min-h-screen">
                 <Navbar />
                 <main className="flex-grow">{children}</main>

@@ -39,9 +39,8 @@ const TypingLoader = () => (
   );
 
 const ProductCard = ({ product }: { product: SiteProduct }) => {
-  const { addToCart, buyNow } = useApp();
+  const { addToCart, buyNow, setIsPageLoading } = useApp();
   const autoplayPlugin = useRef(Autoplay({ delay: 2000 + Math.random() * 1000, stopOnInteraction: true }));
-  const [isNavigating, setIsNavigating] = useState(false);
   const router = useRouter();
   
   const originalPrice = Math.round(product.price * 1.25);
@@ -49,10 +48,8 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
   const handleNavigate = (e: React.MouseEvent, href: string) => {
     e.preventDefault();
     e.stopPropagation();
-    setIsNavigating(true);
-    setTimeout(() => {
-        router.push(href);
-    }, 700);
+    setIsPageLoading(true);
+    router.push(href);
   };
 
   const handleAddToCart = (e: React.MouseEvent) => {
@@ -85,11 +82,6 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
         onClick={(e) => handleNavigate(e, `/products/${product.slug}`)}
         className="text-left overflow-hidden h-full flex flex-col group w-[320px] sm:w-[380px] transition-all duration-500 bg-gray-200/50 dark:bg-gray-500/10 border border-white/50 shadow-glass backdrop-blur-md rounded-[17px] hover:border-foreground/50 hover:scale-105 active:scale-95 active:rotate-[1.7deg] cursor-pointer"
     >
-        {isNavigating && (
-            <div className="absolute inset-0 z-20 flex items-center justify-center bg-background/70 backdrop-blur-sm rounded-[17px]">
-                <TypingLoader />
-            </div>
-        )}
         <div className="relative overflow-hidden rounded-t-[17px]">
             <div className="absolute inset-0 z-10">
                  <span className="sr-only">View Details</span>
