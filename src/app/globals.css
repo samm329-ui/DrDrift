@@ -440,6 +440,93 @@
       background-color: transparent;
     }
   }
+
+  /* Auth Form Styles */
+  .auth-form {
+    @apply flex flex-col gap-2.5;
+  }
+  
+  .auth-form-title {
+    @apply text-2xl font-bold;
+  }
+
+  .dark .auth-form-title {
+    @apply text-white;
+  }
+
+  .auth-flex-column > label {
+    @apply text-sm font-semibold;
+  }
+  .dark .auth-flex-column > label {
+    @apply text-gray-300;
+  }
+
+  .auth-input-form {
+    @apply border border-border rounded-lg h-12 flex items-center px-2.5 transition-all;
+  }
+
+  .dark .auth-input-form {
+    @apply bg-background-alt;
+  }
+
+  .auth-input-form:focus-within {
+    @apply ring-2 ring-ring;
+  }
+
+  .auth-input {
+    @apply ml-2.5 rounded-lg border-none w-full h-full bg-transparent focus:outline-none;
+  }
+
+  .auth-flex-row {
+    @apply flex flex-row items-center gap-2.5 justify-between;
+  }
+
+  .auth-flex-row > div > label {
+    @apply text-sm text-foreground;
+  }
+  .dark .auth-flex-row > div > label {
+    @apply text-gray-400;
+  }
+
+  .auth-span {
+    @apply text-sm ml-1 text-blue-500 font-medium cursor-pointer hover:underline;
+  }
+  
+  .auth-button-submit {
+    @apply mt-5 mb-2.5 bg-gray-800 border-none text-white text-[15px] font-medium rounded-lg h-12 w-full cursor-pointer;
+  }
+
+  .dark .auth-button-submit {
+    @apply bg-primary text-primary-foreground;
+  }
+
+  .auth-button-submit:hover {
+    @apply bg-gray-900;
+  }
+  
+  .dark .auth-button-submit:hover {
+    @apply bg-primary/90;
+  }
+
+  .auth-p {
+    @apply text-center text-sm my-1.5 text-foreground;
+  }
+  
+  .dark .auth-p {
+     @apply text-gray-300;
+  }
+
+  .auth-btn {
+    @apply mt-2.5 w-full h-12 rounded-lg flex justify-center items-center font-medium gap-2.5 border border-border bg-background cursor-pointer transition-all;
+  }
+  
+  .dark .auth-btn {
+    @apply bg-background-alt border-border;
+  }
+
+  .auth-btn:hover {
+    @apply border-blue-500;
+  }
 }
 
 
@@ -568,3 +655,6 @@
 
     
 
+
+
+    
