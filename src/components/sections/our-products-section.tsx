@@ -140,74 +140,94 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
   };
 
   return (
-      <Card 
-        id={`product-card-${product.slug}`} 
-        onClick={(e) => handleNavigate(e, `/products/${product.slug}`)}
-        className="text-left flex flex-col group w-full transition-all duration-500 bg-background/50 dark:bg-background/10 shadow-glass backdrop-blur-md rounded-[17px] active:scale-95 active:rotate-[1.7deg] cursor-pointer border-0"
+    <Card
+      id={`product-card-${product.slug}`}
+      onClick={(e) => handleNavigate(e, `/products/${product.slug}`)}
+      className="text-left flex flex-col group w-full transition-all duration-500 bg-background/50 dark:bg-background/10 shadow-glass backdrop-blur-md rounded-[17px] active:scale-95 active:rotate-[1.7deg] cursor-pointer border-0"
     >
-        <div className="relative rounded-t-[17px]">
-            {isNavigating && (
-                <div className="absolute inset-0 z-20 flex items-center justify-center bg-background/50 backdrop-blur-sm">
-                    <Spinner />
-                </div>
-            )}
-            <div className={cn("absolute inset-0 z-10", isNavigating ? "" : "group-hover:bg-black/10 transition-colors")}>
-                 <span className="sr-only">View Details</span>
-            </div>
-            <Carousel
-              plugins={[autoplayPlugin.current]}
-              className="w-full"
-              onMouseEnter={autoplayPlugin.current.stop}
-              onMouseLeave={autoplayPlugin.current.play}
-            >
-              <CarouselContent>
-                {product.imageUrls.map((url, index) => (
-                  <CarouselItem key={index}>
-                      <Image
-                          src={url}
-                          alt={`${product.name} image ${index + 1}`}
-                          width={600}
-                          height={400}
-                          className="w-full h-24 md:h-80 object-cover transition-transform duration-300 md:group-hover:scale-105 rounded-t-[17px]"
-                          data-ai-hint={product.imageHint}
-                      />
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="left-2 opacity-0 group-hover:opacity-100" />
-              <CarouselNext className="right-2 opacity-0 group-hover:opacity-100" />
-            </Carousel>
+      <div className="relative rounded-t-[17px]">
+        {isNavigating && (
+          <div className="absolute inset-0 z-20 flex items-center justify-center bg-background/50 backdrop-blur-sm">
+            <Spinner />
+          </div>
+        )}
+        <div
+          className={cn(
+            'absolute inset-0 z-10',
+            isNavigating ? '' : 'group-hover:bg-black/10 transition-colors'
+          )}
+        >
+          <span className="sr-only">View Details</span>
         </div>
+        <Carousel
+          plugins={[autoplayPlugin.current]}
+          className="w-full"
+          onMouseEnter={autoplayPlugin.current.stop}
+          onMouseLeave={autoplayPlugin.current.play}
+        >
+          <CarouselContent>
+            {product.imageUrls.map((url, index) => (
+              <CarouselItem key={index}>
+                <Image
+                  src={url}
+                  alt={`${product.name} image ${index + 1}`}
+                  width={600}
+                  height={400}
+                  className="w-full h-auto object-cover transition-transform duration-300 md:group-hover:scale-105 rounded-t-[17px] aspect-[4/3] md:aspect-auto md:h-80"
+                  data-ai-hint={product.imageHint}
+                />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="left-2 opacity-0 group-hover:opacity-100" />
+          <CarouselNext className="right-2 opacity-0 group-hover:opacity-100" />
+        </Carousel>
+      </div>
 
-        <div className="flex flex-col flex-grow p-3 md:p-4 bg-transparent rounded-b-[17px]">
-          <CardHeader className="p-0">
-            <CardTitle className="font-headline text-xs md:text-lg">
-                <span className="hover:text-primary transition-colors z-30 relative text-foreground">
-                    {product.name}
-                </span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="p-0 mt-1 md:mt-2 flex-grow">
-            <p className="text-[10px] md:text-sm text-muted-foreground line-clamp-2">{product.description}</p>
-             <div className="flex items-center justify-between mt-1 md:mt-2">
-                <div className="flex items-baseline gap-1 md:gap-2">
-                    <span className="font-bold text-xs md:text-lg text-primary">Rs. {product.price}</span>
-                    <span className="text-[10px] md:text-sm text-muted-foreground line-through">Rs. {originalPrice}</span>
-                </div>
-                <ProductRating productId={product.id} />
-              </div>
-          </CardContent>
-          <CardFooter className='p-0 mt-auto pt-2 md:pt-4 flex-col items-start'>
-            <div className='flex items-center gap-1 md:gap-2 w-full'>
-                <AddToCartButton onClick={handleAddToCart} className="flex-grow basis-0 justify-center !text-[9px] md:!text-[13px] !p-1 md:!py-2 !h-auto" />
-                <button onClick={handleBuyNow} className="hero-buy-now-btn flex-grow basis-0 justify-center text-black !text-[9px] md:!text-[13px] !py-1 md:!py-2 !px-2 md:!px-3 h-auto">
-                  <span>Buy Now</span>
-                </button>
+      <div className="flex flex-col flex-grow p-3 md:p-4 bg-transparent rounded-b-[17px]">
+        <CardHeader className="p-0">
+          <CardTitle className="font-headline text-xs md:text-lg">
+            <span className="hover:text-primary transition-colors z-30 relative text-foreground">
+              {product.name}
+            </span>
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="p-0 mt-1 md:mt-2 flex-grow">
+          <p className="text-[10px] md:text-sm text-muted-foreground line-clamp-2">
+            {product.description}
+          </p>
+          <div className="flex items-center justify-between mt-1 md:mt-2">
+            <div className="flex items-baseline gap-1 md:gap-2">
+              <span className="font-bold text-xs md:text-lg text-primary">
+                Rs. {product.price}
+              </span>
+              <span className="text-[10px] md:text-sm text-muted-foreground line-through">
+                Rs. {originalPrice}
+              </span>
             </div>
-            <CommentSection reviews={productReviews} onAddComment={(e) => handleNavigate(e, `/products/${product.slug}`)} />
-          </CardFooter>
-        </div>
-      </Card>
+            <ProductRating productId={product.id} />
+          </div>
+        </CardContent>
+        <CardFooter className="p-0 mt-auto pt-2 md:pt-4 flex-col items-start">
+          <div className="flex items-center gap-1 md:gap-2 w-full">
+            <AddToCartButton
+              onClick={handleAddToCart}
+              className="flex-grow basis-0 justify-center !text-[9px] md:!text-[13px] !p-1 md:!py-2 !h-auto"
+            />
+            <button
+              onClick={handleBuyNow}
+              className="hero-buy-now-btn flex-grow basis-0 justify-center text-black !text-[9px] md:!text-[13px] !py-1 md:!py-2 !px-2 md:!px-3 h-auto"
+            >
+              <span>Buy Now</span>
+            </button>
+          </div>
+          <CommentSection
+            reviews={productReviews}
+            onAddComment={(e) => handleNavigate(e, `/products/${product.slug}`)}
+          />
+        </CardFooter>
+      </div>
+    </Card>
   );
 };
 
@@ -228,10 +248,10 @@ const OurProductsSection = () => {
           A range of products to keep your home shining.
         </p>
         <div 
-          className="mt-12 flex flex-nowrap justify-center gap-2 md:gap-8 pb-4"
+          className="mt-12 flex flex-nowrap gap-4 pb-4 md:gap-8 overflow-x-auto no-scrollbar"
         >
               {productsToShow.map((item, index) => (
-                  <div key={index} className="w-1/3 flex-shrink-0 md:w-auto px-1 md:px-0">
+                  <div key={index} className="w-1/3 flex-shrink-0 md:w-auto md:flex-shrink-0">
                     <ProductCard product={item} />
                   </div>
               ))}
