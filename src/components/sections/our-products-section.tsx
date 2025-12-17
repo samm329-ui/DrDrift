@@ -207,7 +207,7 @@ const OurProductsSection = () => {
 
 
   return (
-    <section id="our-products" className="py-20 md:py-24 bg-secondary">
+    <section id="our-products" className="py-20 md:py-24 bg-secondary overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 flex flex-col h-full">
         <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl font-headline text-foreground">
           Our Products
@@ -215,11 +215,12 @@ const OurProductsSection = () => {
         <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground">
           A range of products to keep your home shining.
         </p>
-        <div 
-          className="mt-12 flex flex-nowrap gap-6 pb-4 overflow-x-auto no-scrollbar"
+      </div>
+       <div 
+          className="mt-12 flex flex-nowrap gap-6 pb-4 overflow-x-auto no-scrollbar md:justify-center"
         >
               {productsToShow.map((item, index) => (
-                  <div key={index} className="w-64 md:w-80 flex-shrink-0">
+                  <div key={index} className={cn("w-64 md:w-72 flex-shrink-0", index === 0 && "ml-4 md:ml-0")}>
                     <ProductCard product={item} />
                   </div>
               ))}
@@ -229,7 +230,6 @@ const OurProductsSection = () => {
                 </div>
             )}
         </div>
-      </div>
     </section>
   );
 };
