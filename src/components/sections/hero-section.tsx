@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { useApp } from '@/hooks/use-app';
-import { Button } from '@/components/ui/button';
 import { siteConfig } from '@/lib/config';
 import { cn } from '@/lib/utils';
 import TwitterIcon from '@/components/icons/twitter';
@@ -24,19 +23,23 @@ const SocialLinks = () => (
 )
 
 const HeroSection = () => {
-  const { currentProduct, isSwitching } = useApp();
+  const { currentProduct, isSwitching, buyNow } = useApp();
   
   const isVideo = currentProduct.animatedWebpUrl.endsWith('.mp4') || currentProduct.animatedWebpUrl.endsWith('.webm');
 
 
-  const handleScrollTo = (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>, selector: string) => {
-    e.preventDefault();
-    const element = document.querySelector(selector);
-    if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-      });
+  const handleBuyNow = () => {
+    const item = {
+      id: currentProduct.id,
+      name: currentProduct.name,
+      price: 0, // This should probably be fetched from siteProducts
+      imageUrl: currentProduct.productImageUrl,
+    };
+    const productDetails = siteConfig.products.find(p => p.id === currentProduct.id);
+    if(productDetails) {
+        item.price = productDetails.price;
     }
+    buyNow(item, 1);
   };
 
   return (
@@ -77,16 +80,13 @@ const HeroSection = () => {
             <p className="mt-4 text-lg md:text-xl text-white/80">{currentProduct.subtitle}</p>
             <p className="mt-6 max-w-prose text-base text-white/70">{currentProduct.description}</p>
             <div className="mt-8 flex flex-col items-start gap-4">
-                <button onClick={(e) => handleScrollTo(e, '#our-products')} className="hero-buy-now-btn text-black">
+                 <button onClick={handleBuyNow} className="hero-buy-now-btn text-black">
                   <span>Buy Now</span>
                   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="none">
                     <path d="M0 0h24v24H0V0z" fill="none"/>
                     <path d="M16.01 11H4v2h12.01v3L20 12l-3.99-4v3z" fill="currentColor"/>
                   </svg>
                 </button>
-                <Button variant="outline" className="border-2 border-white bg-transparent text-white hover:bg-white hover:text-black" onClick={(e) => handleScrollTo(e, '#product')}>
-                    Learn More
-                </Button>
             </div>
         </div>
       </div>

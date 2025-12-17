@@ -96,6 +96,7 @@ export const siteProducts: SiteProduct[] = [
 
 export const siteConfig = {
   brandName: 'Dr. Drift',
+  products: siteProducts,
   navLinks: [
     { name: 'Product', href: '#product' },
     { name: 'Our Products', href: '#our-products' },

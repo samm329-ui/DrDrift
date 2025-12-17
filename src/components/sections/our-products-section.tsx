@@ -23,7 +23,6 @@ import { useApp } from '@/hooks/use-app';
 import type { SiteProduct } from '@/types';
 import { cn } from '@/lib/utils';
 import { siteProducts } from '@/lib/config';
-import { Button } from '../ui/button';
 import { AddToCartButton } from '../ui/add-to-cart-button';
 
 const Spinner = () => (
@@ -165,9 +164,13 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
           <CardFooter className='p-0 mt-auto pt-4'>
             <div className='flex items-center gap-2 w-full'>
                 <AddToCartButton onClick={handleAddToCart} />
-                <Button onClick={handleBuyNow} className="flex-grow">
-                  Buy Now
-                </Button>
+                <button onClick={handleBuyNow} className="hero-buy-now-btn flex-grow justify-center text-black">
+                  <span>Buy Now</span>
+                   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="none">
+                    <path d="M0 0h24v24H0V0z" fill="none"/>
+                    <path d="M16.01 11H4v2h12.01v3L20 12l-3.99-4v3z" fill="currentColor"/>
+                  </svg>
+                </button>
             </div>
           </CardFooter>
         </div>

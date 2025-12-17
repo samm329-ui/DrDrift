@@ -171,13 +171,11 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
       if (currentProduct.mode !== 'inherit') {
         setTheme(currentProduct.mode);
       }
+      const [h, s, l] = hexToHsl(siteConfig.products[currentProductIndex].themeColor);
+      document.documentElement.style.setProperty('--primary', `${h} ${s}% ${l}%`);
 
-      const [h, s, l] = hexToHsl(currentProduct.themeColor);
-      document.documentElement.style.setProperty('--primary-h', `${h}`);
-      document.documentElement.style.setProperty('--primary-s', `${s}%`);
-      document.documentElement.style.setProperty('--primary-l', `${l}%`);
     }
-  }, [currentProduct, setTheme]);
+  }, [currentProduct, setTheme, currentProductIndex]);
 
   const switchProduct = (direction: 'next' | 'prev') => {
     if (products.length <= 1) return;
