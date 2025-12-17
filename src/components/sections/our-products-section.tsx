@@ -57,8 +57,8 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
   };
 
   return (
-      <Card id={`product-card-${product.slug}`} className="text-left overflow-hidden h-full flex flex-col group w-[320px] sm:w-[380px] shadow-strong transition-all duration-500 ease-custom-bezier hover:rounded-xl bg-background">
-        <div className="relative overflow-hidden rounded-t-lg">
+      <Card id={`product-card-${product.slug}`} className="text-left overflow-hidden h-full flex flex-col group w-[320px] sm:w-[380px] transition-all duration-500 bg-gray-200/50 dark:bg-gray-500/10 border border-white/50 shadow-glass backdrop-blur-md rounded-[17px] hover:border-foreground/50 hover:scale-105 active:scale-95 active:rotate-[1.7deg]">
+        <div className="relative overflow-hidden rounded-t-[17px]">
             <Link href={`/products/${product.slug}`} className="absolute inset-0 z-10">
                  <span className="sr-only">View Details</span>
             </Link>
@@ -87,19 +87,19 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
             </Carousel>
         </div>
 
-        <div className="flex flex-col flex-grow p-4 bg-background dark:bg-background/80 rounded-b-lg">
+        <div className="flex flex-col flex-grow p-4 bg-transparent rounded-b-[17px]">
           <CardHeader className="p-0">
             <CardTitle className="font-headline text-lg">
-              <Link href={`/products/${product.slug}`} className="hover:text-primary transition-colors z-30 relative">
+              <Link href={`/products/${product.slug}`} className="hover:text-primary transition-colors z-30 relative text-black dark:text-white">
                 {product.name}
               </Link>
             </CardTitle>
           </CardHeader>
           <CardContent className="p-0 mt-2 flex-grow">
-            <p className="text-sm text-muted-foreground line-clamp-2">{product.description}</p>
+            <p className="text-sm text-black/60 dark:text-white/60 line-clamp-2">{product.description}</p>
              <div className="flex items-baseline gap-2 mt-4">
                 <span className="font-bold text-lg text-primary">Rs. {product.price}</span>
-                <span className="text-sm text-muted-foreground animate-strike-through">Rs. {originalPrice}</span>
+                <span className="text-sm text-black/60 dark:text-white/60 line-through">Rs. {originalPrice}</span>
               </div>
           </CardContent>
           <CardFooter className='p-0 mt-4'>
