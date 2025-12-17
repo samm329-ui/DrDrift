@@ -1,5 +1,7 @@
+
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { ShieldCheck, PawPrint, Globe } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const safetyInfo = [
     {
@@ -31,7 +33,10 @@ const SafetySection = () => {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {safetyInfo.map((item, index) => (
-                        <Card key={index} className="flex flex-col items-center text-center p-6 bg-background dark:bg-secondary/80 backdrop-blur-sm shadow-strong transition-all duration-500 ease-custom-bezier hover:rounded-xl">
+                        <Card key={index} className={cn(
+                            "flex flex-col items-center text-center p-6 bg-background backdrop-blur-sm shadow-strong transition-all duration-500 ease-custom-bezier hover:rounded-xl",
+                            "dark:bg-secondary/80 dark:border-none"
+                        )}>
                              <div className="bg-primary text-primary-foreground rounded-full p-4 mb-4">
                                 <item.icon className="w-8 h-8" />
                             </div>
