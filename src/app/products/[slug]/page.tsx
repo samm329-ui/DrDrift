@@ -1,7 +1,7 @@
 
 'use client';
 
-import React, 'useState', useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import { notFound } from 'next/navigation';
 import { siteProducts } from '@/lib/config';
 import { Button } from '@/components/ui/button';
