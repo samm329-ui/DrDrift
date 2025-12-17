@@ -1020,8 +1020,8 @@
   
   /* Learn More Button */
   .learn-more-btn {
-    height: 50px;
-    width: 200px;
+    height: 45px;
+    width: 160px;
     position: relative;
     background-color: transparent;
     cursor: pointer;
@@ -1039,7 +1039,7 @@
   .learn-more-btn .btn-txt {
     z-index: 1;
     font-weight: 800;
-    letter-spacing: 4px;
+    letter-spacing: 2px;
   }
   
   .learn-more-btn.type1::after {
@@ -1230,6 +1230,7 @@
     
 
     
+
 
 
 
