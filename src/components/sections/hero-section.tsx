@@ -99,7 +99,7 @@ const HeroSection = () => {
                 <Button variant="outline" className="border-2 border-white bg-transparent text-white hover:bg-white hover:text-black rounded-r-none" onClick={(e) => handleScrollTo(e, '#product')}>
                     Learn More
                 </Button>
-                <ShopNowButton onClick={(e) => handleScrollTo(e, '#our-products')} className="hero-shop-now rounded-l-none" />
+                <ShopNowButton onClick={(e) => handleScrollTo(e, '#our-products')} className="hero-shop-now rounded-l-none -ml-px" />
             </div>
         </div>
       </div>
