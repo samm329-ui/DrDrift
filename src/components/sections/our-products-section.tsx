@@ -25,6 +25,7 @@ import type { SiteProduct } from '@/types';
 import { cn } from '@/lib/utils';
 import { siteProducts } from '@/lib/config';
 import { Button } from '../ui/button';
+import { AddToCartButton } from '../ui/add-to-cart-button';
 
 const Spinner = () => (
     <div className="spinner center">
@@ -164,10 +165,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
           </CardContent>
           <CardFooter className='p-0 mt-auto pt-4'>
             <div className='flex items-center gap-2 w-full'>
-                <Button variant="outline" size="sm" className='w-full' onClick={handleAddToCart}>
-                <ShoppingCart className='mr-2 h-4 w-4'/>
-                Add to Cart
-                </Button>
+                <AddToCartButton onClick={handleAddToCart} />
                 <Button size="sm" className='w-full' onClick={handleBuyNow}>
                   Buy Now
                 </Button>

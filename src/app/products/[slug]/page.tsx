@@ -24,6 +24,7 @@ import {
 } from '@/components/ui/accordion';
 import { ReviewForm } from '@/components/review-form';
 import { PackButton } from '@/components/ui/pack-button';
+import { AddToCartButton } from '@/components/ui/add-to-cart-button';
 
 export default function ProductPage({ params }: { params: { slug: string } }) {
   const [quantity, setQuantity] = useState(1);
@@ -42,7 +43,8 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
 
   const originalPrice = Math.round(product.price * 1.25);
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
     const item = {
       id: product.id,
       name: product.name,
@@ -145,14 +147,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               </div>
 
               <div className="flex-grow w-full flex flex-col sm:flex-row gap-2">
-                <Button
-                  onClick={handleAddToCart}
-                  size="lg"
-                  variant="outline"
-                  className="w-full"
-                >
-                  Add to Cart
-                </Button>
+                <AddToCartButton onClick={handleAddToCart} />
                 <Button onClick={handleBuyNow} size="lg" className="w-full">
                   Buy Now
                    <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 ease-in-out group-hover:translate-x-1" />
