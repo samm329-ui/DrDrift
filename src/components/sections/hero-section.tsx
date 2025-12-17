@@ -1,8 +1,9 @@
+
 'use client';
 
 import React from 'react';
 import { useApp } from '@/hooks/use-app';
-import { siteConfig, siteProducts } from '@/lib/config';
+import { siteConfig } from '@/lib/config';
 import { cn } from '@/lib/utils';
 import TwitterIcon from '@/components/icons/twitter';
 import InstagramIcon from '@/components/icons/instagram';
@@ -23,23 +24,19 @@ const SocialLinks = () => (
 )
 
 const HeroSection = () => {
-  const { currentProduct, isSwitching, buyNow } = useApp();
+  const { currentProduct, isSwitching } = useApp();
   
   const isVideo = currentProduct.animatedWebpUrl.endsWith('.mp4') || currentProduct.animatedWebpUrl.endsWith('.webm');
 
 
-  const handleBuyNow = () => {
-    const item = {
-      id: currentProduct.id,
-      name: currentProduct.name,
-      price: 0,
-      imageUrl: currentProduct.productImageUrl,
-    };
-    const productDetails = siteProducts.find(p => p.id === currentProduct.id);
-    if(productDetails) {
-        item.price = productDetails.price;
+  const handleBuyNow = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const element = document.querySelector('#our-products');
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+      });
     }
-    buyNow(item, 1);
   };
   
   const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
