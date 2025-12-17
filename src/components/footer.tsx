@@ -1,3 +1,4 @@
+
 import Link from "next/link";
 import { siteConfig } from "@/lib/config";
 import TwitterIcon from "@/components/icons/twitter";
@@ -56,3 +57,4 @@ const Footer = () => {
 }
 
 export default Footer;
+

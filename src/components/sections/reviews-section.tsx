@@ -1,4 +1,5 @@
 
+
 import { Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -57,3 +58,4 @@ const ReviewsSection = () => {
 };
 
 export default ReviewsSection;
+

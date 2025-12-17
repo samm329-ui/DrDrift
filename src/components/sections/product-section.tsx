@@ -1,3 +1,4 @@
+
 'use client';
 import Image from 'next/image';
 import { useApp } from '@/hooks/use-app';
@@ -81,3 +82,4 @@ const ProductSection = () => {
 };
 
 export default ProductSection;
+

@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import React, { useRef, useState } from 'react';
@@ -178,3 +179,4 @@ const OurProductsSection = () => {
 };
 
 export default OurProductsSection;
+
