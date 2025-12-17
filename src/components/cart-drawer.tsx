@@ -86,7 +86,7 @@ export default function CartDrawer() {
                               <Button
                                 variant="outline"
                                 size="icon"
-                                className="h-7 w-7"
+                                className="h-7 w-7 rounded-md"
                                 onClick={() => updateQuantity(item.id, item.quantity - 1)}
                               >
                                 <Minus className="h-3.5 w-3.5" />
@@ -95,7 +95,7 @@ export default function CartDrawer() {
                               <Button
                                 variant="outline"
                                 size="icon"
-                                className="h-7 w-7"
+                                className="h-7 w-7 rounded-md"
                                 onClick={() => updateQuantity(item.id, item.quantity + 1)}
                               >
                                 <Plus className="h-3.5 w-3.5" />
@@ -109,7 +109,7 @@ export default function CartDrawer() {
                         <Button
                           variant="ghost"
                           size="icon"
-                          className="h-8 w-8 text-muted-foreground hover:text-destructive flex-shrink-0 -mr-2"
+                          className="h-8 w-8 text-muted-foreground hover:text-destructive flex-shrink-0 -mr-2 rounded-md"
                           onClick={() => removeFromCart(item.id)}
                         >
                           <Trash2 className="h-4 w-4" />
@@ -126,7 +126,7 @@ export default function CartDrawer() {
                       <span>Rs. {subtotal.toFixed(2)}</span>
                     </div>
                     <Button onClick={() => setIsCheckingOut(true)} className="w-full" size="lg">
-                      Proceed to Checkout <ArrowRight className="ml-2 h-4 w-4" />
+                      Proceed to Checkout <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 ease-in-out group-hover:translate-x-1" />
                     </Button>
                     <Button onClick={() => clearCart()} variant="outline" className="w-full">
                         Clear Cart

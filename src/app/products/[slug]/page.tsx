@@ -13,7 +13,7 @@ import {
   CarouselNext,
 } from '@/components/ui/carousel';
 import Image from 'next/image';
-import { Minus, Plus, CheckCircle, Sparkles } from 'lucide-react';
+import { Minus, Plus, CheckCircle, Sparkles, ArrowRight } from 'lucide-react';
 import { useApp } from '@/hooks/use-app';
 import { Separator } from '@/components/ui/separator';
 
@@ -121,11 +121,11 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             <Separator />
 
             <div className="flex flex-col sm:flex-row items-center gap-4">
-              <div className="flex items-center gap-2 border rounded-md p-2">
+              <div className="flex items-center gap-2 border rounded-full p-1">
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="h-8 w-8"
+                  className="h-8 w-8 rounded-full"
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
                 >
                   <Minus className="h-4 w-4" />
@@ -136,7 +136,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="h-8 w-8"
+                  className="h-8 w-8 rounded-full"
                   onClick={() => setQuantity(quantity + 1)}
                 >
                   <Plus className="h-4 w-4" />
@@ -154,6 +154,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 </Button>
                 <Button onClick={handleBuyNow} size="lg" className="w-full">
                   Buy Now
+                   <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 ease-in-out group-hover:translate-x-1" />
                 </Button>
               </div>
             </div>
