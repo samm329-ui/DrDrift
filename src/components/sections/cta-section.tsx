@@ -1,6 +1,5 @@
 import { Mail, Phone, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
-import RippleAnimation from "@/components/ripple-animation";
 
 const contactOptions = [
     {
@@ -26,9 +25,7 @@ const contactOptions = [
 const CtaSection = () => {
     return (
         <section id="contact" className={cn("bg-background relative overflow-hidden py-20 md:py-32")}>
-             <div className="absolute inset-0 z-0 flex items-center justify-center">
-                <RippleAnimation />
-            </div>
+             <div className="absolute inset-0 z-0 bg-wavy-2 animate-bg-scroll"></div>
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="max-w-3xl mx-auto text-center">
                     <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl font-headline">

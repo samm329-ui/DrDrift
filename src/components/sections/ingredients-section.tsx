@@ -1,7 +1,6 @@
 import { Leaf, FlaskConical, Droplets } from "lucide-react";
 import Link from 'next/link';
 import { cn } from "@/lib/utils";
-import RippleAnimation from "@/components/ripple-animation";
 
 const ingredients = [
     {
@@ -24,9 +23,7 @@ const ingredients = [
 const IngredientsSection = () => {
     return (
         <section id="ingredients" className={cn("bg-background-alt relative overflow-hidden py-20 md:py-32")}>
-            <div className="absolute inset-0 z-0 flex items-center justify-center">
-                <RippleAnimation />
-            </div>
+            <div className="absolute inset-0 z-0 bg-wavy-2 animate-bg-scroll"></div>
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
                 <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl font-headline">The Science of Clean</h2>
                 <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground">

@@ -11,7 +11,6 @@ import Autoplay from 'embla-carousel-autoplay';
 import React, { useRef } from 'react';
 import { siteProducts } from '@/lib/config';
 import { cn } from '@/lib/utils';
-import RippleAnimation from "@/components/ripple-animation";
 
 const ProductSection = () => {
     const autoplayPlugins = [
@@ -29,9 +28,7 @@ const ProductSection = () => {
 
     return (
         <section id="product" className={cn("relative bg-background-alt dark:bg-background py-20 md:py-32 overflow-hidden")}>
-             <div className="absolute inset-0 z-0 flex items-center justify-center">
-                <RippleAnimation />
-            </div>
+             <div className="absolute inset-0 z-0 bg-wavy-2 animate-bg-scroll"></div>
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                     <div>
