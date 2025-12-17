@@ -74,6 +74,54 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
     buyNow(item, 8);
   };
 
+  const PurchaseActions = () => (
+    <div className="space-y-6">
+        <div className="flex items-baseline gap-3">
+            <span className="font-bold text-3xl text-primary">
+            Rs. {product.price}
+            </span>
+            <span className="text-xl text-muted-foreground animate-strike-through">
+            Rs. {originalPrice}
+            </span>
+        </div>
+
+        <Separator />
+        
+        <div className="flex flex-col sm:flex-row items-center gap-4">
+            <div className="flex items-center gap-2 border rounded-full p-1">
+            <Button
+                variant="ghost"
+                size="icon"
+                className="h-8 w-8 rounded-full"
+                onClick={() => setQuantity(Math.max(1, quantity - 1))}
+            >
+                <Minus className="h-4 w-4" />
+            </Button>
+            <span className="w-12 text-center font-bold text-lg">
+                {quantity}
+            </span>
+            <Button
+                variant="ghost"
+                size="icon"
+                className="h-8 w-8 rounded-full"
+                onClick={() => setQuantity(quantity + 1)}
+            >
+                <Plus className="h-4 w-4" />
+            </Button>
+            </div>
+
+            <div className="flex-grow w-full flex items-center gap-2">
+            <AddToCartButton onClick={handleAddToCart} className="flex-grow basis-0 justify-center" />
+            <button onClick={handleBuyNow} className="hero-buy-now-btn flex-grow basis-0 justify-center text-black">
+                <span>Buy Now</span>
+            </button>
+            </div>
+        </div>
+        
+        <PackButton onClick={handlePackBuy} />
+    </div>
+  )
+
   return (
     <div className="bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
@@ -99,6 +147,11 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               <CarouselPrevious />
               <CarouselNext />
             </Carousel>
+            
+            <div className="md:hidden mt-8">
+              <PurchaseActions />
+            </div>
+
             <div className="hidden md:block mt-8 space-y-4">
                 <div className="flex items-center gap-4 p-4 rounded-lg bg-muted/50 border">
                     <Leaf className="h-8 w-8 text-primary flex-shrink-0" />
@@ -133,49 +186,9 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               {product.description}
             </p>
 
-            <div className="flex items-baseline gap-3">
-              <span className="font-bold text-3xl text-primary">
-                Rs. {product.price}
-              </span>
-              <span className="text-xl text-muted-foreground animate-strike-through">
-                Rs. {originalPrice}
-              </span>
+            <div className="hidden md:block">
+              <PurchaseActions />
             </div>
-
-            <Separator />
-            
-            <div className="flex flex-col sm:flex-row items-center gap-4">
-              <div className="flex items-center gap-2 border rounded-full p-1">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="h-8 w-8 rounded-full"
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                >
-                  <Minus className="h-4 w-4" />
-                </Button>
-                <span className="w-12 text-center font-bold text-lg">
-                  {quantity}
-                </span>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="h-8 w-8 rounded-full"
-                  onClick={() => setQuantity(quantity + 1)}
-                >
-                  <Plus className="h-4 w-4" />
-                </Button>
-              </div>
-
-              <div className="flex-grow w-full flex items-center gap-2">
-                <AddToCartButton onClick={handleAddToCart} className="flex-grow basis-0 justify-center" />
-                <button onClick={handleBuyNow} className="hero-buy-now-btn flex-grow basis-0 justify-center text-black">
-                  <span>Buy Now</span>
-                </button>
-              </div>
-            </div>
-            
-            <PackButton onClick={handlePackBuy} />
 
             <Separator />
 
