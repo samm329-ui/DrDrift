@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -74,24 +75,22 @@
 @layer utilities {
   .bg-pattern-3 {
     background-color: #e5e5f7;
-    opacity: 1;
     background-image: repeating-radial-gradient(
         circle at 0 0,
         transparent 0,
         #e5e5f7 30px
       ),
-      repeating-linear-gradient(rgba(209, 213, 219, 0.54), #d1d5db);
+      repeating-linear-gradient(rgba(209, 213, 219, 0.2), rgba(209, 213, 219, 0.2));
   }
 
   .dark .bg-pattern-3 {
     background-color: #2c2c2e;
-    opacity: 1;
     background-image: repeating-radial-gradient(
         circle at 0 0,
         transparent 0,
         #2c2c2e 30px
       ),
-      repeating-linear-gradient(rgba(75, 85, 99, 0.54), #4b5563);
+      repeating-linear-gradient(rgba(75, 85, 99, 0.1), rgba(75, 85, 99, 0.1));
   }
   
   .bg-wavy-1 {
