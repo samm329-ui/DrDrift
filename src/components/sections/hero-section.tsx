@@ -95,11 +95,11 @@ const HeroSection = () => {
             </h1>
             <p className="mt-4 text-lg md:text-xl text-white/80">{currentProduct.subtitle}</p>
             <p className="mt-6 max-w-prose text-base text-white/70">{currentProduct.description}</p>
-            <div className="mt-8 flex flex-col sm:flex-row items-center">
-                <Button variant="outline" className="border-2 border-white bg-transparent text-white hover:bg-white hover:text-black" onClick={(e) => handleScrollTo(e, '#product')}>
+            <div className="mt-8 flex flex-col sm:flex-row items-end">
+                <Button variant="outline" className="border-2 border-white bg-transparent text-white hover:bg-white hover:text-black rounded-r-none" onClick={(e) => handleScrollTo(e, '#product')}>
                     Learn More
                 </Button>
-                <ShopNowButton onClick={(e) => handleScrollTo(e, '#our-products')} className="hero-shop-now -ml-4" />
+                <ShopNowButton onClick={(e) => handleScrollTo(e, '#our-products')} className="hero-shop-now rounded-l-none" />
             </div>
         </div>
       </div>
