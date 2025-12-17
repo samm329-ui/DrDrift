@@ -98,8 +98,8 @@ const HeroSection = () => {
                     <path d="M16.01 11H4v2h12.01v3L20 12l-3.99-4v3z" fill="currentColor"/>
                   </svg>
                 </button>
-                 <a href="#product" onClick={(e) => handleScrollTo(e, '#product')} className="learn-more-btn type1">
-                    <span className="btn-txt">Learn More</span>
+                 <a href="#product" onClick={(e) => handleScrollTo(e, '#product')} className="learn-more-btn">
+                    Learn More
                 </a>
             </div>
         </div>
