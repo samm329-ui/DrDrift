@@ -1023,7 +1023,7 @@
     appearance: none;
     background-color: transparent;
     border: 0.125em solid hsl(var(--foreground));
-    border-radius: 0.9375em;
+    border-radius: 100px;
     box-sizing: border-box;
     color: hsl(var(--foreground));
     cursor: pointer;
@@ -1231,5 +1231,7 @@
 
 
 
+
+    
 
     
