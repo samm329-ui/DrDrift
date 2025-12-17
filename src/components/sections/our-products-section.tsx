@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useRef, useState, useMemo } from 'react';
@@ -118,7 +117,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
       className={cn(
         "box-border w-[280px] md:w-72 flex flex-col justify-between cursor-pointer",
         "bg-white/40 dark:bg-gray-500/20",
-        "border border-white/50 dark:border-transparent",
+        "border border-transparent",
         "shadow-lg shadow-black/20",
         "backdrop-blur-sm",
         "rounded-[17px]",
@@ -160,6 +159,9 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
         
         <div className="flex flex-col gap-3 text-left p-3">
             <span className="text-foreground font-bold text-sm">{product.name}</span>
+            <p className="text-muted-foreground text-xs h-10 overflow-hidden">
+                {product.description}
+            </p>
             
             <div className="flex items-center gap-2 w-full">
               <AddToCartButton
@@ -182,7 +184,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
               <span className="font-bold text-xl text-primary">
                 Rs. {product.price}
               </span>
-              <span className="text-base text-muted-foreground animate-strike-through">
+              <span className="text-base text-muted-foreground line-through">
                 Rs. {originalPrice}
               </span>
             </div>
