@@ -110,7 +110,8 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
         "rounded-[17px]",
         "transition-all duration-500",
         "hover:border-black/50 dark:hover:border-white/80 hover:scale-105",
-        "active:scale-95 active:rotate-[1.7deg]"
+        "active:scale-95 active:rotate-[1.7deg]",
+        "md:w-72 md:h-auto snap-center"
       )}
     >
         {isNavigating && (
@@ -118,7 +119,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
                 <Spinner />
             </div>
         )}
-        <div className="w-full h-24 rounded-lg overflow-hidden">
+        <div className="w-full h-24 md:h-auto md:aspect-[4/5] rounded-lg overflow-hidden">
             <Carousel
                 plugins={[autoplayPlugin.current]}
                 className="w-full h-full"
@@ -194,12 +195,12 @@ const OurProductsSection = () => {
           A range of products to keep your home shining.
         </p>
       </div>
-       <div 
+       <div
           ref={scrollContainerRef}
-          className="mt-12 flex flex-nowrap gap-4 pb-4 overflow-x-auto no-scrollbar md:grid md:grid-cols-3 md:gap-6 md:justify-items-center -ml-4 pl-8 md:ml-0 md:px-4"
+          className="mt-12 flex flex-nowrap gap-4 pb-4 overflow-x-auto no-scrollbar md:grid md:grid-cols-3 md:gap-6 md:justify-items-center md:container md:mx-auto snap-x snap-mandatory"
         >
               {productsToShow.map((item, index) => (
-                  <div key={index} className="flex-shrink-0 md:w-auto flex justify-center">
+                  <div key={index} className="flex-shrink-0 md:w-auto flex justify-center first:pl-4 last:pr-4 md:first:pl-0 md:last:pr-0 snap-center">
                     <ProductCard product={item} />
                   </div>
               ))}
