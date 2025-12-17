@@ -139,7 +139,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
                   alt={`${product.name} image ${index + 1}`}
                   width={600}
                   height={600}
-                  className="w-full h-auto object-cover transition-transform duration-300 md:group-hover:scale-105 rounded-t-[17px] aspect-square"
+                  className="w-full h-auto object-cover transition-transform duration-300 md:group-hover:scale-105 rounded-t-[17px] aspect-[4/5]"
                   data-ai-hint={product.imageHint}
                 />
               </CarouselItem>
@@ -202,8 +202,8 @@ const OurProductsSection = () => {
 
   const handleScrollRight = () => {
     if (scrollContainerRef.current) {
-      const cardWidth = 256; // approx width of a card in px (w-64)
-      const gap = 24; // gap between cards (gap-6)
+      const cardWidth = 208; // w-52
+      const gap = 24; // gap-6
       scrollContainerRef.current.scrollBy({ left: cardWidth + gap, behavior: 'smooth' });
     }
   };
