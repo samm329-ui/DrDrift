@@ -18,6 +18,7 @@ import type { SiteProduct, Review } from '@/types';
 import { cn } from '@/lib/utils';
 import { siteProducts } from '@/lib/config';
 import { AddToCartButton } from '../ui/add-to-cart-button';
+import { PackButton } from '../ui/pack-button';
 
 const Spinner = () => (
     <div className="spinner center">
@@ -95,6 +96,19 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
     buyNow(item, 1);
   };
 
+  const handleBuyPackOf8 = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const discountedPrice = Math.round(product.price * 0.92);
+    const item = {
+      id: `${product.id}-pack8`,
+      name: `${product.name} (Pack of 8)`,
+      price: discountedPrice,
+      imageUrl: product.imageUrls[0],
+    };
+    buyNow(item, 8);
+  };
+
   const originalPrice = Math.round(product.price * 1.25);
 
   return (
@@ -104,7 +118,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
       className={cn(
         "box-border w-[280px] md:w-72 flex flex-col justify-between cursor-pointer",
         "bg-white/40 dark:bg-gray-500/20",
-        "border border-white/50",
+        "border border-white/50 dark:border-transparent",
         "shadow-lg shadow-black/20",
         "backdrop-blur-sm",
         "rounded-[17px]",
@@ -144,9 +158,26 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
             </Carousel>
         </div>
         
-        <div className="flex flex-col gap-2 text-left p-3">
+        <div className="flex flex-col gap-3 text-left p-3">
             <span className="text-foreground font-bold text-sm">{product.name}</span>
-            <p className="text-xs text-muted-foreground">{product.description}</p>
+            
+            <div className="flex items-center gap-2 w-full">
+              <AddToCartButton
+                onClick={handleAddToCart}
+                className="w-full h-9 text-xs flex-1"
+              />
+              <button
+                onClick={handleBuyNow}
+                className="hero-buy-now-btn w-full justify-center text-black h-9 !py-0 text-xs flex-1"
+              >
+                <span>Buy Now</span>
+              </button>
+            </div>
+
+            <div className="h-12" onClick={(e) => e.stopPropagation()}>
+              <PackButton onClick={(e) => handleBuyPackOf8(e)} />
+            </div>
+
             <div className="flex items-baseline justify-start gap-2">
               <span className="font-bold text-xl text-primary">
                 Rs. {product.price}
@@ -155,20 +186,8 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
                 Rs. {originalPrice}
               </span>
             </div>
+
             <ProductRating productId={product.id} />
-        </div>
-        
-        <div className="flex items-center gap-2 w-full p-3 pt-0">
-            <AddToCartButton
-              onClick={handleAddToCart}
-              className="w-full h-9 text-xs flex-1"
-            />
-            <button
-              onClick={handleBuyNow}
-              className="hero-buy-now-btn w-full justify-center text-black h-9 !py-0 text-xs flex-1"
-            >
-              <span>Buy Now</span>
-            </button>
         </div>
     </div>
   );
