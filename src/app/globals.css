@@ -1020,44 +1020,65 @@
   
   /* Learn More Button */
   .learn-more-btn {
-    font-size: 18px;
-    color: #e1e1e1;
-    font-family: inherit;
-    font-weight: 800;
-    cursor: pointer;
+    height: 50px;
+    width: 200px;
     position: relative;
-    border: none;
-    background: none;
-    text-transform: uppercase;
-    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
-    transition-duration: 400ms;
-    transition-property: color;
+    background-color: transparent;
+    cursor: pointer;
+    border: 2px solid hsl(var(--foreground));
+    overflow: hidden;
+    border-radius: 30px;
+    color: hsl(var(--foreground));
+    transition: all 0.5s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-decoration: none;
   }
   
-  .learn-more-btn:focus,
-  .learn-more-btn:hover {
-    color: #fff;
+  .learn-more-btn .btn-txt {
+    z-index: 1;
+    font-weight: 800;
+    letter-spacing: 4px;
   }
   
-  .learn-more-btn:focus:after,
-  .learn-more-btn:hover:after {
-    width: 100%;
-    left: 0%;
-  }
-  
-  .learn-more-btn:after {
+  .learn-more-btn.type1::after {
     content: "";
-    pointer-events: none;
-    bottom: -2px;
-    left: 50%;
     position: absolute;
-    width: 0%;
-    height: 2px;
-    background-color: hsl(var(--primary));
-    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
-    transition-duration: 400ms;
-    transition-property: width, left;
+    left: 0;
+    top: 0;
+    transition: all 0.5s ease-in-out;
+    background-color: hsl(var(--foreground));
+    border-radius: 30px;
+    visibility: hidden;
+    height: 10px;
+    width: 10px;
+    z-index: -1;
+  }
+  
+  .learn-more-btn:hover {
+    box-shadow: 1px 1px 200px hsl(var(--foreground));
+    color: hsl(var(--background));
+    border-color: transparent;
+  }
+  
+  .dark .learn-more-btn {
+    border-color: hsl(var(--background));
+    color: hsl(var(--background));
+  }
+  
+  .dark .learn-more-btn.type1::after {
+    background-color: hsl(var(--background));
+  }
+
+  .dark .learn-more-btn:hover {
+    color: hsl(var(--foreground));
+    box-shadow: 1px 1px 200px hsl(var(--background));
+  }
+
+  .learn-more-btn.type1:hover::after {
+    visibility: visible;
+    transform: scale(100) translateX(2px);
   }
 }
 
@@ -1209,6 +1230,7 @@
     
 
     
+
 
 
 
