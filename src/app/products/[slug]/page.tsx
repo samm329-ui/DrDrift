@@ -159,7 +159,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
 
             <Accordion type="single" collapsible className="w-full space-y-2">
               <AccordionItem value="features">
-                <AccordionTrigger className="text-lg font-semibold font-headline px-4 py-3 bg-muted/50 rounded-md">
+                <AccordionTrigger className="text-lg px-4 py-3 bg-muted/50 rounded-md">
                   Features
                 </AccordionTrigger>
                 <AccordionContent className="pt-4">
@@ -174,7 +174,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 </AccordionContent>
               </AccordionItem>
               <AccordionItem value="review">
-                <AccordionTrigger className="text-lg font-semibold font-headline px-4 py-3 bg-muted/50 rounded-md">
+                <AccordionTrigger className="text-lg px-4 py-3 bg-muted/50 rounded-md">
                   Write a review
                 </AccordionTrigger>
                 <AccordionContent className="pt-4">
