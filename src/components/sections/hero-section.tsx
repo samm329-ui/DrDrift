@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { useApp } from '@/hooks/use-app';
-import { Button } from '@/components/ui/button';
 import { siteConfig, siteProducts } from '@/lib/config';
 import { cn } from '@/lib/utils';
 import TwitterIcon from '@/components/icons/twitter';
@@ -99,10 +98,8 @@ const HeroSection = () => {
                     <path d="M16.01 11H4v2h12.01v3L20 12l-3.99-4v3z" fill="currentColor"/>
                   </svg>
                 </button>
-                 <a href="#product" onClick={(e) => handleScrollTo(e, '#product')}>
-                    <Button variant="link" className="text-white">
-                        Learn More
-                    </Button>
+                 <a href="#product" onClick={(e) => handleScrollTo(e, '#product')} className="learn-more-btn">
+                    Learn More
                 </a>
             </div>
         </div>
