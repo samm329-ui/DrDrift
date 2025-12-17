@@ -8,6 +8,7 @@ import TwitterIcon from '@/components/icons/twitter';
 import InstagramIcon from '@/components/icons/instagram';
 import Link from 'next/link';
 import SearchBar from '../search-bar';
+import { Button } from '@/components/ui/button';
 
 const SocialLinks = () => (
     <div className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 transform">
@@ -32,7 +33,7 @@ const HeroSection = () => {
     const item = {
       id: currentProduct.id,
       name: currentProduct.name,
-      price: 0, // This should probably be fetched from siteProducts
+      price: 0,
       imageUrl: currentProduct.productImageUrl,
     };
     const productDetails = siteConfig.products.find(p => p.id === currentProduct.id);
@@ -41,6 +42,17 @@ const HeroSection = () => {
     }
     buyNow(item, 1);
   };
+  
+  const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }
+  };
+
 
   return (
     <section id="hero" className="relative h-screen w-full overflow-hidden p-0">
@@ -87,6 +99,11 @@ const HeroSection = () => {
                     <path d="M16.01 11H4v2h12.01v3L20 12l-3.99-4v3z" fill="currentColor"/>
                   </svg>
                 </button>
+                 <a href="#product" onClick={(e) => handleScrollTo(e, '#product')}>
+                    <Button variant="link" className="text-white">
+                        Learn More
+                    </Button>
+                </a>
             </div>
         </div>
       </div>
