@@ -79,7 +79,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
       <Card 
         id={`product-card-${product.slug}`} 
         onClick={(e) => handleNavigate(e, `/products/${product.slug}`)}
-        className="text-left flex flex-col group w-[320px] sm:w-[380px] transition-all duration-500 bg-gray-200/50 dark:bg-gray-500/10 shadow-glass backdrop-blur-md rounded-[17px] hover:scale-105 active:scale-95 active:rotate-[1.7deg] cursor-pointer border-0"
+        className="text-left flex flex-col group w-[320px] sm:w-[380px] transition-all duration-500 bg-background/50 dark:bg-background/10 shadow-glass backdrop-blur-md rounded-[17px] hover:scale-105 active:scale-95 active:rotate-[1.7deg] cursor-pointer border-0"
     >
         <div className="relative rounded-t-[17px]">
             {isNavigating && (
@@ -118,16 +118,16 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
         <div className="flex flex-col flex-grow p-4 bg-transparent rounded-b-[17px]">
           <CardHeader className="p-0">
             <CardTitle className="font-headline text-lg">
-                <span className="hover:text-primary transition-colors z-30 relative text-black dark:text-white">
+                <span className="hover:text-primary transition-colors z-30 relative text-foreground">
                     {product.name}
                 </span>
             </CardTitle>
           </CardHeader>
           <CardContent className="p-0 mt-2 flex-grow">
-            <p className="text-sm text-black/60 dark:text-white/60 line-clamp-2">{product.description}</p>
+            <p className="text-sm text-muted-foreground line-clamp-2">{product.description}</p>
              <div className="flex items-baseline gap-2 mt-4">
                 <span className="font-bold text-lg text-primary">Rs. {product.price}</span>
-                <span className="text-sm text-black/60 dark:text-white/60 line-through">Rs. {originalPrice}</span>
+                <span className="text-sm text-muted-foreground line-through">Rs. {originalPrice}</span>
               </div>
           </CardContent>
           <CardFooter className='p-0 mt-auto pt-4'>
@@ -181,7 +181,7 @@ const OurProductsSection = () => {
   };
 
   return (
-    <section id="our-products" className="py-20 md:py-24 bg-wavy-2">
+    <section id="our-products" className="py-20 md:py-24 bg-background-alt">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 flex flex-col h-full">
         <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl font-headline text-foreground">
           Our Products
@@ -212,3 +212,5 @@ const OurProductsSection = () => {
 };
 
 export default OurProductsSection;
+
+    
