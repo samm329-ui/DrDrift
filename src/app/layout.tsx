@@ -10,6 +10,7 @@ import Footer from '@/components/footer';
 import { FirebaseClientProvider } from '@/firebase';
 import AuthProvider from '@/components/auth-provider';
 import Loader from '@/components/loader';
+import BackToTopButton from '@/components/back-to-top-button';
 
 export const metadata: Metadata = {
   title: 'Drift Dynamic',
@@ -43,6 +44,7 @@ export default function RootLayout({
               </div>
               <CartDrawer />
               <Toaster />
+              <BackToTopButton />
             </AuthProvider>
           </AppContextProvider>
         </FirebaseClientProvider>
@@ -50,3 +52,5 @@ export default function RootLayout({
     </html>
   );
 }
+
+    
