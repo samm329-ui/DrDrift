@@ -179,7 +179,7 @@ const OurProductsSection = () => {
   const handleScrollRight = () => {
     if (scrollContainerRef.current) {
       const cardWidth = 190;
-      const gap = 24; // gap-6
+      const gap = 16; // Corresponds to gap-4
       scrollContainerRef.current.scrollBy({ left: cardWidth + gap, behavior: 'smooth' });
     }
   };
@@ -196,7 +196,7 @@ const OurProductsSection = () => {
       </div>
        <div 
           ref={scrollContainerRef}
-          className="mt-12 flex flex-nowrap gap-6 pb-4 overflow-x-auto no-scrollbar md:grid md:grid-cols-3 md:gap-8 md:justify-items-center -ml-4 pl-8 md:ml-0 md:px-4"
+          className="mt-12 flex flex-nowrap gap-4 pb-4 overflow-x-auto no-scrollbar md:grid md:grid-cols-3 md:gap-6 md:justify-items-center -ml-4 pl-8 md:ml-0 md:px-4"
         >
               {productsToShow.map((item, index) => (
                   <div key={index} className="flex-shrink-0 md:w-auto flex justify-center">
