@@ -153,7 +153,7 @@ const OurProductsSection = () => {
   const productsToShow = searchQuery ? filteredProducts : siteProducts;
 
   return (
-    <section id="our-products" className="bg-background py-20 md:py-24">
+    <section id="our-products" className="bg-background-alt py-20 md:py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 flex flex-col h-full">
         <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl font-headline">
           Our Products
@@ -162,7 +162,7 @@ const OurProductsSection = () => {
           A range of products to keep your home shining.
         </p>
         <div className="mt-12 flex-grow flex justify-center pb-4 -mx-4 px-4 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            <div className="flex flex-wrap justify-center gap-8">
+            <div className="grid grid-flow-col auto-cols-max justify-center gap-8">
               {productsToShow.map((item, index) => (
                   <ProductCard key={index} product={item} />
               ))}
