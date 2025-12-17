@@ -130,8 +130,8 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
                 <span className="text-sm text-black/60 dark:text-white/60 line-through">Rs. {originalPrice}</span>
               </div>
           </CardContent>
-          <CardFooter className='p-0 mt-4'>
-            <div className='flex items-center gap-2 w-full mt-2'>
+          <CardFooter className='p-0 mt-auto pt-4'>
+            <div className='flex items-center gap-2 w-full'>
                 <Button variant="outline" size="sm" className='w-full' onClick={handleAddToCart}>
                 <ShoppingCart className='mr-2 h-4 w-4'/>
                 Add to Cart
