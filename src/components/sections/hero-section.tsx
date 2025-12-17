@@ -89,7 +89,7 @@ const HeroSection = () => {
             <p className="mt-6 max-w-prose text-base text-white/70">{currentProduct.description}</p>
             <div className="mt-8 flex flex-col items-start gap-4">
                  <button onClick={handleBuyNow} className="hero-buy-now-btn text-black">
-                  <span>Buy Now</span>
+                  <span>Shop Now</span>
                   <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="none">
                     <path d="M0 0h24v24H0V0z" fill="none"/>
                     <path d="M16.01 11H4v2h12.01v3L20 12l-3.99-4v3z" fill="currentColor"/>
