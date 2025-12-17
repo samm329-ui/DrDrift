@@ -22,7 +22,7 @@ export default {
         code: ['monospace'],
       },
       boxShadow: {
-        strong: 'inset 0 -3em 3em rgba(0,0,0,0.1), 0 0 0 2px rgb(190, 190, 190), 0.3em 0.3em 1em rgba(0,0,0,0.3)',
+        strong: 'inset 0 -3em 3em rgba(0,0,0,0.05), 0 0 0 1px rgb(220, 220, 220), 0.2em 0.2em 0.8em rgba(0,0,0,0.15)',
       },
       transitionTimingFunction: {
         'custom-bezier': 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
