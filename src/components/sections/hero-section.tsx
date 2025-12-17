@@ -78,11 +78,11 @@ const HeroSection = () => {
             <p className="mt-4 text-lg md:text-xl text-white/80">{currentProduct.subtitle}</p>
             <p className="mt-6 max-w-prose text-base text-white/70">{currentProduct.description}</p>
             <div className="mt-8 flex flex-col items-start gap-4">
-                <Button variant="outline" className="border-2 border-white bg-transparent text-white hover:bg-white hover:text-black" onClick={(e) => handleScrollTo(e, '#product')}>
-                    Learn More
-                </Button>
                 <Button onClick={(e) => handleScrollTo(e, '#our-products')} className="bg-white text-black hover:bg-white/90">
                   Buy Now
+                </Button>
+                <Button variant="outline" className="border-2 border-white bg-transparent text-white hover:bg-white hover:text-black" onClick={(e) => handleScrollTo(e, '#product')}>
+                    Learn More
                 </Button>
             </div>
         </div>
