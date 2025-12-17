@@ -16,7 +16,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay"
-import { Star, MessageCircle } from 'lucide-react';
+import { Star, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useApp } from '@/hooks/use-app';
@@ -24,12 +24,6 @@ import type { SiteProduct, Review } from '@/types';
 import { cn } from '@/lib/utils';
 import { siteProducts } from '@/lib/config';
 import { AddToCartButton } from '../ui/add-to-cart-button';
-import {
-    Accordion,
-    AccordionContent,
-    AccordionItem,
-    AccordionTrigger,
-  } from '@/components/ui/accordion';
 
 const Spinner = () => (
     <div className="spinner center">
@@ -220,7 +214,7 @@ const OurProductsSection = () => {
           className="mt-12 flex flex-nowrap gap-6 pb-4 overflow-x-auto no-scrollbar md:justify-center"
         >
               {productsToShow.map((item, index) => (
-                  <div key={index} className={cn("w-64 md:w-72 flex-shrink-0", index === 0 && "ml-4 md:ml-0")}>
+                  <div key={index} className={cn("w-64 flex-shrink-0", index === 0 && "ml-4", "md:w-72 md:ml-0")}>
                     <ProductCard product={item} />
                   </div>
               ))}
@@ -229,6 +223,12 @@ const OurProductsSection = () => {
                     No products found.
                 </div>
             )}
+        </div>
+        <div className="mt-4 text-center md:hidden">
+            <p className="flex items-center justify-center gap-2 text-sm text-muted-foreground animate-pulse">
+                Swipe right for more
+                <ArrowRight className="h-4 w-4" />
+            </p>
         </div>
     </section>
   );
