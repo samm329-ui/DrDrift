@@ -26,7 +26,7 @@ const faqItems = [
 
 const FaqSection = () => {
     return (
-        <section id="faq" className="py-20 md:py-32 bg-background-alt">
+        <section id="faq" className="py-20 md:py-32 bg-secondary">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="text-center mb-12">
                     <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl font-headline text-foreground">Frequently Asked Questions</h2>
