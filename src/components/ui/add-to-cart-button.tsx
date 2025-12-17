@@ -4,14 +4,14 @@ import { ShoppingCart } from 'lucide-react';
 import React from 'react';
 import { cn } from '@/lib/utils';
 
-interface AddToCartButtonProps {
+interface AddToCartButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   onClick: (e: React.MouseEvent) => void;
   className?: string;
 }
 
-export const AddToCartButton = ({ onClick, className }: AddToCartButtonProps) => {
+export const AddToCartButton = ({ onClick, className, ...props }: AddToCartButtonProps) => {
   return (
-    <button className={cn('add-to-cart-button', className)} onClick={onClick}>
+    <button className={cn('add-to-cart-button', className)} onClick={onClick} {...props}>
       <div className="svg-wrapper-1">
         <div className="svg-wrapper">
           <ShoppingCart />
@@ -21,3 +21,5 @@ export const AddToCartButton = ({ onClick, className }: AddToCartButtonProps) =>
     </button>
   );
 };
+
+    

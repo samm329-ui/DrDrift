@@ -16,14 +16,20 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay"
-import { ArrowRight, ShoppingCart, Star } from 'lucide-react';
+import { Star, MessageCircle } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useApp } from '@/hooks/use-app';
-import type { SiteProduct } from '@/types';
+import type { SiteProduct, Review } from '@/types';
 import { cn } from '@/lib/utils';
 import { siteProducts } from '@/lib/config';
 import { AddToCartButton } from '../ui/add-to-cart-button';
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+  } from '@/components/ui/accordion';
 
 const Spinner = () => (
     <div className="spinner center">
@@ -64,13 +70,43 @@ const ProductRating = ({ productId }: { productId: string }) => {
     )
 }
 
+const CommentSection = ({ reviews, onAddComment }: { reviews: Review[], onAddComment: () => void }) => {
+    return (
+      <Accordion type="single" collapsible className="w-full">
+        <AccordionItem value="comments" className="border-none">
+          <AccordionTrigger className="p-0 pt-2 text-sm justify-center">
+            <div className="flex items-center gap-1 text-muted-foreground hover:text-primary">
+                <MessageCircle className="h-4 w-4" />
+                <span>Comments ({reviews.length})</span>
+            </div>
+          </AccordionTrigger>
+          <AccordionContent className="pt-2">
+            <div className="space-y-2 text-left">
+              {reviews.slice(0, 2).map(review => (
+                <div key={review.id} className="text-xs p-2 rounded-md bg-muted/50">
+                  <p className="font-bold">{review.name}</p>
+                  <p className="text-muted-foreground line-clamp-2">{review.text}</p>
+                </div>
+              ))}
+              <button onClick={onAddComment} className="text-xs font-bold text-primary w-full text-center py-1">
+                Add comment
+              </button>
+            </div>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    );
+  };
+
 const ProductCard = ({ product }: { product: SiteProduct }) => {
-  const { addToCart, buyNow } = useApp();
+  const { addToCart, buyNow, reviews } = useApp();
   const autoplayPlugin = useRef(Autoplay({ delay: 2000 + Math.random() * 1000, stopOnInteraction: true }));
   const router = useRouter();
   const [isNavigating, setIsNavigating] = useState(false);
   
   const originalPrice = Math.round(product.price * 1.25);
+
+  const productReviews = useMemo(() => reviews.filter(r => r.productId === product.id), [reviews, product.id]);
 
   const handleNavigate = (e: React.MouseEvent, href: string) => {
     e.preventDefault();
@@ -107,7 +143,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
       <Card 
         id={`product-card-${product.slug}`} 
         onClick={(e) => handleNavigate(e, `/products/${product.slug}`)}
-        className="text-left flex flex-col group w-[320px] sm:w-[380px] transition-all duration-500 bg-background/50 dark:bg-background/10 shadow-glass backdrop-blur-md rounded-[17px] hover:scale-105 active:scale-95 active:rotate-[1.7deg] cursor-pointer border-0"
+        className="text-left flex flex-col group w-full md:w-[380px] transition-all duration-500 bg-background/50 dark:bg-background/10 shadow-glass backdrop-blur-md rounded-[17px] md:hover:scale-105 active:scale-95 active:rotate-[1.7deg] cursor-pointer border-0"
     >
         <div className="relative rounded-t-[17px]">
             {isNavigating && (
@@ -132,7 +168,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
                           alt={`${product.name} image ${index + 1}`}
                           width={600}
                           height={400}
-                          className="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-105 rounded-t-[17px]"
+                          className="w-full h-40 md:h-80 object-cover transition-transform duration-300 md:group-hover:scale-105 rounded-t-[17px]"
                           data-ai-hint={product.imageHint}
                       />
                   </CarouselItem>
@@ -143,31 +179,32 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
             </Carousel>
         </div>
 
-        <div className="flex flex-col flex-grow p-4 bg-transparent rounded-b-[17px]">
+        <div className="flex flex-col flex-grow p-3 md:p-4 bg-transparent rounded-b-[17px]">
           <CardHeader className="p-0">
-            <CardTitle className="font-headline text-lg">
+            <CardTitle className="font-headline text-base md:text-lg">
                 <span className="hover:text-primary transition-colors z-30 relative text-foreground">
                     {product.name}
                 </span>
             </CardTitle>
           </CardHeader>
           <CardContent className="p-0 mt-2 flex-grow">
-            <p className="text-sm text-muted-foreground line-clamp-2">{product.description}</p>
+            <p className="text-xs md:text-sm text-muted-foreground line-clamp-2">{product.description}</p>
              <div className="flex items-center justify-between mt-2">
                 <div className="flex items-baseline gap-2">
-                    <span className="font-bold text-lg text-primary">Rs. {product.price}</span>
-                    <span className="text-sm text-muted-foreground line-through">Rs. {originalPrice}</span>
+                    <span className="font-bold text-base md:text-lg text-primary">Rs. {product.price}</span>
+                    <span className="text-xs md:text-sm text-muted-foreground line-through">Rs. {originalPrice}</span>
                 </div>
                 <ProductRating productId={product.id} />
               </div>
           </CardContent>
-          <CardFooter className='p-0 mt-auto pt-4'>
+          <CardFooter className='p-0 mt-auto pt-2 md:pt-4 flex-col items-start'>
             <div className='flex items-center gap-2 w-full'>
-                <AddToCartButton onClick={handleAddToCart} className="flex-grow basis-0 justify-center" />
-                <button onClick={handleBuyNow} className="hero-buy-now-btn flex-grow basis-0 justify-center text-black">
+                <AddToCartButton onClick={handleAddToCart} className="flex-grow basis-0 justify-center !text-[11px] md:!text-[13px] !py-2 !h-auto" />
+                <button onClick={handleBuyNow} className="hero-buy-now-btn flex-grow basis-0 justify-center text-black !text-[11px] md:!text-[13px] !py-2 !px-3 h-auto">
                   <span>Buy Now</span>
                 </button>
             </div>
+            <CommentSection reviews={productReviews} onAddComment={(e) => handleNavigate(e, `/products/${product.slug}`)} />
           </CardFooter>
         </div>
       </Card>
@@ -223,13 +260,13 @@ const OurProductsSection = () => {
           onMouseLeave={handleMouseLeaveOrUp}
           onMouseUp={handleMouseLeaveOrUp}
           onMouseMove={handleMouseMove}
-          className="mt-12 grid grid-flow-col auto-cols-max justify-start pb-4 -mx-4 px-4 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden cursor-grab gap-8"
+          className="mt-12 grid grid-cols-3 md:grid-flow-col md:auto-cols-max md:justify-start gap-2 md:gap-8 pb-4 -mx-4 px-4 md:overflow-x-auto md:[scrollbar-width:none] md:[&::-webkit-scrollbar]:hidden md:cursor-grab"
         >
               {productsToShow.map((item, index) => (
                   <ProductCard key={index} product={item} />
               ))}
              {productsToShow.length === 0 && (
-                <div className="w-full text-center text-muted-foreground py-10">
+                <div className="w-full text-center text-muted-foreground py-10 col-span-3">
                     No products found.
                 </div>
             )}
@@ -240,3 +277,5 @@ const OurProductsSection = () => {
 };
 
 export default OurProductsSection;
+
+    
