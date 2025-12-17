@@ -1,5 +1,6 @@
 import { Leaf, FlaskConical, Droplets } from "lucide-react";
 import Link from 'next/link';
+import { cn } from "@/lib/utils";
 
 const ingredients = [
     {
@@ -21,7 +22,7 @@ const ingredients = [
 
 const IngredientsSection = () => {
     return (
-        <section id="ingredients" className="bg-background-alt dark:bg-background py-20 md:py-32">
+        <section id="ingredients" className={cn("bg-background-alt py-20 md:py-32", "bg-pattern-3")}>
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
                 <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl font-headline">The Science of Clean</h2>
                 <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground">

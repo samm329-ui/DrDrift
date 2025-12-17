@@ -80,7 +80,7 @@
         transparent 0,
         #ffffff 30px
       ),
-      repeating-linear-gradient(rgba(230, 230, 230, 1), rgba(230, 230, 230, 1));
+      repeating-linear-gradient(rgba(230, 230, 230, 0.4), rgba(230, 230, 230, 0.4));
   }
 
   .dark .bg-pattern-3 {
@@ -90,7 +90,7 @@
         transparent 0,
         #2c2c2e 30px
       ),
-      repeating-linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05));
+      repeating-linear-gradient(rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.03));
   }
   
   .bg-wavy-1 {
