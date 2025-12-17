@@ -173,7 +173,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
                   alt={`${product.name} image ${index + 1}`}
                   width={600}
                   height={400}
-                  className="w-full h-auto object-cover transition-transform duration-300 md:group-hover:scale-105 rounded-t-[17px] aspect-[4/3] md:aspect-auto md:h-80"
+                  className="w-full h-auto object-cover transition-transform duration-300 md:group-hover:scale-105 rounded-t-[17px] aspect-square"
                   data-ai-hint={product.imageHint}
                 />
               </CarouselItem>
@@ -248,10 +248,10 @@ const OurProductsSection = () => {
           A range of products to keep your home shining.
         </p>
         <div 
-          className="mt-12 flex flex-nowrap gap-4 pb-4 md:gap-8 overflow-x-auto no-scrollbar"
+          className="mt-12 flex flex-nowrap gap-4 pb-4 md:gap-6 overflow-x-auto no-scrollbar"
         >
               {productsToShow.map((item, index) => (
-                  <div key={index} className="w-1/3 flex-shrink-0 md:w-auto md:flex-shrink-0">
+                  <div key={index} className="w-[calc(33.333%-0.75rem)] flex-shrink-0 md:w-64 md:flex-shrink-0">
                     <ProductCard product={item} />
                   </div>
               ))}
