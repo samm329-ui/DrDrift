@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -53,22 +54,22 @@ const SearchBar = () => {
 
   return (
     <form onSubmit={(e) => e.preventDefault()} className="relative w-full">
-      <div className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground z-10">
-        <Search />
+      <div className="flex items-center w-full max-w-md mx-auto bg-gray-700/50 dark:bg-gray-800/60 rounded-lg overflow-hidden backdrop-blur-sm border border-white/20">
+        <Search className="h-5 w-5 mx-3 text-gray-300 dark:text-gray-400" />
+        <Input
+            type="search"
+            placeholder="Search products..."
+            className="w-full bg-transparent text-white placeholder:text-gray-300 dark:placeholder:text-gray-400 border-0 focus-visible:ring-0 focus-visible:ring-offset-0 h-10 text-base !p-0"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setTimeout(() => setIsFocused(false), 200)}
+            onKeyDown={handleKeyDown}
+            autoComplete="off"
+        />
       </div>
-      <Input
-        type="search"
-        placeholder="Search products..."
-        className="w-full bg-background/50 text-foreground placeholder:text-muted-foreground pl-9 pr-3 py-2 border-2 border-transparent focus-visible:ring-primary/50 text-sm h-9"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setTimeout(() => setIsFocused(false), 200)}
-        onKeyDown={handleKeyDown}
-        autoComplete="off"
-      />
       {showSuggestions && (
-        <div className="absolute top-full left-0 right-0 z-50 mt-1 bg-background border border-border rounded-md shadow-lg max-h-96 overflow-y-auto">
+        <div className="absolute top-full left-0 right-0 z-50 mt-2 bg-background border border-border rounded-md shadow-lg max-h-96 overflow-y-auto">
           {filteredProducts.length > 0 ? (
             <ul>
               {filteredProducts.map((product, index) => (
