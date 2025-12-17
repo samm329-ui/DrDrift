@@ -220,7 +220,7 @@ const OurProductsSection = () => {
       </div>
        <div 
           ref={scrollContainerRef}
-          className="mt-12 flex flex-nowrap gap-6 pb-4 overflow-x-auto no-scrollbar md:justify-center -ml-4 pl-8 md:ml-0 md:pl-0"
+          className="mt-12 flex flex-nowrap gap-6 pb-4 overflow-x-auto no-scrollbar md:grid md:grid-cols-3 md:gap-8 md:justify-center -ml-4 pl-8 md:ml-0 md:px-4"
         >
               {productsToShow.map((item, index) => (
                   <div key={index} className="w-52 flex-shrink-0 md:w-72">
