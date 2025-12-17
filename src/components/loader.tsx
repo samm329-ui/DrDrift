@@ -2,7 +2,18 @@
 import { useApp } from '@/hooks/use-app';
 import { siteConfig } from '@/lib/config';
 import { cn } from '@/lib/utils';
-import { Loader2 } from 'lucide-react';
+
+const TypingLoader = () => (
+  <div className="typing-indicator">
+    <div className="typing-circle"></div>
+    <div className="typing-circle"></div>
+    <div className="typing-circle"></div>
+    <div className="typing-shadow"></div>
+    <div className="typing-shadow"></div>
+    <div className="typing-shadow"></div>
+  </div>
+);
+
 
 const Loader = () => {
   const { isLoading } = useApp();
@@ -17,8 +28,8 @@ const Loader = () => {
       <h1 className="font-headline text-4xl font-bold tracking-wider text-primary">
         {siteConfig.brandName}
       </h1>
-      <div className="mt-8 flex items-center space-x-2">
-        <Loader2 className="h-6 w-6 animate-spin text-primary" />
+      <div className="mt-8 flex flex-col items-center space-y-4">
+        <TypingLoader />
         <p className="text-muted-foreground">Initializing experience...</p>
       </div>
     </div>
