@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 
 const RippleLoader = () => (
     <div className="loader">
-      <div className="logo absolute inset-0 flex items-center justify-center text-5xl font-extrabold font-headline tracking-widest text-primary opacity-100" style={{ textShadow: '0 0 10px hsla(var(--primary), 0.5)'}}>
+      <div className="logo absolute inset-0 flex items-center justify-center whitespace-nowrap text-5xl font-extrabold font-headline tracking-widest text-primary opacity-100" style={{ textShadow: '0 0 10px hsla(var(--primary), 0.5)'}}>
         {siteConfig.brandName}
       </div>
       <div className="box" style={{'--i': 1} as React.CSSProperties}></div>
