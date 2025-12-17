@@ -95,9 +95,9 @@
     @apply block p-[30px_20px] bg-[#121212] overflow-hidden relative no-underline;
   }
 
-  .ag-courses-item_link:hover,
-  .ag-courses-item_link:hover .ag-courses-item_date {
-    @apply text-[#121212];
+  .ag-courses-item_link:hover .ag-courses-item_title,
+  .ag-courses-item_link:hover .ag-courses-item_date-box {
+    @apply text-primary-foreground;
   }
   .ag-courses-item_link:hover .ag-courses-item_bg {
     transform: scale(10);
