@@ -19,7 +19,7 @@ export default {
     extend: {
       fontFamily: {
         body: ['Roboto', 'system-ui', 'sans-serif'],
-        headline: ['Roboto', 'system-ui', 'sans-serif'],
+        headline: ['Montserrat', 'system-ui', 'sans-serif'],
         code: ['monospace'],
       },
       boxShadow: {
