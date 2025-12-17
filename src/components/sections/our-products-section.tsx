@@ -1,8 +1,7 @@
 
-
 'use client';
 
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useMemo } from 'react';
 import {
   Card,
   CardContent,
@@ -19,9 +18,8 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay"
-import { ArrowRight, ShoppingCart } from 'lucide-react';
+import { ArrowRight, ShoppingCart, Star } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useApp } from '@/hooks/use-app';
 import type { SiteProduct } from '@/types';
@@ -35,6 +33,37 @@ const Spinner = () => (
       ))}
     </div>
   );
+
+const ProductRating = ({ productId }: { productId: string }) => {
+    const { reviews } = useApp();
+
+    const productReviews = useMemo(() => reviews.filter(r => r.productId === productId), [reviews, productId]);
+
+    if (productReviews.length === 0) {
+        return (
+            <div className="flex items-center gap-1">
+                <Star className="h-4 w-4 text-muted-foreground/50" />
+                <span className="text-sm text-muted-foreground">No reviews yet</span>
+            </div>
+        )
+    }
+
+    const avgRating = productReviews.reduce((acc, r) => acc + r.rating, 0) / productReviews.length;
+
+    return (
+        <div className="flex items-center gap-2">
+            <div className="flex items-center gap-0.5 text-yellow-400">
+                {[...Array(5)].map((_, i) => (
+                    <Star
+                        key={i}
+                        className={cn("h-4 w-4", avgRating > i ? "fill-current" : "")}
+                    />
+                ))}
+            </div>
+            <span className="text-sm text-muted-foreground">({productReviews.length})</span>
+        </div>
+    )
+}
 
 const ProductCard = ({ product }: { product: SiteProduct }) => {
   const { addToCart, buyNow } = useApp();
@@ -125,9 +154,12 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
           </CardHeader>
           <CardContent className="p-0 mt-2 flex-grow">
             <p className="text-sm text-muted-foreground line-clamp-2">{product.description}</p>
-             <div className="flex items-baseline gap-2 mt-4">
-                <span className="font-bold text-lg text-primary">Rs. {product.price}</span>
-                <span className="text-sm text-muted-foreground line-through">Rs. {originalPrice}</span>
+             <div className="flex items-center justify-between mt-2">
+                <div className="flex items-baseline gap-2">
+                    <span className="font-bold text-lg text-primary">Rs. {product.price}</span>
+                    <span className="text-sm text-muted-foreground line-through">Rs. {originalPrice}</span>
+                </div>
+                <ProductRating productId={product.id} />
               </div>
           </CardContent>
           <CardFooter className='p-0 mt-auto pt-4'>
@@ -212,5 +244,3 @@ const OurProductsSection = () => {
 };
 
 export default OurProductsSection;
-
-    

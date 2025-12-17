@@ -5,7 +5,10 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import { useApp } from '@/hooks/use-app';
+import { useUser } from '@/firebase';
 import { Star } from 'lucide-react';
+import { useAuthDialog } from '@/hooks/use-auth-dialog';
 
 const InteractiveRating = ({
   rating,
@@ -58,9 +61,23 @@ export const ReviewForm = ({ productId }: { productId: string }) => {
   const [review, setReview] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const { addReview } = useApp();
+  const { user } = useUser();
+  const { openAuthDialog } = useAuthDialog();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!user) {
+      toast({
+        variant: 'destructive',
+        title: 'Authentication required',
+        description: 'You must be signed in to submit a review.',
+      });
+      openAuthDialog();
+      return;
+    }
+
     if (rating === 0) {
       toast({
         variant: 'destructive',
@@ -70,10 +87,16 @@ export const ReviewForm = ({ productId }: { productId: string }) => {
       return;
     }
     setIsSubmitting(true);
-    console.log({ productId, rating, review });
-
+    
     // Simulate API call
     setTimeout(() => {
+      addReview({
+        productId,
+        name: user.displayName || 'Anonymous',
+        rating,
+        text: review,
+      });
+
       toast({
         title: 'Review submitted!',
         description: 'Thank you for your feedback.',

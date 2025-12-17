@@ -1,3 +1,4 @@
+
 export type Product = {
   id: string;
   name: string;
@@ -33,4 +34,14 @@ export type CartItemToAdd = Omit<CartItem, 'quantity'>;
 export type NavLink = {
   name: string;
   href: string;
+};
+
+export type Review = {
+  id: string;
+  productId: string;
+  name: string;
+  avatarUrl: string;
+  rating: number;
+  text: string;
+  date: Date;
 };
