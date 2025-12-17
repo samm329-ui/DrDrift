@@ -1,17 +1,19 @@
+
 'use client';
 import { useApp } from '@/hooks/use-app';
 import { siteConfig } from '@/lib/config';
 import { cn } from '@/lib/utils';
 
-const RippleLoader = () => (
-  <div className="loader">
-    <div className="box"></div>
-    <div className="box"></div>
-    <div className="box"></div>
-    <div className="box"></div>
-    <div className="box"></div>
-  </div>
-);
+const TypingLoader = () => (
+    <div className="typing-indicator">
+      <div className="typing-circle"></div>
+      <div className="typing-circle"></div>
+      <div className="typing-circle"></div>
+      <div className="typing-shadow"></div>
+      <div className="typing-shadow"></div>
+      <div className="typing-shadow"></div>
+    </div>
+  );
 
 const Loader = () => {
   const { isLoading } = useApp();
@@ -23,9 +25,11 @@ const Loader = () => {
         isLoading ? 'opacity-100' : 'pointer-events-none'
       )}
     >
-      <RippleLoader />
+      <TypingLoader />
     </div>
   );
 };
 
 export default Loader;
+
+    

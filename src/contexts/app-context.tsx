@@ -119,17 +119,36 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   }, []);
 
   useEffect(() => {
-    // Show loader for a very short period to allow initial render, then hide it.
-    const timer = setTimeout(() => setIsLoading(false), 100);
-    
-    // Set initial theme based on the first product
-    const firstProduct = products[0];
-    if (firstProduct) {
-        setTheme(firstProduct.mode === 'inherit' ? 'light' : firstProduct.mode);
+    const mediaToPreload = products.map(p => p.animatedWebpUrl);
+    let loadedCount = 0;
+
+    const onMediaLoad = () => {
+      loadedCount++;
+      if (loadedCount === mediaToPreload.length) {
+        const timer = setTimeout(() => setIsLoading(false), 500);
+        return () => clearTimeout(timer);
+      }
+    };
+
+    mediaToPreload.forEach(url => {
+        if (url.endsWith('.mp4') || url.endsWith('.webm')) {
+            const video = document.createElement('video');
+            video.src = url;
+            video.onloadeddata = onMediaLoad;
+            video.onerror = onMediaLoad; // Count errors as "loaded" to not block the UI
+        } else {
+            const img = new Image();
+            img.src = url;
+            img.onload = onMediaLoad;
+            img.onerror = onMediaLoad; // Same for images
+        }
+    });
+
+    if (mediaToPreload.length === 0) {
+        const timer = setTimeout(() => setIsLoading(false), 500);
+        return () => clearTimeout(timer);
     }
-    
-    return () => clearTimeout(timer);
-  }, [setTheme]);
+  }, []);
 
   useEffect(() => {
     if (currentProduct) {
@@ -192,3 +211,5 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
+
+    
