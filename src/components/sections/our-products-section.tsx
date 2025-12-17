@@ -78,7 +78,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
       <Card 
         id={`product-card-${product.slug}`} 
         onClick={(e) => handleNavigate(e, `/products/${product.slug}`)}
-        className="text-left overflow-hidden h-full flex flex-col group w-[320px] sm:w-[380px] transition-all duration-500 bg-gray-200/50 dark:bg-gray-500/10 border border-white/50 shadow-glass backdrop-blur-md rounded-[17px] hover:border-foreground/50 hover:scale-105 active:scale-95 active:rotate-[1.7deg] cursor-pointer"
+        className="text-left overflow-hidden h-full flex flex-col group w-[320px] sm:w-[380px] transition-all duration-500 bg-gray-200/50 dark:bg-gray-500/10 shadow-glass backdrop-blur-md rounded-[17px] hover:border-foreground/50 hover:scale-105 active:scale-95 active:rotate-[1.7deg] cursor-pointer"
     >
         <div className="relative overflow-hidden rounded-t-[17px]">
             {isNavigating && (
