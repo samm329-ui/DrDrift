@@ -69,7 +69,7 @@ export function CheckoutForm({ subtotal, onBack }: CheckoutFormProps) {
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="flex h-full flex-col">
       <div className="flex items-center gap-2 mb-4 -ml-2 pr-6 flex-shrink-0">
         <Button variant="ghost" size="icon" className="h-8 w-8 rounded-md" onClick={onBack}>
             <ArrowLeft className="h-5 w-5" />
