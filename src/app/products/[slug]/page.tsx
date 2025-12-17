@@ -87,38 +87,42 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
 
         <Separator />
         
-        <div className="flex flex-col md:flex-row items-stretch md:items-center gap-2">
-            <div className="flex items-center gap-2">
-                <div className="flex items-center gap-2 border rounded-full p-1">
-                <Button
-                    variant="ghost"
-                    size="icon"
-                    className="h-8 w-8 rounded-full"
-                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                >
-                    <Minus className="h-4 w-4" />
-                </Button>
-                <span className="w-12 text-center font-bold text-lg">
-                    {quantity}
-                </span>
-                <Button
-                    variant="ghost"
-                    size="icon"
-                    className="h-8 w-8 rounded-full"
-                    onClick={() => setQuantity(quantity + 1)}
-                >
-                    <Plus className="h-4 w-4" />
-                </Button>
+        <div className="flex flex-col items-stretch gap-2">
+            <div className="flex flex-col md:flex-row items-stretch md:items-center gap-2">
+                <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 border rounded-full p-1">
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8 rounded-full"
+                        onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                    >
+                        <Minus className="h-4 w-4" />
+                    </Button>
+                    <span className="w-12 text-center font-bold text-lg">
+                        {quantity}
+                    </span>
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-8 w-8 rounded-full"
+                        onClick={() => setQuantity(quantity + 1)}
+                    >
+                        <Plus className="h-4 w-4" />
+                    </Button>
+                    </div>
+                    <AddToCartButton onClick={handleAddToCart} className="flex-grow basis-0 justify-center" />
                 </div>
-                <AddToCartButton onClick={handleAddToCart} className="flex-grow basis-0 justify-center" />
+                <button onClick={handleBuyNow} className="hero-buy-now-btn flex-grow basis-0 justify-center text-black md:hidden">
+                    <span>Buy Now</span>
+                </button>
+                <button onClick={handleBuyNow} className="hero-buy-now-btn hidden md:flex flex-grow basis-0 justify-center text-black">
+                    <span>Buy Now</span>
+                </button>
             </div>
             
-            <button onClick={handleBuyNow} className="hero-buy-now-btn flex-grow basis-0 justify-center text-black">
-                <span>Buy Now</span>
-            </button>
+            <PackButton onClick={handlePackBuy} />
         </div>
-        
-        <PackButton onClick={handlePackBuy} />
     </div>
   )
 
@@ -149,7 +153,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             </Carousel>
             
             <div className="md:hidden mt-8 space-y-6">
-              <h1 className="font-headline text-4xl md:text-5xl font-bold text-foreground">
+              <h1 className="font-headline text-3xl md:text-4xl font-bold text-foreground">
                 {product.name}
               </h1>
               <PurchaseActions />
@@ -182,7 +186,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
 
           {/* Product Details */}
           <div className="space-y-6">
-            <h1 className="hidden md:block font-headline text-4xl md:text-5xl font-bold text-foreground">
+            <h1 className="hidden md:block font-headline text-3xl md:text-4xl font-bold text-foreground">
               {product.name}
             </h1>
             <p className="text-lg text-muted-foreground">
