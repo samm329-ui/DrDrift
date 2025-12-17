@@ -5,14 +5,14 @@ import { siteConfig } from '@/lib/config';
 import { cn } from '@/lib/utils';
 
 const RippleLoader = () => (
-  <div className="loader">
-    <div className="box"></div>
-    <div className="box"></div>
-    <div className="box"></div>
-    <div className="box"></div>
-    <div className="box"></div>
-  </div>
-);
+    <div className="loader">
+      <div className="box"></div>
+      <div className="box"></div>
+      <div className="box"></div>
+      <div className="box"></div>
+      <div className="box"></div>
+    </div>
+  );
 
 const Loader = () => {
   const { isLoading } = useApp();
@@ -21,7 +21,7 @@ const Loader = () => {
     <div
       className={cn(
         'fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background transition-opacity duration-500',
-        isLoading ? 'opacity-100' : 'pointer-events-none'
+        isLoading ? 'opacity-100' : 'opacity-0 pointer-events-none'
       )}
     >
       <RippleLoader />
@@ -30,5 +30,3 @@ const Loader = () => {
 };
 
 export default Loader;
-
-    

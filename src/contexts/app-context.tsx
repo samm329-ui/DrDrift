@@ -119,35 +119,8 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   }, []);
 
   useEffect(() => {
-    const mediaToPreload = products.map(p => p.animatedWebpUrl);
-    let loadedCount = 0;
-
-    const onMediaLoad = () => {
-      loadedCount++;
-      if (loadedCount === mediaToPreload.length) {
-        const timer = setTimeout(() => setIsLoading(false), 500);
-        return () => clearTimeout(timer);
-      }
-    };
-
-    mediaToPreload.forEach(url => {
-        if (url.endsWith('.mp4') || url.endsWith('.webm')) {
-            const video = document.createElement('video');
-            video.src = url;
-            video.onloadeddata = onMediaLoad;
-            video.onerror = onMediaLoad; // Count errors as "loaded" to not block the UI
-        } else {
-            const img = new Image();
-            img.src = url;
-            img.onload = onMediaLoad;
-            img.onerror = onMediaLoad; // Same for images
-        }
-    });
-
-    if (mediaToPreload.length === 0) {
-        const timer = setTimeout(() => setIsLoading(false), 500);
-        return () => clearTimeout(timer);
-    }
+    const timer = setTimeout(() => setIsLoading(false), 500); // Set loading to false after a short delay
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -211,5 +184,3 @@ export const AppContextProvider: React.FC<{ children: React.ReactNode }> = ({ ch
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
-
-    
