@@ -87,7 +87,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
 
         <Separator />
         
-        <div className="flex flex-col sm:flex-row items-center gap-4">
+        <div className="flex items-center gap-4">
             <div className="flex items-center gap-2 border rounded-full p-1">
             <Button
                 variant="ghost"
