@@ -149,11 +149,39 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
 
 const OurProductsSection = () => {
   const { filteredProducts, searchQuery } = useApp();
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
 
   const productsToShow = searchQuery ? filteredProducts : siteProducts;
 
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!scrollContainerRef.current) return;
+    setIsDragging(true);
+    setStartX(e.pageX - scrollContainerRef.current.offsetLeft);
+    setScrollLeft(scrollContainerRef.current.scrollLeft);
+    scrollContainerRef.current.style.cursor = 'grabbing';
+    scrollContainerRef.current.style.userSelect = 'none';
+  };
+
+  const handleMouseLeaveOrUp = () => {
+    if (!scrollContainerRef.current) return;
+    setIsDragging(false);
+    scrollContainerRef.current.style.cursor = 'grab';
+    scrollContainerRef.current.style.removeProperty('user-select');
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging || !scrollContainerRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - scrollContainerRef.current.offsetLeft;
+    const walk = (x - startX) * 2; // The multiplier affects scroll speed
+    scrollContainerRef.current.scrollLeft = scrollLeft - walk;
+  };
+
   return (
-    <section id="our-products" className="bg-background-alt py-20 md:py-24">
+    <section id="our-products" className="bg-background py-20 md:py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 flex flex-col h-full">
         <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl font-headline">
           Our Products
@@ -161,7 +189,14 @@ const OurProductsSection = () => {
         <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground">
           A range of products to keep your home shining.
         </p>
-        <div className="mt-12 flex-grow flex justify-center pb-4 -mx-4 px-4 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div 
+          ref={scrollContainerRef}
+          onMouseDown={handleMouseDown}
+          onMouseLeave={handleMouseLeaveOrUp}
+          onMouseUp={handleMouseLeaveOrUp}
+          onMouseMove={handleMouseMove}
+          className="mt-12 flex-grow flex justify-start pb-4 -mx-4 px-4 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden cursor-grab"
+        >
             <div className="grid grid-flow-col auto-cols-max justify-center gap-8">
               {productsToShow.map((item, index) => (
                   <ProductCard key={index} product={item} />
