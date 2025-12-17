@@ -63,6 +63,16 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
     buyNow(item, quantity);
   };
 
+  const handlePackBuy = () => {
+    const item = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      imageUrl: product.imageUrls[0],
+    };
+    buyNow(item, 8);
+  };
+
   return (
     <div className="bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
@@ -107,6 +117,8 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 Rs. {originalPrice}
               </span>
             </div>
+
+            <PackButton onClick={handlePackBuy} />
 
             <Separator />
 

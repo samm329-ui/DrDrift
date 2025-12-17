@@ -145,9 +145,9 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
         </div>
         
         <div className="flex flex-col flex-grow justify-between gap-3 text-left p-3">
-            <div>
+            <div className="flex-grow">
               <span className="text-foreground font-bold text-sm">{product.name}</span>
-              <p className="text-muted-foreground text-xs h-10 overflow-hidden">
+              <p className="text-muted-foreground text-xs overflow-hidden">
                   {product.description}
               </p>
               <div className="flex items-baseline justify-start gap-2 mt-2">
