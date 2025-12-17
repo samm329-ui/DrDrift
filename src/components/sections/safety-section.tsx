@@ -20,7 +20,7 @@ const safetyInfo = [
 
 const SafetySection = () => {
     return (
-        <section id="safety" className="bg-background-alt py-20 md:py-24">
+        <section id="safety" className="py-20 md:py-24 bg-wavy-2">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="text-center mb-12">
                     <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl font-headline text-foreground">Safety Without Compromise</h2>
