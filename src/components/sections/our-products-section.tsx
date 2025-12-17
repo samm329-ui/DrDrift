@@ -27,14 +27,11 @@ import type { SiteProduct } from '@/types';
 import { cn } from '@/lib/utils';
 import { siteProducts } from '@/lib/config';
 
-const TypingLoader = () => (
-    <div className="typing-indicator">
-      <div className="typing-circle"></div>
-      <div className="typing-circle"></div>
-      <div className="typing-circle"></div>
-      <div className="typing-shadow"></div>
-      <div className="typing-shadow"></div>
-      <div className="typing-shadow"></div>
+const Spinner = () => (
+    <div className="spinner center">
+      {[...Array(12)].map((_, i) => (
+        <div key={i} className="spinner-blade" />
+      ))}
     </div>
   );
 
@@ -42,12 +39,14 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
   const { addToCart, buyNow } = useApp();
   const autoplayPlugin = useRef(Autoplay({ delay: 2000 + Math.random() * 1000, stopOnInteraction: true }));
   const router = useRouter();
+  const [isNavigating, setIsNavigating] = useState(false);
   
   const originalPrice = Math.round(product.price * 1.25);
 
   const handleNavigate = (e: React.MouseEvent, href: string) => {
     e.preventDefault();
     e.stopPropagation();
+    setIsNavigating(true);
     router.push(href);
   };
 
@@ -82,7 +81,12 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
         className="text-left overflow-hidden h-full flex flex-col group w-[320px] sm:w-[380px] transition-all duration-500 bg-gray-200/50 dark:bg-gray-500/10 border border-white/50 shadow-glass backdrop-blur-md rounded-[17px] hover:border-foreground/50 hover:scale-105 active:scale-95 active:rotate-[1.7deg] cursor-pointer"
     >
         <div className="relative overflow-hidden rounded-t-[17px]">
-            <div className="absolute inset-0 z-10">
+            {isNavigating && (
+                <div className="absolute inset-0 z-20 flex items-center justify-center bg-background/50 backdrop-blur-sm">
+                    <Spinner />
+                </div>
+            )}
+            <div className={cn("absolute inset-0 z-10", isNavigating ? "" : "group-hover:bg-black/10 transition-colors")}>
                  <span className="sr-only">View Details</span>
             </div>
             <Carousel
