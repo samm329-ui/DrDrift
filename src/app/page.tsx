@@ -10,6 +10,7 @@ import ReviewsSection from '@/components/sections/reviews-section';
 import FaqSection from '@/components/sections/faq-section';
 import CtaSection from '@/components/sections/cta-section';
 import FeedbackSection from '@/components/sections/feedback-section';
+import { cn } from '@/lib/utils';
 
 export default function Home() {
   const { isLoading } = useApp();
@@ -18,15 +19,19 @@ export default function Home() {
     <>
       {!isLoading && (
         <div className='bg-background'>
-          <HeroSection />
+          <div className={cn("hidden md:block")}>
+            <HeroSection />
+          </div>
           <ProductSection />
-          <OurProductsSection />
-          <IngredientsSection />
-          <SafetySection />
-          <ReviewsSection />
-          <FaqSection />
-          <CtaSection />
-          <FeedbackSection />
+          <div className={cn("hidden md:block")}>
+            <OurProductsSection />
+            <IngredientsSection />
+            <SafetySection />
+            <ReviewsSection />
+            <FaqSection />
+            <CtaSection />
+            <FeedbackSection />
+          </div>
         </div>
       )}
     </>
