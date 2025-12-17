@@ -214,36 +214,9 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
 
 const OurProductsSection = () => {
   const { filteredProducts, searchQuery } = useApp();
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
 
   const productsToShow = searchQuery ? filteredProducts : siteProducts;
 
-  const handleMouseDown = (e: React.MouseEvent) => {
-    if (!scrollContainerRef.current) return;
-    setIsDragging(true);
-    setStartX(e.pageX - scrollContainerRef.current.offsetLeft);
-    setScrollLeft(scrollContainerRef.current.scrollLeft);
-    scrollContainerRef.current.style.cursor = 'grabbing';
-    scrollContainerRef.current.style.userSelect = 'none';
-  };
-
-  const handleMouseLeaveOrUp = () => {
-    if (!scrollContainerRef.current) return;
-    setIsDragging(false);
-    scrollContainerRef.current.style.cursor = 'grab';
-    scrollContainerRef.current.style.removeProperty('user-select');
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging || !scrollContainerRef.current) return;
-    e.preventDefault();
-    const x = e.pageX - scrollContainerRef.current.offsetLeft;
-    const walk = (x - startX) * 2; // The multiplier affects scroll speed
-    scrollContainerRef.current.scrollLeft = scrollLeft - walk;
-  };
 
   return (
     <section id="our-products" className="py-20 md:py-24 bg-secondary">
@@ -255,12 +228,7 @@ const OurProductsSection = () => {
           A range of products to keep your home shining.
         </p>
         <div 
-          ref={scrollContainerRef}
-          onMouseDown={handleMouseDown}
-          onMouseLeave={handleMouseLeaveOrUp}
-          onMouseUp={handleMouseLeaveOrUp}
-          onMouseMove={handleMouseMove}
-          className="mt-12 flex flex-nowrap gap-4 md:gap-8 pb-4 -mx-4 px-4 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden cursor-grab"
+          className="mt-12 flex flex-wrap justify-center gap-4 md:gap-8 pb-4"
         >
               {productsToShow.map((item, index) => (
                   <ProductCard key={index} product={item} />
