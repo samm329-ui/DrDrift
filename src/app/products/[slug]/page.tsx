@@ -113,10 +113,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                     </div>
                     <AddToCartButton onClick={handleAddToCart} className="flex-grow basis-0 justify-center" />
                 </div>
-                <button onClick={handleBuyNow} className="hero-buy-now-btn flex-grow basis-0 justify-center text-black md:hidden">
-                    <span>Buy Now</span>
-                </button>
-                <button onClick={handleBuyNow} className="hero-buy-now-btn hidden md:flex flex-grow basis-0 justify-center text-black">
+                <button onClick={handleBuyNow} className="hero-buy-now-btn flex-grow basis-0 justify-center text-black">
                     <span>Buy Now</span>
                 </button>
             </div>
