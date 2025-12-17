@@ -219,7 +219,7 @@ const OurProductsSection = () => {
           className="mt-12 flex flex-nowrap gap-6 pb-4 overflow-x-auto no-scrollbar"
         >
               {productsToShow.map((item, index) => (
-                  <div key={index} className="w-80 flex-shrink-0">
+                  <div key={index} className="w-64 md:w-80 flex-shrink-0">
                     <ProductCard product={item} />
                   </div>
               ))}
