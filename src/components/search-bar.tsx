@@ -53,13 +53,13 @@ const SearchBar = () => {
   const showSuggestions = isFocused && searchQuery.length > 0;
 
   return (
-    <form onSubmit={(e) => e.preventDefault()} className="relative w-full max-w-md mx-auto">
-      <div className="flex items-center w-full bg-gray-700/50 dark:bg-gray-800/60 rounded-lg overflow-hidden backdrop-blur-sm border border-white/20">
-        <Search className="h-5 w-5 mx-3 text-gray-300 dark:text-gray-400" />
+    <form onSubmit={(e) => e.preventDefault()} className="relative w-full max-w-2xl mx-auto">
+      <div className="flex items-center w-full bg-background/80 dark:bg-background/60 rounded-lg overflow-hidden backdrop-blur-sm border ring-1 shadow-xl shadow-black/5 ring-border">
+        <Search className="h-5 w-5 mx-3 text-muted-foreground" />
         <Input
             type="search"
             placeholder="Search products..."
-            className="w-full bg-transparent text-white placeholder:text-gray-300 dark:placeholder:text-gray-400 border-0 focus-visible:ring-0 focus-visible:ring-offset-0 h-10 text-base !p-0"
+            className="w-full bg-transparent text-foreground placeholder:text-muted-foreground border-0 focus-visible:ring-0 focus-visible:ring-offset-0 h-10 text-base !p-0"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onFocus={() => setIsFocused(true)}
