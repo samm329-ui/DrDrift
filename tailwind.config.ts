@@ -17,8 +17,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        body: ['system-ui', 'sans-serif'],
-        headline: ['Poppins', 'sans-serif'],
+        body: ['Inter', 'system-ui', 'sans-serif'],
+        headline: ['Inter', 'system-ui', 'sans-serif'],
         code: ['monospace'],
       },
       boxShadow: {
