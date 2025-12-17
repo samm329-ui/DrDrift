@@ -102,7 +102,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
       id={`product-card-${product.slug}`}
       onClick={(e) => handleNavigate(e, `/products/${product.slug}`)}
       className={cn(
-        "box-border w-[240px] md:w-72 flex flex-col justify-between cursor-pointer",
+        "box-border w-[280px] md:w-72 flex flex-col justify-between cursor-pointer",
         "bg-white/40 dark:bg-gray-500/20",
         "border border-white/50",
         "shadow-lg shadow-black/20",
@@ -144,10 +144,10 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
             </Carousel>
         </div>
         
-        <div className="flex flex-col gap-2 text-center p-3">
+        <div className="flex flex-col gap-2 text-left p-3">
             <span className="text-foreground font-bold text-sm">{product.name}</span>
             <p className="text-xs text-muted-foreground truncate">{product.description}</p>
-            <div className="flex items-baseline justify-center gap-2">
+            <div className="flex items-baseline justify-start gap-2">
               <span className="font-bold text-xl text-primary">
                 Rs. {product.price}
               </span>
