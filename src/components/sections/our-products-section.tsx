@@ -181,12 +181,12 @@ const OurProductsSection = () => {
   };
 
   return (
-    <section id="our-products" className="bg-background-alt py-20 md:py-24">
+    <section id="our-products" className="bg-gray-900 py-20 md:py-24">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 flex flex-col h-full">
-        <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl font-headline">
+        <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl font-headline text-white">
           Our Products
         </h2>
-        <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground">
+        <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-400">
           A range of products to keep your home shining.
         </p>
         <div 
@@ -195,13 +195,11 @@ const OurProductsSection = () => {
           onMouseLeave={handleMouseLeaveOrUp}
           onMouseUp={handleMouseLeaveOrUp}
           onMouseMove={handleMouseMove}
-          className="mt-12 flex-grow flex justify-start pb-4 -mx-4 px-4 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden cursor-grab"
+          className="mt-12 flex-grow grid grid-flow-col auto-cols-max justify-start pb-4 -mx-4 px-4 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden cursor-grab gap-8"
         >
-            <div className="grid grid-flow-col auto-cols-max justify-center gap-8">
               {productsToShow.map((item, index) => (
                   <ProductCard key={index} product={item} />
               ))}
-            </div>
              {productsToShow.length === 0 && (
                 <div className="w-full text-center text-muted-foreground py-10">
                     No products found.
