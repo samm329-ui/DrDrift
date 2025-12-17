@@ -970,7 +970,7 @@
     cursor: pointer;
     border: none;
     border-radius: 15px;
-    font-weight: 1000;
+    font-weight: 500;
   }
   
   .add-to-cart-button span {
@@ -1012,7 +1012,7 @@
   /* Hero Buy Now Button */
   .hero-buy-now-btn {
     cursor: pointer;
-    font-weight: 700;
+    font-weight: 500;
     transition: all 0.2s;
     padding: 10px 20px;
     border-radius: 100px;
@@ -1281,6 +1281,7 @@
     
 
       
+
 
 
 
