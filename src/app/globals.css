@@ -608,7 +608,7 @@
 
   /* Pack of 8 Button */
   .btn-container {
-    --btn-color: hsl(var(--primary));
+    --btn-color: hsl(35, 100%, 55%);
     --corner-color: #0002;
     --corner-dist: 24px;
     --corner-multiplier: 1.5;
