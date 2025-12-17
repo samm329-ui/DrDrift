@@ -9,7 +9,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import {
   Carousel,
   CarouselContent,
@@ -25,6 +24,8 @@ import { useApp } from '@/hooks/use-app';
 import type { SiteProduct } from '@/types';
 import { cn } from '@/lib/utils';
 import { siteProducts } from '@/lib/config';
+import { TooltipButton } from '../ui/tooltip-button';
+import { Button } from '../ui/button';
 
 const Spinner = () => (
     <div className="spinner center">
@@ -168,9 +169,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
                 <ShoppingCart className='mr-2 h-4 w-4'/>
                 Add to Cart
                 </Button>
-                <Button size="sm" className='w-full' onClick={handleBuyNow}>
-                Buy Now
-                </Button>
+                <TooltipButton onClick={handleBuyNow} />
             </div>
           </CardFooter>
         </div>
