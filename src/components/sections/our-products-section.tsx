@@ -144,13 +144,24 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
             </Carousel>
         </div>
         
-        <div className="flex flex-col gap-3 text-left p-3">
-            <span className="text-foreground font-bold text-sm">{product.name}</span>
-            <p className="text-muted-foreground text-xs h-10 overflow-hidden">
-                {product.description}
-            </p>
-            
-            <div className="flex items-center gap-2 w-full">
+        <div className="flex flex-col flex-grow justify-between gap-3 text-left p-3">
+            <div>
+              <span className="text-foreground font-bold text-sm">{product.name}</span>
+              <p className="text-muted-foreground text-xs h-10 overflow-hidden">
+                  {product.description}
+              </p>
+              <div className="flex items-baseline justify-start gap-2 mt-2">
+                <span className="font-bold text-xl text-primary">
+                  Rs. {product.price}
+                </span>
+                <span className="text-base text-muted-foreground line-through">
+                  Rs. {originalPrice}
+                </span>
+              </div>
+              <ProductRating productId={product.id} />
+            </div>
+
+            <div className="flex items-center gap-2 w-full mt-2">
               <AddToCartButton
                 onClick={handleAddToCart}
                 className="w-full h-9 text-xs flex-1"
@@ -162,17 +173,6 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
                 <span>Buy Now</span>
               </button>
             </div>
-
-            <div className="flex items-baseline justify-start gap-2">
-              <span className="font-bold text-xl text-primary">
-                Rs. {product.price}
-              </span>
-              <span className="text-base text-muted-foreground line-through">
-                Rs. {originalPrice}
-              </span>
-            </div>
-
-            <ProductRating productId={product.id} />
         </div>
     </div>
   );
