@@ -70,7 +70,7 @@ const ProductRating = ({ productId }: { productId: string }) => {
     )
 }
 
-const CommentSection = ({ reviews, onAddComment }: { reviews: Review[], onAddComment: () => void }) => {
+const CommentSection = ({ reviews, onAddComment }: { reviews: Review[], onAddComment: (e: React.MouseEvent) => void }) => {
     return (
       <Accordion type="single" collapsible className="w-full">
         <AccordionItem value="comments" className="border-none">
@@ -143,7 +143,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
       <Card 
         id={`product-card-${product.slug}`} 
         onClick={(e) => handleNavigate(e, `/products/${product.slug}`)}
-        className="text-left flex flex-col group w-full md:w-[380px] transition-all duration-500 bg-background/50 dark:bg-background/10 shadow-glass backdrop-blur-md rounded-[17px] md:hover:scale-105 active:scale-95 active:rotate-[1.7deg] cursor-pointer border-0"
+        className="text-left flex flex-col group w-[280px] md:w-[380px] flex-shrink-0 transition-all duration-500 bg-background/50 dark:bg-background/10 shadow-glass backdrop-blur-md rounded-[17px] active:scale-95 active:rotate-[1.7deg] cursor-pointer border-0"
     >
         <div className="relative rounded-t-[17px]">
             {isNavigating && (
@@ -260,7 +260,7 @@ const OurProductsSection = () => {
           onMouseLeave={handleMouseLeaveOrUp}
           onMouseUp={handleMouseLeaveOrUp}
           onMouseMove={handleMouseMove}
-          className="mt-12 grid grid-cols-3 md:grid-flow-col md:auto-cols-max md:justify-start gap-2 md:gap-8 pb-4 -mx-4 px-4 md:overflow-x-auto md:[scrollbar-width:none] md:[&::-webkit-scrollbar]:hidden md:cursor-grab"
+          className="mt-12 flex flex-nowrap gap-4 md:gap-8 pb-4 -mx-4 px-4 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden cursor-grab"
         >
               {productsToShow.map((item, index) => (
                   <ProductCard key={index} product={item} />
@@ -277,5 +277,3 @@ const OurProductsSection = () => {
 };
 
 export default OurProductsSection;
-
-    
