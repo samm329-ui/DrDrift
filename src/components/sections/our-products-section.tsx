@@ -2,13 +2,6 @@
 
 import React, { useRef, useState, useMemo } from 'react';
 import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import {
   Carousel,
   CarouselContent,
   CarouselItem,
@@ -65,14 +58,12 @@ const ProductRating = ({ productId }: { productId: string }) => {
 }
 
 const ProductCard = ({ product }: { product: SiteProduct }) => {
-  const { addToCart, buyNow, reviews } = useApp();
+  const { addToCart, buyNow } = useApp();
   const autoplayPlugin = useRef(Autoplay({ delay: 2000 + Math.random() * 1000, stopOnInteraction: true }));
   const router = useRouter();
   const [isNavigating, setIsNavigating] = useState(false);
   
   const originalPrice = Math.round(product.price * 1.25);
-
-  const productReviews = useMemo(() => reviews.filter(r => r.productId === product.id), [reviews, product.id]);
 
   const handleNavigate = (e: React.MouseEvent, href: string) => {
     e.preventDefault();
@@ -106,90 +97,69 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
   };
 
   return (
-    <Card
+    <div
       id={`product-card-${product.slug}`}
       onClick={(e) => handleNavigate(e, `/products/${product.slug}`)}
-      className="text-left flex flex-col group w-full transition-all duration-500 bg-background/50 dark:bg-background/10 shadow-glass backdrop-blur-md rounded-[17px] active:scale-95 active:rotate-[1.7deg] cursor-pointer border-0"
+      className="relative group duration-500 cursor-pointer group overflow-hidden text-gray-50 h-72 w-56 rounded-2xl hover:duration-700"
     >
-      <div className="relative rounded-t-[17px]">
-        {isNavigating && (
-          <div className="absolute inset-0 z-20 flex items-center justify-center bg-background/50 backdrop-blur-sm">
-            <Spinner />
-          </div>
-        )}
-        <div
-          className={cn(
-            'absolute inset-0 z-10',
-            isNavigating ? '' : 'group-hover:bg-black/10 transition-colors'
-          )}
-        >
-          <span className="sr-only">View Details</span>
+      <div className="w-56 h-72 bg-primary dark:bg-primary/80">
+        <div className="relative w-full h-full">
+            {isNavigating && (
+                <div className="absolute inset-0 z-20 flex items-center justify-center bg-background/50 backdrop-blur-sm">
+                    <Spinner />
+                </div>
+            )}
+            <Carousel
+                plugins={[autoplayPlugin.current]}
+                className="w-full h-full"
+                onMouseEnter={autoplayPlugin.current.stop}
+                onMouseLeave={autoplayPlugin.current.play}
+            >
+                <CarouselContent>
+                    {product.imageUrls.map((url, index) => (
+                    <CarouselItem key={index}>
+                        <Image
+                            src={url}
+                            alt={`${product.name} image ${index + 1}`}
+                            width={224} // 56 * 4
+                            height={288} // 72 * 4
+                            className="w-full h-full object-cover"
+                            data-ai-hint={product.imageHint}
+                        />
+                    </CarouselItem>
+                    ))}
+                </CarouselContent>
+                <CarouselPrevious className="left-2 opacity-0 group-hover:opacity-100" />
+                <CarouselNext className="right-2 opacity-0 group-hover:opacity-100" />
+            </Carousel>
         </div>
-        <Carousel
-          plugins={[autoplayPlugin.current]}
-          className="w-full"
-          onMouseEnter={autoplayPlugin.current.stop}
-          onMouseLeave={autoplayPlugin.current.play}
-        >
-          <CarouselContent>
-            {product.imageUrls.map((url, index) => (
-              <CarouselItem key={index}>
-                <Image
-                  src={url}
-                  alt={`${product.name} image ${index + 1}`}
-                  width={600}
-                  height={600}
-                  className="w-full h-auto object-cover transition-transform duration-300 md:group-hover:scale-105 rounded-t-[17px] aspect-[4/5]"
-                  data-ai-hint={product.imageHint}
-                />
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          <CarouselPrevious className="left-2 opacity-0 group-hover:opacity-100" />
-          <CarouselNext className="right-2 opacity-0 group-hover:opacity-100" />
-        </Carousel>
       </div>
-
-      <div className="flex flex-col flex-grow p-3 md:p-4 bg-transparent rounded-b-[17px]">
-        <CardHeader className="p-0">
-          <CardTitle className="font-headline text-base md:text-lg">
-            <span className="hover:text-primary transition-colors z-30 relative text-foreground">
-              {product.name}
-            </span>
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="p-0 mt-1 md:mt-2 flex-grow">
-          <p className="text-sm text-muted-foreground line-clamp-2">
-            {product.description}
-          </p>
-          <div className="flex items-center justify-between mt-1 md:mt-2">
-            <div className="flex items-baseline gap-1 md:gap-2">
-              <span className="font-bold text-base md:text-lg text-primary">
+      <div className="card-slide-up-panel">
+        <span className="text-primary font-bold text-xs">{product.name}</span>
+        <div className="flex items-baseline gap-2">
+            <span className="font-bold text-xl text-foreground">
                 Rs. {product.price}
-              </span>
-              <span className="text-xs md:text-sm text-muted-foreground line-through">
+            </span>
+            <span className="text-sm text-muted-foreground line-through">
                 Rs. {originalPrice}
-              </span>
-            </div>
-            <ProductRating productId={product.id} />
-          </div>
-        </CardContent>
-        <CardFooter className="flex p-0 mt-auto pt-2 md:pt-4 flex-col items-start">
-          <div className="flex items-center gap-2 w-full">
+            </span>
+        </div>
+        <p className="text-neutral-800 text-sm">{product.description}</p>
+        <ProductRating productId={product.id} />
+        <div className="flex items-center gap-2 w-full pt-2">
             <AddToCartButton
               onClick={handleAddToCart}
-              className="flex-grow basis-0 justify-center"
+              className="flex-grow basis-0 justify-center h-9"
             />
             <button
               onClick={handleBuyNow}
-              className="hero-buy-now-btn flex-grow basis-0 justify-center text-black"
+              className="hero-buy-now-btn flex-grow basis-0 justify-center text-black h-9 !py-0"
             >
               <span>Buy Now</span>
             </button>
-          </div>
-        </CardFooter>
+        </div>
       </div>
-    </Card>
+    </div>
   );
 };
 
@@ -202,7 +172,7 @@ const OurProductsSection = () => {
 
   const handleScrollRight = () => {
     if (scrollContainerRef.current) {
-      const cardWidth = 208; // w-52
+      const cardWidth = 224; // w-56
       const gap = 24; // gap-6
       scrollContainerRef.current.scrollBy({ left: cardWidth + gap, behavior: 'smooth' });
     }
@@ -223,7 +193,7 @@ const OurProductsSection = () => {
           className="mt-12 flex flex-nowrap gap-6 pb-4 overflow-x-auto no-scrollbar md:grid md:grid-cols-3 md:gap-8 md:justify-center -ml-4 pl-8 md:ml-0 md:px-4"
         >
               {productsToShow.map((item, index) => (
-                  <div key={index} className="w-52 flex-shrink-0 md:w-72">
+                  <div key={index} className="flex-shrink-0">
                     <ProductCard product={item} />
                   </div>
               ))}

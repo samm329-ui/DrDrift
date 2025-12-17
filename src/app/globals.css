@@ -73,6 +73,14 @@
 }
 
 @layer utilities {
+  .card-slide-up-panel {
+    @apply absolute bg-gray-50 -bottom-24 w-full p-3 flex flex-col gap-1 group-hover:-bottom-0 duration-500 transition-all;
+  }
+
+  .dark .card-slide-up-panel p {
+    @apply text-neutral-800;
+  }
+
   .feedback-form-container {
     @apply bg-background/50 dark:bg-background/10 shadow-glass backdrop-blur-md rounded-2xl p-8 border border-border/20;
   }
@@ -1263,5 +1271,7 @@
     
 
       
+
+
 
 
