@@ -223,7 +223,7 @@ const OurProductsSection = () => {
           className="mt-12 flex flex-nowrap gap-6 pb-4 overflow-x-auto no-scrollbar md:justify-center -ml-4 pl-8 md:ml-0 md:pl-0"
         >
               {productsToShow.map((item, index) => (
-                  <div key={index} className="w-64 flex-shrink-0 md:w-72">
+                  <div key={index} className="w-52 flex-shrink-0 md:w-72">
                     <ProductCard product={item} />
                   </div>
               ))}
@@ -236,7 +236,7 @@ const OurProductsSection = () => {
         <div className="mt-4 text-center md:hidden">
             <p className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
                 Swipe right for more
-                <button onClick={handleScrollRight} className="p-1 rounded-full focus:outline-none focus:ring-2 focus:ring-primary">
+                <button onClick={handleScrollRight} className="p-1 rounded-full transition-transform duration-200 ease-in-out active:scale-125">
                     <ArrowRight className="h-4 w-4" />
                 </button>
             </p>
