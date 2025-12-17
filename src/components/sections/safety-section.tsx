@@ -17,7 +17,7 @@ const safetyInfo = [
 
 const SafetySection = () => {
     return (
-        <section id="safety" className="bg-background py-20 md:py-24">
+        <section id="safety" className="bg-background-alt py-20 md:py-24">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div className="text-center mb-12">
                     <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl font-headline">Safety Without Compromise</h2>
@@ -28,11 +28,10 @@ const SafetySection = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-center">
                     {safetyInfo.map((item, index) => (
                         <div key={index} className="group relative w-full max-w-[300px] h-[200px] [perspective:1000px] mx-auto">
-                            <div className="relative w-full h-full rounded-lg bg-background-alt flex items-center justify-center overflow-hidden transition-all duration-500 ease-custom-bezier group-hover:scale-105 shadow-md group-hover:shadow-xl dark:shadow-black/20 text-center p-5">
-                               <h3 className="font-headline text-2xl dark:text-primary transition-all duration-500 ease-custom-bezier group-hover:scale-0">{item.title}</h3>
+                            <div className="relative w-full h-full rounded-lg bg-background flex items-center justify-center overflow-hidden transition-all duration-500 ease-custom-bezier group-hover:scale-105 shadow-md group-hover:shadow-xl dark:shadow-black/20 text-center p-5 border dark:border-transparent">
+                               <h3 className="font-headline text-2xl text-foreground dark:text-primary transition-all duration-500 ease-custom-bezier group-hover:scale-0">{item.title}</h3>
                                 
-                                <div className="absolute top-0 left-0 w-full h-full p-5 box-border bg-background-alt text-center [transform-style:preserve-3d] [transform:rotateX(-90deg)] [transform-origin:bottom] transition-all duration-500 ease-custom-bezier group-hover:[transform:rotateX(0deg)]">
-                                    <h3 className="font-headline text-xl dark:text-primary">{item.title}</h3>
+                                <div className="absolute top-0 left-0 w-full h-full p-5 box-border bg-background text-center [transform-style:preserve-3d] [transform:rotateX(-90deg)] [transform-origin:bottom] transition-all duration-500 ease-custom-bezier group-hover:[transform:rotateX(0deg)]">
                                     <p className="mt-2 text-muted-foreground text-sm leading-snug">{item.description}</p>
                                 </div>
                             </div>
