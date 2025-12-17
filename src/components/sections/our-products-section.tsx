@@ -104,7 +104,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
                           alt={`${product.name} image ${index + 1}`}
                           width={600}
                           height={400}
-                          className="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-105"
+                          className="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-105 rounded-t-[17px]"
                           data-ai-hint={product.imageHint}
                       />
                   </CarouselItem>
@@ -181,7 +181,7 @@ const OurProductsSection = () => {
   };
 
   return (
-    <section id="our-products" className="py-20 md:py-24 bg-background-alt">
+    <section id="our-products" className="py-20 md:py-24 bg-secondary">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 flex flex-col h-full">
         <h2 className="text-4xl font-extrabold tracking-tight sm:text-5xl font-headline text-foreground">
           Our Products
