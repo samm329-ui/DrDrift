@@ -23,8 +23,6 @@ export default {
       },
       boxShadow: {
         strong: 'inset 0 -3em 3em rgba(0,0,0,0.02), 0 0 0 1px rgb(220, 220, 220), 0.1em 0.1em 0.4em rgba(0,0,0,0.1)',
-        'neumorphic-dark': '0 0 40px rgba(60, 60, 60, 0.7)',
-        'neumorphic-light': '0 0 40px rgba(217, 217, 217, 0.7)',
       },
       transitionTimingFunction: {
         'custom-bezier': 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
