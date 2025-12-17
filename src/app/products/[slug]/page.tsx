@@ -118,8 +118,6 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
               </span>
             </div>
 
-            <PackButton onClick={handlePackBuy} />
-
             <Separator />
 
             <div className="flex flex-col sm:flex-row items-center gap-4">
@@ -152,6 +150,8 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 </button>
               </div>
             </div>
+            
+            <PackButton onClick={handlePackBuy} />
 
             <Separator />
 
