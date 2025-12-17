@@ -22,7 +22,9 @@ export default {
         code: ['monospace'],
       },
       boxShadow: {
-        strong: 'inset 0 -3em 3em rgba(0,0,0,0.05), 0 0 0 1px rgb(220, 220, 220), 0.2em 0.2em 0.8em rgba(0,0,0,0.15)',
+        strong: 'inset 0 -3em 3em rgba(0,0,0,0.02), 0 0 0 1px rgb(220, 220, 220), 0.1em 0.1em 0.4em rgba(0,0,0,0.1)',
+        'neumorphic-dark': '15px 15px 30px rgb(25, 25, 25), -15px -15px 30px rgb(60, 60, 60)',
+        'neumorphic-light': '15px 15px 30px #d9d9d9, -15px -15px 30px #ffffff',
       },
       transitionTimingFunction: {
         'custom-bezier': 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
