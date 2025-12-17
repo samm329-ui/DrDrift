@@ -74,13 +74,13 @@
 
 @layer utilities {
   .bg-pattern-3 {
-    background-color: #e5e5f7;
+    background-color: #ffffff;
     background-image: repeating-radial-gradient(
         circle at 0 0,
         transparent 0,
-        #e5e5f7 30px
+        #ffffff 30px
       ),
-      repeating-linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5));
+      repeating-linear-gradient(rgba(230, 230, 230, 1), rgba(230, 230, 230, 1));
   }
 
   .dark .bg-pattern-3 {
@@ -355,3 +355,5 @@
   80% { transform: rotate(-20deg); }
   100% { transform: rotate(0deg); }
 }
+
+    
