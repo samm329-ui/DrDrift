@@ -146,7 +146,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
         
         <div className="flex flex-col gap-2 text-left p-3">
             <span className="text-foreground font-bold text-sm">{product.name}</span>
-            <p className="text-xs text-muted-foreground truncate">{product.description}</p>
+            <p className="text-xs text-muted-foreground">{product.description}</p>
             <div className="flex items-baseline justify-start gap-2">
               <span className="font-bold text-xl text-primary">
                 Rs. {product.price}
