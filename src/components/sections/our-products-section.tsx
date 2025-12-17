@@ -70,34 +70,6 @@ const ProductRating = ({ productId }: { productId: string }) => {
     )
 }
 
-const CommentSection = ({ reviews, onAddComment }: { reviews: Review[], onAddComment: (e: React.MouseEvent) => void }) => {
-    return (
-      <Accordion type="single" collapsible className="w-full">
-        <AccordionItem value="comments" className="border-none">
-          <AccordionTrigger className="p-0 pt-2 text-sm justify-center">
-            <div className="flex items-center gap-1 text-muted-foreground hover:text-primary">
-                <MessageCircle className="h-4 w-4" />
-                <span className="text-xs">Comments ({reviews.length})</span>
-            </div>
-          </AccordionTrigger>
-          <AccordionContent className="pt-2">
-            <div className="space-y-2 text-left">
-              {reviews.slice(0, 2).map(review => (
-                <div key={review.id} className="text-xs p-2 rounded-md bg-muted/50">
-                  <p className="font-bold">{review.name}</p>
-                  <p className="text-muted-foreground line-clamp-2">{review.text}</p>
-                </div>
-              ))}
-              <button onClick={onAddComment} className="text-xs font-bold text-primary w-full text-center py-1">
-                Add comment
-              </button>
-            </div>
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
-    );
-  };
-
 const ProductCard = ({ product }: { product: SiteProduct }) => {
   const { addToCart, buyNow, reviews } = useApp();
   const autoplayPlugin = useRef(Autoplay({ delay: 2000 + Math.random() * 1000, stopOnInteraction: true }));
@@ -186,22 +158,22 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
 
       <div className="flex flex-col flex-grow p-3 md:p-4 bg-transparent rounded-b-[17px]">
         <CardHeader className="p-0">
-          <CardTitle className="font-headline text-xs md:text-lg">
+          <CardTitle className="font-headline text-lg">
             <span className="hover:text-primary transition-colors z-30 relative text-foreground">
               {product.name}
             </span>
           </CardTitle>
         </CardHeader>
         <CardContent className="p-0 mt-1 md:mt-2 flex-grow">
-          <p className="text-[10px] md:text-sm text-muted-foreground line-clamp-2">
+          <p className="text-sm text-muted-foreground line-clamp-2">
             {product.description}
           </p>
           <div className="flex items-center justify-between mt-1 md:mt-2">
             <div className="flex items-baseline gap-1 md:gap-2">
-              <span className="font-bold text-xs md:text-lg text-primary">
+              <span className="font-bold text-lg text-primary">
                 Rs. {product.price}
               </span>
-              <span className="text-[10px] md:text-sm text-muted-foreground line-through">
+              <span className="text-sm text-muted-foreground line-through">
                 Rs. {originalPrice}
               </span>
             </div>
@@ -209,22 +181,18 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
           </div>
         </CardContent>
         <CardFooter className="p-0 mt-auto pt-2 md:pt-4 flex-col items-start">
-          <div className="flex items-center gap-1 md:gap-2 w-full">
+          <div className="flex items-center gap-2 w-full">
             <AddToCartButton
               onClick={handleAddToCart}
-              className="flex-grow basis-0 justify-center !text-[9px] md:!text-[13px] !p-1 md:!py-2 !h-auto"
+              className="flex-grow basis-0 justify-center"
             />
             <button
               onClick={handleBuyNow}
-              className="hero-buy-now-btn flex-grow basis-0 justify-center text-black !text-[9px] md:!text-[13px] !py-1 md:!py-2 !px-2 md:!px-3 h-auto"
+              className="hero-buy-now-btn flex-grow basis-0 justify-center text-black"
             >
               <span>Buy Now</span>
             </button>
           </div>
-          <CommentSection
-            reviews={productReviews}
-            onAddComment={(e) => handleNavigate(e, `/products/${product.slug}`)}
-          />
         </CardFooter>
       </div>
     </Card>
@@ -251,7 +219,7 @@ const OurProductsSection = () => {
           className="mt-12 flex flex-nowrap gap-4 pb-4 md:gap-6 overflow-x-auto no-scrollbar"
         >
               {productsToShow.map((item, index) => (
-                  <div key={index} className="w-[calc(33.333%-0.75rem)] flex-shrink-0 md:w-64 md:flex-shrink-0">
+                  <div key={index} className="w-[32%] flex-shrink-0 md:w-80 md:flex-shrink-0">
                     <ProductCard product={item} />
                   </div>
               ))}
