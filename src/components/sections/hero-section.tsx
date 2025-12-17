@@ -2,13 +2,13 @@
 
 import React from 'react';
 import { useApp } from '@/hooks/use-app';
-import { siteConfig } from '@/lib/config';
+import { Button } from '@/components/ui/button';
+import { siteConfig, siteProducts } from '@/lib/config';
 import { cn } from '@/lib/utils';
 import TwitterIcon from '@/components/icons/twitter';
 import InstagramIcon from '@/components/icons/instagram';
 import Link from 'next/link';
 import SearchBar from '../search-bar';
-import { Button } from '@/components/ui/button';
 
 const SocialLinks = () => (
     <div className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 transform">
@@ -36,7 +36,7 @@ const HeroSection = () => {
       price: 0,
       imageUrl: currentProduct.productImageUrl,
     };
-    const productDetails = siteConfig.products.find(p => p.id === currentProduct.id);
+    const productDetails = siteProducts.find(p => p.id === currentProduct.id);
     if(productDetails) {
         item.price = productDetails.price;
     }
