@@ -53,8 +53,8 @@ const SearchBar = () => {
   const showSuggestions = isFocused && searchQuery.length > 0;
 
   return (
-    <form onSubmit={(e) => e.preventDefault()} className="relative w-full">
-      <div className="flex items-center w-full max-w-md mx-auto bg-gray-700/50 dark:bg-gray-800/60 rounded-lg overflow-hidden backdrop-blur-sm border border-white/20">
+    <form onSubmit={(e) => e.preventDefault()} className="relative w-full max-w-md mx-auto">
+      <div className="flex items-center w-full bg-gray-700/50 dark:bg-gray-800/60 rounded-lg overflow-hidden backdrop-blur-sm border border-white/20">
         <Search className="h-5 w-5 mx-3 text-gray-300 dark:text-gray-400" />
         <Input
             type="search"
@@ -69,41 +69,45 @@ const SearchBar = () => {
         />
       </div>
       {showSuggestions && (
-        <div className="absolute top-full left-0 right-0 z-50 mt-2 bg-background border border-border rounded-md shadow-lg max-h-96 overflow-y-auto">
-          {filteredProducts.length > 0 ? (
-            <ul>
-              {filteredProducts.map((product, index) => (
-                <li key={product.id}>
-                  <button
-                    type="button"
-                    onClick={() => handleSuggestionClick(product)}
-                    onMouseEnter={() => setActiveIndex(index)}
-                    className={cn(
-                        "flex items-center gap-4 p-3 hover:bg-accent transition-colors w-full text-left",
-                        index === activeIndex && "bg-accent"
-                    )}
-                  >
-                    <div className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-md">
-                        <Image
-                            src={product.imageUrls[0]}
-                            alt={product.name}
-                            fill
-                            className="object-cover"
-                        />
-                    </div>
-                    <div>
-                        <p className="font-semibold text-sm text-foreground">{product.name}</p>
-                        <p className="text-xs text-muted-foreground line-clamp-2">{product.description}</p>
-                    </div>
-                  </button>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <div className="p-4 text-center text-sm text-muted-foreground">
-              No products found for &quot;{searchQuery}&quot;
-            </div>
-          )}
+        <div className="absolute top-full mt-2 w-full text-sm rounded-lg bg-background text-foreground ring-1 shadow-xl shadow-black/5 ring-border">
+          <div className="border-t border-border px-3.5 py-3">
+             {filteredProducts.length > 0 ? (
+                <ul className="flex flex-col gap-1">
+                  {filteredProducts.map((product, index) => (
+                    <li key={product.id}>
+                      <button
+                        type="button"
+                        onClick={() => handleSuggestionClick(product)}
+                        onMouseEnter={() => setActiveIndex(index)}
+                        className={cn(
+                            "group flex items-center rounded-md p-1.5 hover:bg-primary hover:text-primary-foreground w-full text-left",
+                            index === activeIndex && "bg-primary text-primary-foreground"
+                        )}
+                      >
+                        <div className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-md mr-2.5">
+                            <Image
+                                src={product.imageUrls[0]}
+                                alt={product.name}
+                                fill
+                                className="object-cover"
+                            />
+                        </div>
+                        <div className="flex-grow">
+                          <p className="font-semibold">{product.name}</p>
+                          <p className={cn("text-xs text-muted-foreground group-hover:text-primary-foreground/80", index === activeIndex && "text-primary-foreground/80")}>
+                            {product.description}
+                          </p>
+                        </div>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <div className="p-4 text-center text-sm text-muted-foreground">
+                  No products found for &quot;{searchQuery}&quot;
+                </div>
+              )}
+          </div>
         </div>
       )}
     </form>
