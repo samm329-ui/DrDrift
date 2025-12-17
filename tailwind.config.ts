@@ -23,7 +23,7 @@ export default {
       },
       boxShadow: {
         strong: 'inset 0 -3em 3em rgba(0,0,0,0.02), 0 0 0 1px rgb(220, 220, 220), 0.1em 0.1em 0.4em rgba(0,0,0,0.1)',
-        glass: '12px 17px 51px rgba(0, 0, 0, 0.22)',
+        glass: '12px 17px 51px rgba(0, 0, 0, 0.12)',
       },
       transitionTimingFunction: {
         'custom-bezier': 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
