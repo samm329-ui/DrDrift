@@ -20,23 +20,22 @@ export default function Home() {
     <>
       {!isLoading && (
         <div className="bg-background">
-          {/* Hero Section for Desktop */}
+          {/* Mobile Layout: OurProducts is first */}
+          <div className="md:hidden">
+            <div className="pt-8 px-4">
+              <SearchBar />
+            </div>
+            <OurProductsSection />
+          </div>
+
+          {/* Desktop Layout: Hero and Product are first */}
           <div className="hidden md:block">
             <HeroSection />
-          </div>
-
-          {/* Search Bar for Mobile */}
-          <div className="md:hidden pt-8 px-4">
-            <SearchBar />
-          </div>
-
-          {/* Hidden on mobile, as per previous request to only show OurProducts and below */}
-          <div className="hidden md:block">
             <ProductSection />
+            <OurProductsSection />
           </div>
-
-          {/* OurProducts and subsequent sections visible on all screen sizes */}
-          <OurProductsSection />
+          
+          {/* Common sections for both layouts */}
           <IngredientsSection />
           <SafetySection />
           <ReviewsSection />
