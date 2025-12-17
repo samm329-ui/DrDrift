@@ -87,35 +87,35 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
 
         <Separator />
         
-        <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2 border rounded-full p-1">
-            <Button
-                variant="ghost"
-                size="icon"
-                className="h-8 w-8 rounded-full"
-                onClick={() => setQuantity(Math.max(1, quantity - 1))}
-            >
-                <Minus className="h-4 w-4" />
-            </Button>
-            <span className="w-12 text-center font-bold text-lg">
-                {quantity}
-            </span>
-            <Button
-                variant="ghost"
-                size="icon"
-                className="h-8 w-8 rounded-full"
-                onClick={() => setQuantity(quantity + 1)}
-            >
-                <Plus className="h-4 w-4" />
-            </Button>
+        <div className="flex flex-col md:flex-row items-stretch md:items-center gap-2">
+            <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 border rounded-full p-1">
+                <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-8 w-8 rounded-full"
+                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                >
+                    <Minus className="h-4 w-4" />
+                </Button>
+                <span className="w-12 text-center font-bold text-lg">
+                    {quantity}
+                </span>
+                <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-8 w-8 rounded-full"
+                    onClick={() => setQuantity(quantity + 1)}
+                >
+                    <Plus className="h-4 w-4" />
+                </Button>
+                </div>
+                <AddToCartButton onClick={handleAddToCart} className="flex-grow basis-0 justify-center" />
             </div>
-
-            <div className="flex-grow w-full flex items-center gap-2">
-            <AddToCartButton onClick={handleAddToCart} className="flex-grow basis-0 justify-center" />
+            
             <button onClick={handleBuyNow} className="hero-buy-now-btn flex-grow basis-0 justify-center text-black">
                 <span>Buy Now</span>
             </button>
-            </div>
         </div>
         
         <PackButton onClick={handlePackBuy} />
