@@ -74,15 +74,21 @@
 
 @layer utilities {
   .bg-pattern-3 {
-    background-color: hsl(var(--background));
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='rgba(0,0,0,0.04)' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-color: white;
+    opacity: 1;
+    background-image: repeating-radial-gradient(
+        circle at 0 0,
+        transparent 0,
+        rgba(235, 235, 235, 0.4) 30px
+      ),
+      repeating-linear-gradient(rgba(245, 245, 245, 0.4), rgba(245, 245, 245, 0.4));
   }
 
   .dark .bg-pattern-3 {
     background-color: hsl(var(--background));
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='rgba(255,255,255,0.05)' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='%232c2c2c' fill-opacity='0.4'%3E%3Cpath fill-rule='evenodd' d='M80 0v20v-20Z M60 20v20-20Z M40 40v20-20Z M20 60v20-20Z M0 80v20-20Z M20 100v20-20Z M40 120v20-20Z M60 140v20-20Z M80 160v-20 20Z M100 140v20-20Z M120 120v20-20Z M140 100v20-20Z M160 80v20-20Z M140 60v20-20Z M120 40v20-20Z M100 20v20-20Z M80 0c8.837 0 17.34 3.494 23.51 9.49C110.32 15.86 114.14 24.836 114.14 34.546c0 9.7-3.82 18.687-10.63 25.057C96.69 66.8 88.837 70 80 70s-16.69-3.2-23.51-9.49C49.68 53.232 45.86 44.246 45.86 34.546c0-9.7 3.82-18.687 10.63-25.057C63.31 3.493 71.163 0 80 0Zm0 20c3.314 0 6.463 1.28 8.838 3.536C91.49 25.964 92.86 28.98 92.86 32.22c0 3.24-1.37 6.257-3.623 8.583C86.743 43.14 83.657 44.44 80 44.44c-3.657 0-6.743-1.3-9.237-3.637C68.11 38.313 67.14 35.46 67.14 32.22c0-3.24 1.28-6.257 3.536-8.584C73.537 21.28 76.686 20 80 20Z M0 80c0 8.837 3.494 17.34 9.49 23.51C15.86 110.32 24.836 114.14 34.546 114.14c9.7 0 18.687-3.82 25.057-10.63C66.8 96.69 70 88.837 70 80s-3.2-16.69-9.49-23.51C53.232 49.68 44.246 45.86 34.546 45.86c-9.7 0-18.687 3.82-25.057 10.63C3.493 63.31 0 71.163 0 80Zm20 0c0 3.314 1.28 6.463 3.536 8.838C25.964 91.49 28.98 92.86 32.22 92.86c3.24 0 6.257-1.37 8.583-3.623C43.14 86.743 44.44 83.657 44.44 80c0-3.657-1.3-6.743-3.637-9.237C38.313 68.11 35.46 67.14 32.22 67.14c-3.24 0-6.257 1.28-8.584 3.536C21.28 73.537 20 76.686 20 80ZM160 80c0-8.837-3.494-17.34-9.49-23.51C144.14 49.68 135.164 45.86 125.454 45.86c-9.7 0-18.687 3.82-25.057 10.63C93.2 63.31 90 71.163 90 80s3.2 16.69 9.49 23.51c6.37 6.81 15.357 10.63 25.057 10.63c9.7 0 18.687-3.82 25.057-10.63C156.507 97.34 160 88.837 160 80ZM140 80c0-3.314-1.28-6.463-3.536-8.838C134.036 68.51 131.02 67.14 127.78 67.14c-3.24 0-6.257 1.37-8.583 3.623C116.86 73.257 115.56 76.343 115.56 80c0 3.657 1.3 6.743 3.637 9.237C121.687 91.89 124.54 92.86 127.78 92.86c3.24 0 6.257-1.28 8.584-3.536C138.72 86.463 140 83.314 140 80Z M80 160c-8.837 0-17.34-3.494-23.51-9.49C49.68 144.14 45.86 135.164 45.86 125.454c0-9.7 3.82-18.687 10.63-25.057C63.31 93.2 71.163 90 80 90s16.69 3.2 23.51 9.49c6.81 6.37 10.63 15.357 10.63 25.057c0 9.7-3.82 18.687-10.63 25.057C97.34 156.507 88.837 160 80 160Zm0-20c-3.314 0-6.463-1.28-8.838-3.536C68.51 134.036 67.14 131.02 67.14 127.78c0-3.24 1.37-6.257 3.623-8.583C73.257 116.86 76.343 115.56 80 115.56c3.657 0 6.743 1.3 9.237 3.637C91.89 121.687 92.86 124.54 92.86 127.78c0 3.24-1.28 6.257-3.536 8.584C86.463 138.72 83.314 140 80 140Z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E");
   }
-  
+
   .bg-wavy-1 {
     background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
@@ -235,6 +241,104 @@
   }
   .interactive-rating input:checked ~ label .star-shadow {
     opacity: 1;
+  }
+  
+  /* From Uiverse.io by aaronross1 */
+  .typing-indicator {
+    width: 60px;
+    height: 30px;
+    position: relative;
+    z-index: 4;
+  }
+
+  .typing-circle {
+    width: 8px;
+    height: 8px;
+    position: absolute;
+    border-radius: 50%;
+    background-color: hsl(var(--foreground));
+    left: 15%;
+    transform-origin: 50%;
+    animation: typing-circle7124 0.5s alternate infinite ease;
+  }
+
+  .dark .typing-circle {
+    background-color: hsl(var(--foreground));
+  }
+
+  @keyframes typing-circle7124 {
+    0% {
+      top: 20px;
+      height: 5px;
+      border-radius: 50px 50px 25px 25px;
+      transform: scaleX(1.7);
+    }
+
+    40% {
+      height: 8px;
+      border-radius: 50%;
+      transform: scaleX(1);
+    }
+
+    100% {
+      top: 0%;
+    }
+  }
+
+  .typing-circle:nth-child(2) {
+    left: 45%;
+    animation-delay: 0.2s;
+  }
+
+  .typing-circle:nth-child(3) {
+    left: auto;
+    right: 15%;
+    animation-delay: 0.3s;
+  }
+
+  .typing-shadow {
+    width: 5px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: hsla(var(--foreground) / 0.2);
+    position: absolute;
+    top: 30px;
+    transform-origin: 50%;
+    z-index: 3;
+    left: 15%;
+    filter: blur(1px);
+    animation: typing-shadow046 0.5s alternate infinite ease;
+  }
+
+  .dark .typing-shadow {
+    background-color: hsla(var(--foreground) / 0.2);
+  }
+
+  @keyframes typing-shadow046 {
+    0% {
+      transform: scaleX(1.5);
+    }
+
+    40% {
+      transform: scaleX(1);
+      opacity: 0.7;
+    }
+
+    100% {
+      transform: scaleX(0.2);
+      opacity: 0.4;
+    }
+  }
+
+  .typing-shadow:nth-child(4) {
+    left: 45%;
+    animation-delay: 0.2s;
+  }
+
+  .typing-shadow:nth-child(5) {
+    left: auto;
+    right: 15%;
+    animation-delay: 0.3s;
   }
 }
 

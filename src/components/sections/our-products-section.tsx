@@ -1,7 +1,7 @@
 
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   Card,
   CardContent,
@@ -21,16 +21,39 @@ import Autoplay from "embla-carousel-autoplay"
 import { ArrowRight, ShoppingCart } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useApp } from '@/hooks/use-app';
 import type { SiteProduct } from '@/types';
 import { cn } from '@/lib/utils';
 import { siteProducts } from '@/lib/config';
 
+const TypingLoader = () => (
+    <div className="typing-indicator">
+      <div className="typing-circle"></div>
+      <div className="typing-circle"></div>
+      <div className="typing-circle"></div>
+      <div className="typing-shadow"></div>
+      <div className="typing-shadow"></div>
+      <div className="typing-shadow"></div>
+    </div>
+  );
+
 const ProductCard = ({ product }: { product: SiteProduct }) => {
   const { addToCart, buyNow } = useApp();
   const autoplayPlugin = useRef(Autoplay({ delay: 2000 + Math.random() * 1000, stopOnInteraction: true }));
+  const [isNavigating, setIsNavigating] = useState(false);
+  const router = useRouter();
   
   const originalPrice = Math.round(product.price * 1.25);
+
+  const handleNavigate = (e: React.MouseEvent, href: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsNavigating(true);
+    setTimeout(() => {
+        router.push(href);
+    }, 700);
+  };
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -57,11 +80,20 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
   };
 
   return (
-      <Card id={`product-card-${product.slug}`} className="text-left overflow-hidden h-full flex flex-col group w-[320px] sm:w-[380px] transition-all duration-500 bg-gray-200/50 dark:bg-gray-500/10 border border-white/50 shadow-glass backdrop-blur-md rounded-[17px] hover:border-foreground/50 hover:scale-105 active:scale-95 active:rotate-[1.7deg]">
+      <Card 
+        id={`product-card-${product.slug}`} 
+        onClick={(e) => handleNavigate(e, `/products/${product.slug}`)}
+        className="text-left overflow-hidden h-full flex flex-col group w-[320px] sm:w-[380px] transition-all duration-500 bg-gray-200/50 dark:bg-gray-500/10 border border-white/50 shadow-glass backdrop-blur-md rounded-[17px] hover:border-foreground/50 hover:scale-105 active:scale-95 active:rotate-[1.7deg] cursor-pointer"
+    >
+        {isNavigating && (
+            <div className="absolute inset-0 z-20 flex items-center justify-center bg-background/70 backdrop-blur-sm rounded-[17px]">
+                <TypingLoader />
+            </div>
+        )}
         <div className="relative overflow-hidden rounded-t-[17px]">
-            <Link href={`/products/${product.slug}`} className="absolute inset-0 z-10">
+            <div className="absolute inset-0 z-10">
                  <span className="sr-only">View Details</span>
-            </Link>
+            </div>
             <Carousel
               plugins={[autoplayPlugin.current]}
               className="w-full"
@@ -90,9 +122,9 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
         <div className="flex flex-col flex-grow p-4 bg-transparent rounded-b-[17px]">
           <CardHeader className="p-0">
             <CardTitle className="font-headline text-lg">
-              <Link href={`/products/${product.slug}`} className="hover:text-primary transition-colors z-30 relative text-black dark:text-white">
-                {product.name}
-              </Link>
+                <span className="hover:text-primary transition-colors z-30 relative text-black dark:text-white">
+                    {product.name}
+                </span>
             </CardTitle>
           </CardHeader>
           <CardContent className="p-0 mt-2 flex-grow">
