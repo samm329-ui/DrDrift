@@ -165,7 +165,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
           </CardTitle>
         </CardHeader>
         <CardContent className="p-0 mt-1 md:mt-2 flex-grow">
-          <p className="text-sm text-muted-foreground line-clamp-2 hidden md:block">
+          <p className="text-sm text-muted-foreground line-clamp-2">
             {product.description}
           </p>
           <div className="flex items-center justify-between mt-1 md:mt-2">
@@ -180,7 +180,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
             <ProductRating productId={product.id} />
           </div>
         </CardContent>
-        <CardFooter className="hidden md:flex p-0 mt-auto pt-2 md:pt-4 flex-col items-start">
+        <CardFooter className="flex p-0 mt-auto pt-2 md:pt-4 flex-col items-start">
           <div className="flex items-center gap-2 w-full">
             <AddToCartButton
               onClick={handleAddToCart}
@@ -216,10 +216,10 @@ const OurProductsSection = () => {
           A range of products to keep your home shining.
         </p>
         <div 
-          className="mt-12 grid grid-cols-3 gap-3 md:flex md:flex-nowrap md:gap-6 pb-4 overflow-x-auto no-scrollbar"
+          className="mt-12 flex flex-nowrap gap-6 pb-4 overflow-x-auto no-scrollbar"
         >
               {productsToShow.map((item, index) => (
-                  <div key={index} className="w-full md:w-80 md:flex-shrink-0">
+                  <div key={index} className="w-80 flex-shrink-0">
                     <ProductCard product={item} />
                   </div>
               ))}
