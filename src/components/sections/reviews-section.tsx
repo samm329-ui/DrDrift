@@ -1,7 +1,6 @@
 
 import Image from 'next/image';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { Card, CardContent } from '@/components/ui/card';
 import { Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -36,29 +35,33 @@ const ReviewsSection = () => {
                 <p className="mt-4 max-w-2xl mx-auto text-xl text-muted-foreground">
                     Don't just take our word for it. Here's what our customers have to say.
                 </p>
-                <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8 justify-center">
                     {reviews.map((review, index) => (
-                        <Card key={index} className="bg-background-alt dark:bg-[#212121] rounded-[30px] transition-all duration-500 ease-custom-bezier hover:rounded-xl">
-                            <CardContent className="p-8">
+                        <div key={index} className="review-card">
+                            <div>
+                                <div className="review-card-stars">
+                                    {[...Array(review.rating)].map((_, i) => (
+                                        <Star key={i} className="review-card-star fill-current" />
+                                    ))}
+                                </div>
+                                <div className="review-card-infos">
+                                    <p className="review-card-description">
+                                        &quot;{review.text}&quot;
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="review-card-author">
                                 <Image
                                     src={getAvatarUrl(review.avatarId)}
                                     alt={review.name}
-                                    width={64}
-                                    height={64}
-                                    className="rounded-full mx-auto mb-4 border-2 border-primary/50"
+                                    width={40}
+                                    height={40}
+                                    className="rounded-full border-2 border-primary/50"
                                     data-ai-hint="person face"
                                 />
-                                <h3 className="font-bold text-lg font-headline">{review.name}</h3>
-                                <div className="flex justify-center my-2">
-                                    {[...Array(review.rating)].map((_, i) => (
-                                        <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
-                                    ))}
-                                </div>
-                                <blockquote className="text-muted-foreground italic">
-                                    "{review.text}"
-                                </blockquote>
-                            </CardContent>
-                        </Card>
+                                <span className='font-semibold text-foreground/80'>{review.name}</span>
+                            </div>
+                        </div>
                     ))}
                 </div>
             </div>

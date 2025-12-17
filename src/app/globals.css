@@ -129,6 +129,29 @@
   .dark .ag-courses-item_link:hover .ag-courses-item_date {
     @apply text-primary-foreground;
   }
+
+  /* Review card styles */
+  .review-card {
+    @apply flex flex-col justify-between bg-background p-5 rounded-lg border max-w-sm transition-shadow duration-300 hover:shadow-lg;
+  }
+  .dark .review-card {
+    @apply bg-background-alt border-border;
+  }
+  .review-card-stars {
+    @apply flex gap-0.5 text-yellow-400;
+  }
+  .review-card-star {
+    @apply h-5 w-5;
+  }
+  .review-card-infos {
+    @apply mt-4;
+  }
+  .review-card-description {
+    @apply mt-1.5 leading-relaxed text-muted-foreground italic;
+  }
+  .review-card-author {
+    @apply mt-5 text-sm text-muted-foreground flex items-center gap-3;
+  }
 }
 
 
