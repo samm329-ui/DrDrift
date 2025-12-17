@@ -25,6 +25,7 @@ import {
 import { ReviewForm } from '@/components/review-form';
 import { PackButton } from '@/components/ui/pack-button';
 import { AddToCartButton } from '@/components/ui/add-to-cart-button';
+import { ShopNowButton } from '@/components/ui/shop-now-button';
 
 export default function ProductPage({ params }: { params: { slug: string } }) {
   const [quantity, setQuantity] = useState(1);
@@ -146,12 +147,9 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 </Button>
               </div>
 
-              <div className="flex-grow w-full flex flex-col sm:flex-row gap-2">
+              <div className="flex-grow w-full flex items-center gap-2">
                 <AddToCartButton onClick={handleAddToCart} />
-                <Button onClick={handleBuyNow} size="lg" className="w-full">
-                  Buy Now
-                   <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 ease-in-out group-hover:translate-x-1" />
-                </Button>
+                <ShopNowButton onClick={handleBuyNow} />
               </div>
             </div>
 

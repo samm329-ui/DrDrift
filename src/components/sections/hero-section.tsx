@@ -11,6 +11,7 @@ import InstagramIcon from '@/components/icons/instagram';
 import Link from 'next/link';
 import SearchBar from '../search-bar';
 import { ArrowRight } from 'lucide-react';
+import { ShopNowButton } from '../ui/shop-now-button';
 
 const SocialLinks = () => (
     <div className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 transform">
@@ -94,14 +95,11 @@ const HeroSection = () => {
             </h1>
             <p className="mt-4 text-lg md:text-xl text-white/80">{currentProduct.subtitle}</p>
             <p className="mt-6 max-w-prose text-base text-white/70">{currentProduct.description}</p>
-            <div className="mt-8 flex flex-col sm:flex-row">
-                <Button variant="outline" className="border-2 border-white bg-transparent text-white hover:bg-white hover:text-black rounded-r-none" onClick={(e) => handleScrollTo(e, '#product')}>
+            <div className="mt-8 flex flex-col sm:flex-row items-center">
+                <Button variant="outline" className="border-2 border-white bg-transparent text-white hover:bg-white hover:text-black" onClick={(e) => handleScrollTo(e, '#product')}>
                     Learn More
                 </Button>
-                <Button onClick={(e) => handleScrollTo(e, '#our-products')} className="rounded-l-none">
-                    Buy Now
-                    <ArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 ease-in-out group-hover:translate-x-1" />
-                </Button>
+                <ShopNowButton onClick={(e) => handleScrollTo(e, '#our-products')} className="hero-shop-now -ml-4" />
             </div>
         </div>
       </div>

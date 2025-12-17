@@ -26,6 +26,7 @@ import { cn } from '@/lib/utils';
 import { siteProducts } from '@/lib/config';
 import { Button } from '../ui/button';
 import { AddToCartButton } from '../ui/add-to-cart-button';
+import { ShopNowButton } from '../ui/shop-now-button';
 
 const Spinner = () => (
     <div className="spinner center">
@@ -166,9 +167,7 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
           <CardFooter className='p-0 mt-auto pt-4'>
             <div className='flex items-center gap-2 w-full'>
                 <AddToCartButton onClick={handleAddToCart} />
-                <Button size="sm" className='w-full' onClick={handleBuyNow}>
-                  Buy Now
-                </Button>
+                <ShopNowButton onClick={handleBuyNow} />
             </div>
           </CardFooter>
         </div>
