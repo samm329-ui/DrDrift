@@ -6,6 +6,9 @@ import { useAuthDialog } from '@/hooks/use-auth-dialog';
 import {
   Dialog,
   DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
 } from '@/components/ui/dialog';
 import { useToast } from '@/hooks/use-toast';
 import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, AuthError } from 'firebase/auth';
@@ -63,17 +66,23 @@ export function AuthDialog() {
   return (
     <Dialog open={isAuthDialogOpen} onOpenChange={closeAuthDialog}>
       <DialogContent className="sm:max-w-md p-0 bg-transparent border-none shadow-none">
-        <div className="auth-form bg-background p-8 rounded-2xl">
-          <p className="auth-form-title">{isSigningIn ? 'Sign In' : 'Create Account'}</p>
+        <div className="form">
+            <DialogHeader>
+              <DialogTitle className="form-title">{isSigningIn ? 'Sign In' : 'Create Account'}</DialogTitle>
+              <DialogDescription className="sr-only">
+                {isSigningIn ? 'Sign into your account.' : 'Create a new account.'}
+              </DialogDescription>
+            </DialogHeader>
+
           <form onSubmit={handleEmailAuth}>
-            <div className="auth-flex-column">
+            <div className="flex-column">
                 <label>Email </label>
             </div>
-            <div className="auth-input-form">
+            <div className="inputForm">
                 <Mail className="h-5 w-5 text-muted-foreground" />
                 <input
                     type="email"
-                    className="auth-input"
+                    className="input"
                     placeholder="Enter your Email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -81,14 +90,14 @@ export function AuthDialog() {
                 />
             </div>
 
-            <div className="auth-flex-column">
+            <div className="flex-column">
                 <label>Password </label>
             </div>
-            <div className="auth-input-form">
+            <div className="inputForm">
                 <Lock className="h-5 w-5 text-muted-foreground" />
                 <input
                     type="password"
-                    className="auth-input"
+                    className="input"
                     placeholder="Enter your Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -96,17 +105,25 @@ export function AuthDialog() {
                 />
             </div>
             {error && <p className="text-sm text-destructive mt-2">{error}</p>}
-            <button type="submit" className="auth-button-submit">
+
+            <div className="flex-row">
+              <div>
+                {/* Future "Remember me" checkbox can go here */}
+              </div>
+               {isSigningIn && <span className="span">Forgot password?</span>}
+            </div>
+
+            <button type="submit" className="button-submit">
               {isSigningIn ? 'Sign In' : 'Create Account'}
             </button>
           </form>
-           <p className="auth-p">
+           <p className="p">
             {isSigningIn ? "Don't have an account?" : 'Already have an account?'}
-            <span className="auth-span" onClick={handleSwitchMode}>
+            <span className="span" onClick={handleSwitchMode}>
                  {isSigningIn ? 'Sign up' : 'Sign in'}
             </span>
           </p>
-          <button className="auth-btn" onClick={handleGoogleSignIn}>
+          <button className="btn" onClick={handleGoogleSignIn}>
             <GoogleIcon />
             {isSigningIn ? 'Sign in with Google' : 'Sign up with Google'}
           </button>
@@ -115,5 +132,3 @@ export function AuthDialog() {
     </Dialog>
   );
 }
-
-    
