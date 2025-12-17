@@ -163,8 +163,8 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
           </CardContent>
           <CardFooter className='p-0 mt-auto pt-4'>
             <div className='flex items-center gap-2 w-full'>
-                <AddToCartButton onClick={handleAddToCart} />
-                <button onClick={handleBuyNow} className="hero-buy-now-btn flex-grow-0 justify-center text-black">
+                <AddToCartButton onClick={handleAddToCart} className="flex-grow basis-0 justify-center" />
+                <button onClick={handleBuyNow} className="hero-buy-now-btn flex-grow basis-0 justify-center text-black">
                   <span>Buy Now</span>
                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="none">
                     <path d="M0 0h24v24H0V0z" fill="none"/>

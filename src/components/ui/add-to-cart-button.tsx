@@ -2,6 +2,7 @@
 
 import { ShoppingCart } from 'lucide-react';
 import React from 'react';
+import { cn } from '@/lib/utils';
 
 interface AddToCartButtonProps {
   onClick: (e: React.MouseEvent) => void;
@@ -10,7 +11,7 @@ interface AddToCartButtonProps {
 
 export const AddToCartButton = ({ onClick, className }: AddToCartButtonProps) => {
   return (
-    <button className={`add-to-cart-button ${className}`} onClick={onClick}>
+    <button className={cn('add-to-cart-button', className)} onClick={onClick}>
       <div className="svg-wrapper-1">
         <div className="svg-wrapper">
           <ShoppingCart />
