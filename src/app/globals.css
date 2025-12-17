@@ -954,7 +954,6 @@
     display: block;
     margin-left: 0.3em;
     transition: all 0.3s ease-in-out;
-    white-space: nowrap;
   }
   
   .add-to-cart-button svg {
@@ -985,80 +984,6 @@
   .add-to-cart-button:active {
     transform: scale(0.95);
   }
-
-  /* Shop Now Button */
-  .shop-now-button {
-    border: none;
-    background: none;
-    cursor: pointer;
-  }
-
-  .shop-now-button span {
-    padding-bottom: 7px;
-    letter-spacing: 4px;
-    font-size: 14px;
-    padding-right: 15px;
-    text-transform: uppercase;
-  }
-
-  .shop-now-button svg {
-    transform: translateX(-8px);
-    transition: all 0.3s ease;
-  }
-
-  .shop-now-button:hover svg {
-    transform: translateX(0);
-  }
-
-  .shop-now-button:active svg {
-    transform: scale(0.9);
-  }
-
-  .shop-now-button .hover-underline-animation {
-    position: relative;
-    color: hsl(var(--foreground));
-    padding-bottom: 20px;
-  }
-
-  .dark .shop-now-button .hover-underline-animation {
-    color: hsl(var(--foreground));
-  }
-
-  .hero-shop-now .hover-underline-animation {
-    color: white;
-  }
-  .dark .hero-shop-now .hover-underline-animation {
-    color: white;
-  }
-
-  .shop-now-button .hover-underline-animation:after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: hsl(var(--foreground));
-    transform-origin: bottom right;
-    transition: transform 0.25s ease-out;
-  }
-  .dark .shop-now-button .hover-underline-animation:after {
-    background-color: hsl(var(--foreground));
-  }
-  .hero-shop-now .hover-underline-animation:after {
-    background-color: white;
-  }
-  .dark .hero-shop-now .hover-underline-animation:after {
-    background-color: white;
-  }
-
-
-  .shop-now-button:hover .hover-underline-animation:after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
-  }
-
 
 }
 

@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useState, useMemo } from 'react';
@@ -13,7 +12,7 @@ import {
   CarouselNext,
 } from '@/components/ui/carousel';
 import Image from 'next/image';
-import { Minus, Plus, CheckCircle, Sparkles, ArrowRight } from 'lucide-react';
+import { Minus, Plus, CheckCircle } from 'lucide-react';
 import { useApp } from '@/hooks/use-app';
 import { Separator } from '@/components/ui/separator';
 import {
@@ -25,7 +24,6 @@ import {
 import { ReviewForm } from '@/components/review-form';
 import { PackButton } from '@/components/ui/pack-button';
 import { AddToCartButton } from '@/components/ui/add-to-cart-button';
-import { ShopNowButton } from '@/components/ui/shop-now-button';
 
 export default function ProductPage({ params }: { params: { slug: string } }) {
   const [quantity, setQuantity] = useState(1);
@@ -149,7 +147,9 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
 
               <div className="flex-grow w-full flex items-center gap-2">
                 <AddToCartButton onClick={handleAddToCart} />
-                <ShopNowButton onClick={handleBuyNow} />
+                <Button onClick={handleBuyNow} className="flex-grow">
+                  Buy Now
+                </Button>
               </div>
             </div>
 

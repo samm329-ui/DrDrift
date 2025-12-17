@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useRef, useEffect } from 'react';
@@ -10,8 +9,6 @@ import TwitterIcon from '@/components/icons/twitter';
 import InstagramIcon from '@/components/icons/instagram';
 import Link from 'next/link';
 import SearchBar from '../search-bar';
-import { ArrowRight } from 'lucide-react';
-import { ShopNowButton } from '../ui/shop-now-button';
 
 const SocialLinks = () => (
     <div className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 transform">
@@ -99,7 +96,9 @@ const HeroSection = () => {
                 <Button variant="outline" className="border-2 border-white bg-transparent text-white hover:bg-white hover:text-black rounded-r-none" onClick={(e) => handleScrollTo(e, '#product')}>
                     Learn More
                 </Button>
-                <ShopNowButton onClick={(e) => handleScrollTo(e, '#our-products')} className="hero-shop-now rounded-l-none -ml-px" />
+                <Button onClick={(e) => handleScrollTo(e, '#our-products')} className="bg-white text-black hover:bg-white/90 rounded-l-none -ml-px">
+                  Buy Now
+                </Button>
             </div>
         </div>
       </div>
