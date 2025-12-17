@@ -196,9 +196,17 @@ const ProductCard = ({ product }: { product: SiteProduct }) => {
 
 const OurProductsSection = () => {
   const { filteredProducts, searchQuery } = useApp();
-
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  
   const productsToShow = searchQuery ? filteredProducts : siteProducts;
 
+  const handleScrollRight = () => {
+    if (scrollContainerRef.current) {
+      const cardWidth = 256; // approx width of a card in px (w-64)
+      const gap = 24; // gap between cards (gap-6)
+      scrollContainerRef.current.scrollBy({ left: cardWidth + gap, behavior: 'smooth' });
+    }
+  };
 
   return (
     <section id="our-products" className="py-20 md:py-24 bg-secondary overflow-hidden">
@@ -211,10 +219,11 @@ const OurProductsSection = () => {
         </p>
       </div>
        <div 
-          className="mt-12 flex flex-nowrap gap-6 pb-4 overflow-x-auto no-scrollbar md:justify-center"
+          ref={scrollContainerRef}
+          className="mt-12 flex flex-nowrap gap-6 pb-4 overflow-x-auto no-scrollbar md:justify-center -ml-4 pl-8 md:ml-0 md:pl-0"
         >
               {productsToShow.map((item, index) => (
-                  <div key={index} className={cn("w-64 flex-shrink-0", index === 0 && "ml-4", "md:w-72 md:ml-0")}>
+                  <div key={index} className="w-64 flex-shrink-0 md:w-72">
                     <ProductCard product={item} />
                   </div>
               ))}
@@ -225,9 +234,11 @@ const OurProductsSection = () => {
             )}
         </div>
         <div className="mt-4 text-center md:hidden">
-            <p className="flex items-center justify-center gap-2 text-sm text-muted-foreground animate-pulse">
+            <p className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
                 Swipe right for more
-                <ArrowRight className="h-4 w-4" />
+                <button onClick={handleScrollRight} className="p-1 rounded-full focus:outline-none focus:ring-2 focus:ring-primary">
+                    <ArrowRight className="h-4 w-4" />
+                </button>
             </p>
         </div>
     </section>
