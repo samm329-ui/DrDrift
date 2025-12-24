@@ -19,6 +19,9 @@ import { ArrowLeft } from 'lucide-react';
 import { ScrollArea } from './ui/scroll-area';
 import { Textarea } from './ui/textarea';
 import { Separator } from './ui/separator';
+import { useState } from 'react';
+import { sendOrderToSheet } from '@/ai/flows/send-order-to-sheet';
+import { format } from 'date-fns';
 
 const checkoutSchema = z.object({
   firstName: z.string().min(1, { message: 'First name is required.' }),
@@ -40,8 +43,9 @@ interface CheckoutFormProps {
 }
 
 export function CheckoutForm({ subtotal, onBack }: CheckoutFormProps) {
-  const { clearCart, setIsCartOpen } = useApp();
+  const { cart, clearCart, setIsCartOpen } = useApp();
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<CheckoutFormValues>({
     resolver: zodResolver(checkoutSchema),
@@ -58,14 +62,41 @@ export function CheckoutForm({ subtotal, onBack }: CheckoutFormProps) {
     },
   });
 
-  function onSubmit(data: CheckoutFormValues) {
-    console.log('Order placed:', { ...data, subtotal });
-    toast({
-      title: 'Order Placed!',
-      description: "We've received your order. You'll pay on delivery.",
-    });
-    clearCart();
-    setIsCartOpen(false);
+  async function onSubmit(data: CheckoutFormValues) {
+    setIsSubmitting(true);
+    
+    const fullAddress = `${data.house}, ${data.street}, ${data.address ? data.address + ', ' : ''}${data.landmark ? 'near ' + data.landmark : ''}`.trim();
+    const cartSummary = cart.map(item => `${item.name} (x${item.quantity})`).join(', ');
+
+    try {
+      await sendOrderToSheet({
+        orderDate: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
+        customerName: `${data.firstName} ${data.lastName}`,
+        email: data.email,
+        contactNumber: data.contactNumber,
+        address: fullAddress,
+        pincode: data.pincode,
+        items: cartSummary,
+        totalAmount: subtotal,
+      });
+
+      toast({
+        title: 'Order Placed!',
+        description: "We've received your order. You'll pay on delivery.",
+      });
+      clearCart();
+      setIsCartOpen(false);
+
+    } catch (error) {
+      console.error('Failed to send order to sheet:', error);
+      toast({
+        variant: 'destructive',
+        title: 'Uh oh! Something went wrong.',
+        description: 'Could not place your order. Please try again later.',
+      });
+    } finally {
+        setIsSubmitting(false);
+    }
   }
 
   return (
@@ -221,8 +252,8 @@ export function CheckoutForm({ subtotal, onBack }: CheckoutFormProps) {
             <span>Rs. {subtotal.toFixed(2)}</span>
         </div>
           <p className="text-sm text-muted-foreground">Payment Method: Cash on Delivery</p>
-        <Button onClick={form.handleSubmit(onSubmit)} form="checkout-form" className="w-full" size="lg">
-            Place Order
+        <Button onClick={form.handleSubmit(onSubmit)} form="checkout-form" className="w-full" size="lg" disabled={isSubmitting}>
+            {isSubmitting ? 'Placing Order...' : 'Place Order'}
         </Button>
       </div>
     </div>
