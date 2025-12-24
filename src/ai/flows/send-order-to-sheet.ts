@@ -7,7 +7,7 @@
  */
 
 import { ai } from '@/ai/genkit';
-import { z } from 'genkit';
+import { z } from 'zod';
 import { GoogleAuth } from 'google-auth-library';
 import { google } from 'googleapis';
 
